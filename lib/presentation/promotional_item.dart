@@ -18,21 +18,16 @@ class PromotionalItem extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Stack(
             children: [
               SizedBox(
                 width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.fitWidth,
-                    color: Colors.black45,
-                    colorBlendMode: BlendMode.darken,
-                  ),
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.fitWidth,
+                  color: Colors.black45,
+                  colorBlendMode: BlendMode.darken,
                 ),
               ),
               Padding(

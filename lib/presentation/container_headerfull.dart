@@ -26,10 +26,6 @@ class ContainerHeaderFull extends StatelessWidget {
       contentMargin = 8.0;
     }
 
-    final widgetShape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
-    );
-
     return Column(
       children: [
         Padding(
@@ -42,11 +38,10 @@ class ContainerHeaderFull extends StatelessWidget {
               Visibility(
                 visible: isActionPresent,
                 child: Card(
-                  shape: widgetShape,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   color: AppColors.cardBackground,
                   elevation: 0,
                   child: InkWell(
-                    customBorder: widgetShape,
                     onTap: () {},
                     child: const Padding(
                       padding: EdgeInsets.all(6.0),

@@ -16,24 +16,16 @@ class NewsItem extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Card(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
           surfaceTintColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(8.0),
-                  bottomLeft: Radius.circular(8.0),
-                ),
-                child: Image.network(
-                  width: 120,
-                  height: 180,
-                  news.imageUrl,
-                  fit: BoxFit.fitHeight,
-                ),
+              Image.network(
+                width: 120,
+                height: 180,
+                news.imageUrl,
+                fit: BoxFit.fitHeight,
               ),
               Expanded(
                 child: Padding(

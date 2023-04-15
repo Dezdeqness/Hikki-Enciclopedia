@@ -20,10 +20,8 @@ class AnimeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final String formatScore = score == 0.0 ? "N/A" : score.toString();
     return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
       surfaceTintColor: Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
       child: SizedBox(
         width: 110,
         height: 180,
@@ -33,18 +31,12 @@ class AnimeItem extends StatelessWidget {
               flex: 70,
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8.0),
-                      topRight: Radius.circular(8.0),
-                    ),
-                    child: Image.network(
-                      imageUrl,
-                      width: 110,
-                      fit: BoxFit.fitWidth,
-                      color: Colors.black38,
-                      colorBlendMode: BlendMode.darken,
-                    ),
+                  Image.network(
+                    imageUrl,
+                    width: 110,
+                    fit: BoxFit.fitWidth,
+                    color: Colors.black38,
+                    colorBlendMode: BlendMode.darken,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8),

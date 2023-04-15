@@ -16,15 +16,10 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 0,
         color: AppColors.cardBackground,
         child: InkWell(
-          customBorder: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
           onTap: () {},
           child: Padding(
             padding: const EdgeInsets.all(16),
