@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'explorer_page.dart';
+
 class ExplorerTabRoutes {
   static const String root = '/';
 }
@@ -17,11 +19,7 @@ class ExplorerTab extends StatelessWidget {
       Widget screen;
       switch (routeSettings.name) {
         case ExplorerTabRoutes.root:
-          screen = Container(
-            child: const Center(
-              child: Text('Explorer'),
-            ),
-          );
+          screen = const ExplorerPage();
           break;
         default:
           screen = const Center(

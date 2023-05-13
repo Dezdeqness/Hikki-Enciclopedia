@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/data/anime_api_datasource.dart';
 
-import 'package:hikki_enciclopedia/data/provider.dart';
-import 'package:hikki_enciclopedia/ui/anime_item.dart';
+import 'package:hikki_enciclopedia/ui/anime_pager_item.dart';
 import 'package:hikki_enciclopedia/ui/category_item.dart';
 import 'package:hikki_enciclopedia/ui/container_headerfull.dart';
 import 'package:hikki_enciclopedia/ui/news_item.dart';
 import 'package:hikki_enciclopedia/ui/promotional_item.dart';
+
+import '../models/entities.dart';
+import '../models/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -22,6 +25,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final AnimeApiDataSource animeApiDataSource = AnimeApiDataSource();
+
+  late Future<List<Anime>> futureAiringAnime;
+  late Future<List<Anime>> futureUpcomingAnime;
+  late Future<List<Anime>> futureRecommendationsAnime;
+
+  @override
+  void initState() {
+    super.initState();
+    futureAiringAnime = animeApiDataSource.getAnimeList(rankingType: "airing");
+    futureUpcomingAnime =
+        animeApiDataSource.getAnimeList(rankingType: "upcoming");
+    futureRecommendationsAnime =
+        animeApiDataSource.getAnimeList(rankingType: "bypopularity");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +69,18 @@ class _HomePageState extends State<HomePage> {
           _buildBanner(),
           _buildNewsContainer(),
           _buildPromotionalContainer(),
-          _buildCurrentAiringContainer(),
-          _buildUpcomingContainer(),
-          _buildRecommendationContainer(),
+          _buildHorizontalList(
+            header: 'Currently Airing',
+            future: futureAiringAnime,
+          ),
+          _buildHorizontalList(
+            header: 'Upcoming Anime',
+            future: futureUpcomingAnime,
+          ),
+          _buildHorizontalList(
+            header: 'Anime Recommendations',
+            future: futureRecommendationsAnime,
+          ),
           const SizedBox(height: 50),
         ],
       ),
@@ -105,6 +133,17 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
+  _buildHorizontalList(
+          {required String header, required Future<List<Anime>> future}) =>
+      Container(
+        padding: const EdgeInsets.only(top: 16),
+        child: ContainerHeaderFull(
+          header: header,
+          content: _buildPager(future),
+          isActionPresent: true,
+        ),
+      );
+
   _buildPromotionalPager() {
     final PageController controller = PageController();
     return SizedBox(
@@ -122,87 +161,60 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildCurrentAiringPager() {
-    return SizedBox(
-      height: 210,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        scrollDirection: Axis.horizontal,
-        children: getAnimeCurrentlyAiringList()
-            .map((element) => AnimeItem(
-                  title: element.title,
-                  type: element.type,
-                  score: element.score,
-                  imageUrl: element.imageUrl,
-                  onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
-                ))
-            .toList(),
-      ),
-    );
-  }
+  _buildPager(Future<List<Anime>> future) => FutureBuilder<List<Anime>>(
+        future: future,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return _animeHorizontalList(snapshot.data ?? []);
+          } else if (snapshot.hasError) {
+            return _errorScreen(snapshot.error);
+          } else {
+            return _loadingScreen();
+          }
+        },
+      );
 
-  _buildUpcomingPager() {
-    return SizedBox(
-      height: 210,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        scrollDirection: Axis.horizontal,
-        children: getAnimeUpcomingList()
-            .map((element) => AnimeItem(
-                  title: element.title,
-                  type: element.type,
-                  score: element.score,
-                  imageUrl: element.imageUrl,
-                  onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
-                ))
-            .toList(),
-      ),
-    );
-  }
-
-  _buildRecommendationsPager() {
-    return SizedBox(
-      height: 210,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        scrollDirection: Axis.horizontal,
-        children: getAnimeRecommendationsList()
-            .map((element) => AnimeItem(
-                  title: element.title,
-                  type: element.type,
-                  score: element.score,
-                  imageUrl: element.imageUrl,
-                  onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
-                ))
-            .toList(),
-      ),
-    );
-  }
-
-  _buildCurrentAiringContainer() => Container(
-        padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
-          header: "Currently Airing",
-          content: _buildCurrentAiringPager(),
-          isActionPresent: true,
+  _animeHorizontalList(List<Anime> list) => SizedBox(
+        height: 210,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          scrollDirection: Axis.horizontal,
+          children: list
+              .map((element) => AnimePagerItem(
+                    title: element.title,
+                    type: element.type,
+                    score: element.score,
+                    imageUrl: element.imageUrl,
+                    onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
+                  ))
+              .toList(),
         ),
       );
 
-  _buildUpcomingContainer() => Container(
-        padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
-          header: "Upcoming Anime",
-          content: _buildUpcomingPager(),
-          isActionPresent: true,
+  _errorScreen(Object? error) => SizedBox(
+        height: 210,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.error_outline,
+                color: Colors.red,
+                size: 60,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text('Error: $error'),
+              ),
+            ],
+          ),
         ),
       );
 
-  _buildRecommendationContainer() => Container(
-        padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
-          header: "Anime Recommendations",
-          content: _buildRecommendationsPager(),
-          isActionPresent: true,
+  _loadingScreen() => const SizedBox(
+        height: 210,
+        child: Center(
+          child: CircularProgressIndicator(),
         ),
       );
 }

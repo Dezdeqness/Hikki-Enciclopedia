@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../theme/styles.dart';
 
-class AnimeItem extends StatelessWidget {
+class AnimePagerItem extends StatelessWidget {
   final String title;
   final String type;
   final double score;
   final String imageUrl;
   final ValueChanged<String> onAnimeDetailsClicked;
 
-  const AnimeItem({
+  const AnimePagerItem({
     super.key,
     required this.title,
     required this.type,
@@ -49,7 +49,7 @@ class AnimeItem extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.bottomLeft,
                         child: Text(
-                          type,
+                          type.toUpperCase(),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           textAlign: TextAlign.start,
@@ -76,21 +76,23 @@ class AnimeItem extends StatelessWidget {
                           style: AppStyles.animeTitle,
                         ),
                       ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.black,
-                            size: 14,
-                          ),
-                          const SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              formatScore,
-                              style: AppStyles.animeScore,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: Colors.black,
+                              size: 14,
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: Text(
+                                formatScore,
+                                style: AppStyles.animeScore,
+                              ),
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),

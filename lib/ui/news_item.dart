@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hikki_enciclopedia/theme/styles.dart';
 
-import '../data/entities.dart';
+import '../presentation/models/entities.dart';
 
 class NewsItem extends StatelessWidget {
   final News news;
@@ -26,6 +26,16 @@ class NewsItem extends StatelessWidget {
                 height: 180,
                 news.imageUrl,
                 fit: BoxFit.fitHeight,
+                errorBuilder:
+                    (BuildContext context, Object exception, StackTrace? stackTrace) {
+                  return const SizedBox(
+                    width: 120,
+                    height: 180,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
               ),
               Expanded(
                 child: Padding(
