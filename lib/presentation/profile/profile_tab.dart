@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/generated/l10n.dart';
 
 class ProfileTabRoutes {
   static const String root = '/';
@@ -17,10 +18,8 @@ class ProfileTab extends StatelessWidget {
           Widget screen;
           switch (routeSettings.name) {
             case ProfileTabRoutes.root:
-              screen = Container(
-                child: const Center(
-                  child: Text('Profile'),
-                ),
+              screen = Center(
+                child: Text( AppLocalizations.of(context).tabItemProfile),
               );
               break;
             default:

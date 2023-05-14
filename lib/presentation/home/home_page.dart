@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/data/anime_api_datasource.dart';
+import 'package:hikki_enciclopedia/generated/l10n.dart';
 
 import 'package:hikki_enciclopedia/ui/anime_pager_item.dart';
 import 'package:hikki_enciclopedia/ui/category_item.dart';
@@ -70,15 +71,15 @@ class _HomePageState extends State<HomePage> {
           _buildNewsContainer(),
           _buildPromotionalContainer(),
           _buildHorizontalList(
-            header: 'Currently Airing',
+            header: AppLocalizations.of(context).airingHeader,
             future: futureAiringAnime,
           ),
           _buildHorizontalList(
-            header: 'Upcoming Anime',
+            header: AppLocalizations.of(context).upcomingHeader,
             future: futureUpcomingAnime,
           ),
           _buildHorizontalList(
-            header: 'Anime Recommendations',
+            header: AppLocalizations.of(context).recommendationsHeader,
             future: futureRecommendationsAnime,
           ),
           const SizedBox(height: 50),
@@ -88,24 +89,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   _buildNewsContainer() => ContainerHeaderFull(
-        header: "Latest News",
+        header: AppLocalizations.of(context).latestHeader,
         content: _buildNewsPager(),
       );
 
   _buildBanner() => Container(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
-          children: const [
+          children: [
             Flexible(
               child: CategoryItem(
-                title: 'Top Anime',
+                title: AppLocalizations.of(context).topAnime,
                 icon: Icons.trending_up,
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Flexible(
               child: CategoryItem(
-                title: 'Seasonal',
+                title: AppLocalizations.of(context).seasonal,
                 icon: Icons.sunny,
               ),
             ),
@@ -128,7 +129,7 @@ class _HomePageState extends State<HomePage> {
   _buildPromotionalContainer() => Container(
         padding: const EdgeInsets.only(top: 16),
         child: ContainerHeaderFull(
-          header: "Latest Promotional",
+          header: AppLocalizations.of(context).promotionalHeader,
           content: _buildPromotionalPager(),
         ),
       );

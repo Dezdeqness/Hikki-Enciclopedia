@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/presentation/anime/anime_details.dart';
 
+import '../../generated/l10n.dart';
 import 'home_page.dart';
 
 class HomeTabRoutes {
@@ -22,7 +23,7 @@ class HomeTab extends StatelessWidget {
           switch (routeSettings.name) {
             case HomeTabRoutes.root:
               screen = HomePage(
-                title: 'Browse Anime',
+                title: AppLocalizations.of(context).browseAnime,
                 onAnimeDetailsClicked: (title) {
                   navigatorKey?.currentState?.pushNamed(
                     HomeTabRoutes.animeDetail,

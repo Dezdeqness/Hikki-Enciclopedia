@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/generated/l10n.dart';
 
 class MainBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onSelectTab;
 
-  MainBottomNavBar({
+  const MainBottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onSelectTab,
   });
 
-  final _navBarItemsData = [
-    NavBarItem(
-      icon: const Icon(Icons.bookmark),
-      label: 'Personal list',
-    ),
-    NavBarItem(
-      icon: const Icon(Icons.home),
-      label: 'Home',
-    ),
-    NavBarItem(
-      icon: const Icon(Icons.explore),
-      label: 'Explorer',
-    ),
-    NavBarItem(
-      icon: const Icon(Icons.person),
-      label: 'Profile',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final items = _navBarItemsData.map((value) {
+    final items = [
+      NavBarItem(
+        icon: const Icon(Icons.bookmark),
+        label: AppLocalizations.of(context).tabItemPersonalList,
+      ),
+      NavBarItem(
+        icon: const Icon(Icons.home),
+        label: AppLocalizations.of(context).tabItemHome,
+      ),
+      NavBarItem(
+        icon: const Icon(Icons.explore),
+        label: AppLocalizations.of(context).tabItemExplorer,
+      ),
+      NavBarItem(
+        icon: const Icon(Icons.person),
+        label: AppLocalizations.of(context).tabItemProfile,
+      ),
+    ].map((value) {
       return _buildItem(value);
     }).toList();
 

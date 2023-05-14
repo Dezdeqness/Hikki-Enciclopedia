@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/theme/colors.dart';
 import 'package:hikki_enciclopedia/theme/styles.dart';
 
+import '../generated/l10n.dart';
 import 'cell_header.dart';
 
 class ContainerHeaderFull extends StatelessWidget {
@@ -43,10 +44,10 @@ class ContainerHeaderFull extends StatelessWidget {
                   elevation: 0,
                   child: InkWell(
                     onTap: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.all(6.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
                       child: Text(
-                        'See All',
+                        AppLocalizations.of(context).seeAll,
                         style: AppStyles.headerActionButton,
                       ),
                     ),

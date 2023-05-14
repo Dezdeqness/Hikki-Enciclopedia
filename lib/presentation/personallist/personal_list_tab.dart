@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
+
 class PersonalListTabRoutes {
   static const String root = '/';
 }
@@ -17,10 +19,8 @@ class PersonalListTab extends StatelessWidget {
           Widget screen;
           switch (routeSettings.name) {
             case PersonalListTabRoutes.root:
-              screen = Container(
-                child: const Center(
-                  child: Text('Personal List'),
-                ),
+              screen = Center(
+                child: Text(AppLocalizations.of(context).tabItemPersonalList),
               );
               break;
             default:

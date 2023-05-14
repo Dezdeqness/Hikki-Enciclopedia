@@ -16,11 +16,15 @@
 *.iws
 .idea/
 
+**.g.dart
+
 # Visual Studio Code related
 .classpath
 .project
 .settings/
 .vscode/*
+
+/lib/generated/
 
 # Flutter repo-specific
 /bin/cache/
