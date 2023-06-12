@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/data/anime_api_datasource.dart';
+import 'package:hikki_enciclopedia/data/entities.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/ranking_type_filter.dart';
 import 'package:hikki_enciclopedia/ui/anime_item.dart';
 
@@ -20,7 +21,7 @@ class ExplorerPage extends StatefulWidget {
 class _ExplorerPage extends State<ExplorerPage> {
   final AnimeApiDataSource animeApiDataSource = AnimeApiDataSource();
 
-  List<Anime> _items = [];
+  List<AnimeEntity> _items = [];
   bool _isError = false;
   Object? _error;
 

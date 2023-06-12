@@ -23,12 +23,14 @@ class Promotional {
 }
 
 class Anime {
+  final int id;
   final String title;
   final String type;
   final double score;
   final String imageUrl;
 
   Anime({
+    required this.id,
     required this.title,
     required this.type,
     required this.score,

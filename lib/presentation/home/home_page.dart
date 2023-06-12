@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/data/anime_api_datasource.dart';
+import 'package:hikki_enciclopedia/data/entities.dart';
 import 'package:hikki_enciclopedia/generated/l10n.dart';
 
 import 'package:hikki_enciclopedia/ui/anime_pager_item.dart';
@@ -8,7 +9,6 @@ import 'package:hikki_enciclopedia/ui/container_headerfull.dart';
 import 'package:hikki_enciclopedia/ui/news_item.dart';
 import 'package:hikki_enciclopedia/ui/promotional_item.dart';
 
-import '../models/entities.dart';
 import '../models/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
     required this.onAnimeDetailsClicked,
   });
 
-  final ValueChanged<String> onAnimeDetailsClicked;
+  final ValueChanged<int> onAnimeDetailsClicked;
   final String title;
 
   @override
@@ -28,9 +28,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final AnimeApiDataSource animeApiDataSource = AnimeApiDataSource();
 
-  late Future<List<Anime>> futureAiringAnime;
-  late Future<List<Anime>> futureUpcomingAnime;
-  late Future<List<Anime>> futureRecommendationsAnime;
+  late Future<List<AnimeEntity>> futureAiringAnime;
+  late Future<List<AnimeEntity>> futureUpcomingAnime;
+  late Future<List<AnimeEntity>> futureRecommendationsAnime;
 
   @override
   void initState() {
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
       );
 
   _buildHorizontalList(
-          {required String header, required Future<List<Anime>> future}) =>
+          {required String header, required Future<List<AnimeEntity>> future}) =>
       Container(
         padding: const EdgeInsets.only(top: 16),
         child: ContainerHeaderFull(
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildPager(Future<List<Anime>> future) => FutureBuilder<List<Anime>>(
+  _buildPager(Future<List<AnimeEntity>> future) => FutureBuilder<List<AnimeEntity>>(
         future: future,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -175,13 +175,14 @@ class _HomePageState extends State<HomePage> {
         },
       );
 
-  _animeHorizontalList(List<Anime> list) => SizedBox(
+  _animeHorizontalList(List<AnimeEntity> list) => SizedBox(
         height: 210,
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           scrollDirection: Axis.horizontal,
           children: list
               .map((element) => AnimePagerItem(
+                    id: element.id,
                     title: element.title,
                     type: element.type,
                     score: element.score,

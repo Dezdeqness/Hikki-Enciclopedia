@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../theme/styles.dart';
 
 class AnimePagerItem extends StatelessWidget {
+  final int id;
   final String title;
   final String type;
   final double score;
   final String imageUrl;
-  final ValueChanged<String> onAnimeDetailsClicked;
+  final ValueChanged<int> onAnimeDetailsClicked;
 
   const AnimePagerItem({
     super.key,
+    required this.id,
     required this.title,
     required this.type,
     required this.score,
@@ -26,7 +28,7 @@ class AnimePagerItem extends StatelessWidget {
       surfaceTintColor: Colors.transparent,
       child: InkWell(
         onTap: () {
-          onAnimeDetailsClicked.call(title);
+          onAnimeDetailsClicked.call(id);
         },
         child: SizedBox(
           width: 110,

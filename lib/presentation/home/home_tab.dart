@@ -24,10 +24,10 @@ class HomeTab extends StatelessWidget {
             case HomeTabRoutes.root:
               screen = HomePage(
                 title: AppLocalizations.of(context).browseAnime,
-                onAnimeDetailsClicked: (title) {
+                onAnimeDetailsClicked: (id) {
                   navigatorKey?.currentState?.pushNamed(
                     HomeTabRoutes.animeDetail,
-                    arguments: AnimeDetailsArguments(title: title),
+                    arguments: AnimeDetailsArguments(id: id),
                   );
                 },
               );
