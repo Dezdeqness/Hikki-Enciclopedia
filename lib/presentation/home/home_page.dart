@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/data/anime_api_datasource.dart';
 import 'package:hikki_enciclopedia/data/entities.dart';
 import 'package:hikki_enciclopedia/generated/l10n.dart';
+import 'package:hikki_enciclopedia/presentation/home/home_provier.dart';
 
 import 'package:hikki_enciclopedia/ui/anime_pager_item.dart';
 import 'package:hikki_enciclopedia/ui/category_item.dart';
 import 'package:hikki_enciclopedia/ui/container_headerfull.dart';
 import 'package:hikki_enciclopedia/ui/news_item.dart';
 import 'package:hikki_enciclopedia/ui/promotional_item.dart';
+import 'package:provider/provider.dart';
 
 import '../models/provider.dart';
 
@@ -28,18 +30,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final AnimeApiDataSource animeApiDataSource = AnimeApiDataSource();
 
-  late Future<List<AnimeEntity>> futureAiringAnime;
-  late Future<List<AnimeEntity>> futureUpcomingAnime;
-  late Future<List<AnimeEntity>> futureRecommendationsAnime;
-
   @override
   void initState() {
     super.initState();
-    futureAiringAnime = animeApiDataSource.getAnimeList(rankingType: "airing");
-    futureUpcomingAnime =
-        animeApiDataSource.getAnimeList(rankingType: "upcoming");
-    futureRecommendationsAnime =
-        animeApiDataSource.getAnimeList(rankingType: "bypopularity");
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<HomeProvider>(context, listen: false).fetchHomePage();
+    // });
   }
 
   @override
@@ -70,17 +66,14 @@ class _HomePageState extends State<HomePage> {
           _buildBanner(),
           _buildNewsContainer(),
           _buildPromotionalContainer(),
-          _buildHorizontalList(
+          _buildHorizontalListAiring(
             header: AppLocalizations.of(context).airingHeader,
-            future: futureAiringAnime,
           ),
-          _buildHorizontalList(
+          _buildHorizontalListUpcoming(
             header: AppLocalizations.of(context).upcomingHeader,
-            future: futureUpcomingAnime,
           ),
-          _buildHorizontalList(
+          _buildHorizontalListBypopularity(
             header: AppLocalizations.of(context).recommendationsHeader,
-            future: futureRecommendationsAnime,
           ),
           const SizedBox(height: 50),
         ],
@@ -134,13 +127,38 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  _buildHorizontalList(
-          {required String header, required Future<List<AnimeEntity>> future}) =>
-      Container(
+  _buildHorizontalListAiring({required String header}) => Container(
         padding: const EdgeInsets.only(top: 16),
         child: ContainerHeaderFull(
           header: header,
-          content: _buildPager(future),
+          content: Consumer<HomeProvider>(builder: (context, explorer, child) {
+            return _buildPager(explorer.itemsAiring, explorer.isErrorAiring,
+                explorer.errorAiring);
+          }),
+          isActionPresent: true,
+        ),
+      );
+
+  _buildHorizontalListUpcoming({required String header}) => Container(
+        padding: const EdgeInsets.only(top: 16),
+        child: ContainerHeaderFull(
+          header: header,
+          content: Consumer<HomeProvider>(builder: (context, explorer, child) {
+            return _buildPager(explorer.itemsUpcoming, explorer.isErrorUpcoming,
+                explorer.errorUpcoming);
+          }),
+          isActionPresent: true,
+        ),
+      );
+
+  _buildHorizontalListBypopularity({required String header}) => Container(
+        padding: const EdgeInsets.only(top: 16),
+        child: ContainerHeaderFull(
+          header: header,
+          content: Consumer<HomeProvider>(builder: (context, explorer, child) {
+            return _buildPager(explorer.itemsBypopularity,
+                explorer.isErrorBypopularity, explorer.errorBypopularity);
+          }),
           isActionPresent: true,
         ),
       );
@@ -162,18 +180,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildPager(Future<List<AnimeEntity>> future) => FutureBuilder<List<AnimeEntity>>(
-        future: future,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return _animeHorizontalList(snapshot.data ?? []);
-          } else if (snapshot.hasError) {
-            return _errorScreen(snapshot.error);
-          } else {
-            return _loadingScreen();
-          }
-        },
-      );
+  _buildPager(List<AnimeEntity> list, bool isError, Object? error) {
+    if (list.isNotEmpty) {
+      return _animeHorizontalList(list);
+    } else if (isError) {
+      return _errorScreen(error);
+    } else {
+      return _loadingScreen();
+    }
+  }
 
   _animeHorizontalList(List<AnimeEntity> list) => SizedBox(
         height: 210,
