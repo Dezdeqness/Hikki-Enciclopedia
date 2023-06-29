@@ -3,12 +3,12 @@ import 'package:json_annotation/json_annotation.dart';
 part 'anime_api_model.g.dart';
 
 @JsonSerializable()
-class AnimeResponse {
+class AnimeApi {
   final List<Data> data;
 
-  AnimeResponse({required this.data});
+  AnimeApi({required this.data});
 
-  factory AnimeResponse.fromJson(Map<String, dynamic> json) =>
+  factory AnimeApi.fromJson(Map<String, dynamic> json) =>
       _$AnimeResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AnimeResponseToJson(this);

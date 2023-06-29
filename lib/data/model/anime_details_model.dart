@@ -42,7 +42,6 @@ class AnimeDetailsResponse {
       _$AnimeDetailsResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$AnimeDetailsResponseToJson(this);
-
 }
 
 @JsonSerializable()
@@ -52,12 +51,10 @@ class Genres {
 
   Genres({this.id, this.name});
 
-  factory Genres.fromJson(Map<String, dynamic> json) =>
-      _$GenresFromJson(json);
+  factory Genres.fromJson(Map<String, dynamic> json) => _$GenresFromJson(json);
 
   Map<String, dynamic> toJson() => _$GenresToJson(this);
 }
-
 
 @JsonSerializable()
 class Studios {
@@ -95,8 +92,7 @@ class Node {
 
   Node({this.id, this.title, required this.mainPicture});
 
-  factory Node.fromJson(Map<String, dynamic> json) =>
-      _$NodeFromJson(json);
+  factory Node.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
 
   Map<String, dynamic> toJson() => _$NodeToJson(this);
 }
@@ -142,9 +138,7 @@ class Status {
       this.dropped,
       this.planToWatch});
 
-
-  factory Status.fromJson(Map<String, dynamic> json) =>
-      _$StatusFromJson(json);
+  factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 
   Map<String, dynamic> toJson() => _$StatusToJson(this);
 }
