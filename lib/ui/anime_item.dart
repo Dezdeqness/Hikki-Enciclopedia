@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AnimeItem extends StatelessWidget {
+  final int id;
   final String title;
   final double score;
   final String imageUrl;
   final String genres;
+  final ValueChanged<int> onAnimeDetailsClicked;
 
   const AnimeItem({
     super.key,
+    required this.id,
     required this.title,
     required this.score,
     required this.imageUrl,
     required this.genres,
+    required this.onAnimeDetailsClicked,
   });
 
   @override
@@ -20,7 +24,9 @@ class AnimeItem extends StatelessWidget {
       clipBehavior: Clip.antiAliasWithSaveLayer,
       surfaceTintColor: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onAnimeDetailsClicked.call(id);
+        },
         child: Column(
           children: [
             Expanded(

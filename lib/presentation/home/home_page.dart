@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/data/anime_api_datasource.dart';
-import 'package:hikki_enciclopedia/data/entities.dart';
 import 'package:hikki_enciclopedia/generated/l10n.dart';
 import 'package:hikki_enciclopedia/presentation/home/home_provier.dart';
 
@@ -11,6 +9,7 @@ import 'package:hikki_enciclopedia/ui/news_item.dart';
 import 'package:hikki_enciclopedia/ui/promotional_item.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/model/anime_entity.dart';
 import '../models/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +27,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final AnimeApiDataSource animeApiDataSource = AnimeApiDataSource();
 
   @override
   void initState() {

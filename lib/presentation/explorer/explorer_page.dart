@@ -1,28 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/presentation/explorer/explorer_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
+import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_bloc.dart';
+import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_event.dart';
+import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_state.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/ranking_type_filter.dart';
 import 'package:hikki_enciclopedia/ui/anime_item.dart';
 import 'package:provider/provider.dart';
 
+import '../../domain/model/anime_entity.dart';
+
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({
     super.key,
-    // required this.onAnimeDetailsClicked,
+    required this.onAnimeDetailsClicked,
   });
 
-  // final ValueChanged<String> onAnimeDetailsClicked;
+  final ValueChanged<int> onAnimeDetailsClicked;
 
   @override
   State<ExplorerPage> createState() => _ExplorerPage();
 }
 
 class _ExplorerPage extends State<ExplorerPage> {
+  late final ExplorerBloc explorerBloc;
+
   @override
   void initState() {
+    explorerBloc = Provider.of<ExplorerBloc>(context, listen: false)
+      ..add(GetExplorerPageEvent(rankingType: RankingTypeEntity.all.id));
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ExplorerProvider>(context, listen: false).fetchExplorerPage();
-    });
   }
 
   @override
@@ -30,19 +37,20 @@ class _ExplorerPage extends State<ExplorerPage> {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          Consumer<ExplorerProvider>(
-            builder: (context, explorer, child) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: DropdownButton<String>(
-                  value: explorer.rankingType,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: BlocBuilder(
+              bloc: explorerBloc,
+              builder: (BuildContext context, ExplorerState state) {
+                return DropdownButton<String>(
+                  value: state.rankingType.id,
                   style: const TextStyle(color: Colors.deepPurple),
                   onChanged: (String? value) {
                     final filteredList = getRankingTypeFilter(context)
                         .where((element) => element.id == value);
                     if (filteredList.isNotEmpty) {
-                      explorer.rankingType = filteredList.first.id;
-                      explorer.fetchExplorerPage();
+                      final id = filteredList.first.id;
+                      explorerBloc.add(GetExplorerPageEvent(rankingType: id));
                     }
                   },
                   items: getRankingTypeFilter(context)
@@ -52,38 +60,43 @@ class _ExplorerPage extends State<ExplorerPage> {
                       child: Text(value.displayName),
                     );
                   }).toList(),
-                ),
-              );
-            },
-          )
+                );
+              },
+            ),
+          ),
         ],
       ),
-      body: _buildHomePage(),
+      body: BlocBuilder(
+        bloc: explorerBloc,
+        builder: (BuildContext context, ExplorerState state) {
+          if (state.isLoading) {
+            return _loadingScreen();
+          }
+          if (state.error.isNotEmpty) {
+            return _errorScreen(state.error);
+          }
+
+          return _buildHomePage(state.items);
+        },
+      ),
     );
   }
 
-  _buildHomePage() {
-    return Consumer<ExplorerProvider>(builder: (context, explorer, child) {
-      if (explorer.items.isEmpty) {
-        return _loadingScreen();
-      }
-      if (explorer.isError) {
-        return _errorScreen(explorer.error);
-      }
-
-      return Column(
+  _buildHomePage(List<AnimeEntity> items) => Column(
         children: [
           Expanded(
             child: OrientationBuilder(builder: (context, orientation) {
               return GridView.count(
                 childAspectRatio: 0.66,
                 crossAxisCount: orientation == Orientation.portrait ? 2 : 4,
-                children: explorer.items
+                children: items
                     .map((element) => AnimeItem(
+                          id: element.id,
                           title: element.title,
                           score: element.score,
                           imageUrl: element.imageUrl,
                           genres: element.type,
+                          onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
                         ))
                     .toList(),
               );
@@ -91,10 +104,8 @@ class _ExplorerPage extends State<ExplorerPage> {
           ),
         ],
       );
-    });
-  }
 
-  _errorScreen(Object? error) => Center(
+  _errorScreen(String? error) => Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/explorer_tab.dart';
 import 'package:hikki_enciclopedia/presentation/personallist/personal_list_tab.dart';
 import 'package:hikki_enciclopedia/presentation/profile/profile_tab.dart';
+import 'package:hikki_enciclopedia/ui/lazy_indexed_stack.dart';
 
 import 'home/home_tab.dart';
 import 'main/main_bottom_nav_bar.dart';
@@ -50,7 +51,7 @@ class AppState extends State {
         return isFirstRouteCurrentTab;
       },
       child: Scaffold(
-          body: IndexedStack(
+          body: LazyIndexedStack(
             index: _selectedIndex,
             children: [
               PersonalListTab(navigatorKey: _navigatorsKeys[0]),
