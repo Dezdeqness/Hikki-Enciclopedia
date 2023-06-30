@@ -29,7 +29,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
       final response = await _animeService.getAnimeListByRank(rankingType);
 
       if (response.isSuccessRequest()) {
-        return Success(_animeMapper.mapAnimeList(response.data));
+        return Success(_animeMapper.mapAnimeList(response));
       } else {
         return Failure(ErrorEntity.unknown);
       }
