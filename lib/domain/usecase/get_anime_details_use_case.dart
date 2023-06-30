@@ -4,10 +4,10 @@ import 'package:result_type/result_type.dart';
 
 import '../repository/anime_repository.dart';
 
-class GetAnimeDetails {
+class GetAnimeDetailsUseCase {
   final AnimeRepository animeRepository;
 
-  GetAnimeDetails({required this.animeRepository});
+  GetAnimeDetailsUseCase({required this.animeRepository});
 
   Future<Result<AnimeDetailsEntity, ErrorEntity>> execute({
     required int animeId,

@@ -3,13 +3,13 @@ import 'package:hikki_enciclopedia/data/mapper/dio_error_mapper.dart';
 import 'package:hikki_enciclopedia/domain/model/error_entity.dart';
 
 class ErrorMapper {
-  final DioErrorMapper _mapper;
+  final DioErrorMapper _dioErrorMapper;
 
-  ErrorMapper(this._mapper);
+  ErrorMapper(this._dioErrorMapper);
 
   ErrorEntity mapException(Exception exception) {
     if (exception is DioError) {
-      return _mapper.mapDioError(exception);
+      return _dioErrorMapper.mapDioError(exception);
     }
     return ErrorEntity.unknown;
   }
