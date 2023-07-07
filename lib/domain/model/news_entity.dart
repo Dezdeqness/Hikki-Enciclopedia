@@ -5,7 +5,7 @@ class News extends Equatable {
   final String description;
   final String imageUrl;
 
-  News({
+  const News({
     required this.title,
     required this.description,
     required this.imageUrl,

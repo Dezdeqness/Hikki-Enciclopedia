@@ -3,20 +3,20 @@ import 'package:hikki_enciclopedia/domain/model/age_rating_anime_entity.dart';
 import 'package:hikki_enciclopedia/domain/model/media_type_anime_entity.dart';
 import 'package:hikki_enciclopedia/domain/model/status_anime_entity.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_details_use_case.dart';
-import 'package:hikki_enciclopedia/presentation/detail_anime/components/brief_info_carousel.dart';
-import 'package:hikki_enciclopedia/presentation/detail_anime/models/brief_info_anime_ui_model.dart';
-import 'package:hikki_enciclopedia/presentation/detail_anime/models/recommend_anime_ui_model.dart';
-import 'package:hikki_enciclopedia/presentation/detail_anime/models/related_anime_ui_model.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/brief_info_anime_ui_model.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/recommend_anime_ui_model.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/related_anime_ui_model.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/brief_info_carousel.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/expanded_description.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/genre_carousel.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/main_image_with_score.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/recommend_carousel.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/related_carousel.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/screenshot_carousel.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/ui/statistics_panel.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/model/anime_details_entity.dart';
-import 'components/expanded_description.dart';
-import 'components/genre_carousel.dart';
-import 'components/main_image_with_score.dart';
-import 'components/recommend_carousel.dart';
-import 'components/related_carousel.dart';
-import 'components/screenshot_carousel.dart';
-import 'components/statistics_panel.dart';
 import 'models/statistics_anime_ui_model.dart';
 
 class AnimeDetailsArguments {
