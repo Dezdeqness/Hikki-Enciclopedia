@@ -9,6 +9,7 @@ class AnimePagerItem extends StatelessWidget {
   final double score;
   final String imageUrl;
   final ValueChanged<int> onAnimeDetailsClicked;
+  final double height;
 
   const AnimePagerItem({
     super.key,
@@ -18,6 +19,7 @@ class AnimePagerItem extends StatelessWidget {
     required this.score,
     required this.imageUrl,
     required this.onAnimeDetailsClicked,
+    required this.height,
   });
 
   @override
@@ -32,7 +34,7 @@ class AnimePagerItem extends StatelessWidget {
         },
         child: SizedBox(
           width: 110,
-          height: 180,
+          height: height,
           child: Column(
             children: [
               Flexible(

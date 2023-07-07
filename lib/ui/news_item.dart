@@ -6,9 +6,11 @@ import '../presentation/models/entities.dart';
 
 class NewsItem extends StatelessWidget {
   final News news;
+  final double height;
 
   const NewsItem({
     required this.news,
+    required this.height,
     super.key,
   });
 
@@ -23,15 +25,15 @@ class NewsItem extends StatelessWidget {
             children: [
               Image.network(
                 width: 120,
-                height: 180,
+                height: height,
                 news.imageUrl,
                 fit: BoxFit.fitHeight,
                 errorBuilder:
                     (BuildContext context, Object exception, StackTrace? stackTrace) {
-                  return const SizedBox(
+                  return SizedBox(
                     width: 120,
-                    height: 180,
-                    child: Center(
+                    height: height,
+                    child: const Center(
                       child: CircularProgressIndicator(),
                     ),
                   );

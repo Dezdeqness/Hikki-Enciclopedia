@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
+import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
 
 import '../../domain/model/anime_entity.dart';
-
 
 class HomeProvider with ChangeNotifier {
   List<AnimeEntity> itemsAiring = [];
@@ -18,7 +19,9 @@ class HomeProvider with ChangeNotifier {
   String rankingType = "all";
 
   bool loading = false;
-  // final AnimeApiDataSource _datasource = AnimeApiDataSource();
+  final GetAnimeListUseCase useCase;
+
+  HomeProvider({required this.useCase});
 
   fetchHomePage() {
     _fetchAiringBlock();
@@ -27,38 +30,44 @@ class HomeProvider with ChangeNotifier {
   }
 
   _fetchAiringBlock() {
-    // _datasource.getAnimeList(rankingType: "airing").then((value) {
-    //   itemsAiring = value;
-    //   errorAiring = null;
-    // }).catchError((error) {
-    //   error = error;
-    // }).whenComplete(() {
-    //   isErrorAiring = errorAiring != null;
-    //   notifyListeners();
-    // });
+    useCase.execute(rankingType: RankingTypeEntity.airing.id).then((result) {
+      if (result.isSuccess) {
+        itemsAiring = result.success;
+        isErrorAiring = false;
+        errorAiring = null;
+      } else {
+        errorAiring = result.failure.name;
+        isErrorAiring = true;
+      }
+      notifyListeners();
+    });
   }
 
   _fetchUpcomingBlock() {
-    // _datasource.getAnimeList(rankingType: "upcoming").then((value) {
-    //   itemsUpcoming = value;
-    //   errorUpcoming = null;
-    // }).catchError((error) {
-    //   error = error;
-    // }).whenComplete(() {
-    //   isErrorUpcoming = errorUpcoming != null;
-    //   notifyListeners();
-    // });
+    useCase.execute(rankingType: RankingTypeEntity.upcoming.id).then((result) {
+      if (result.isSuccess) {
+        itemsUpcoming = result.success;
+        isErrorUpcoming = false;
+        errorUpcoming = null;
+      } else {
+        errorUpcoming = result.failure.name;
+        isErrorUpcoming = true;
+      }
+      notifyListeners();
+    });
   }
 
   _fetchBypopularityBlock() {
-    // _datasource.getAnimeList(rankingType: "bypopularity").then((value) {
-    //   itemsBypopularity = value;
-    //   errorBypopularity = null;
-    // }).catchError((error) {
-    //   error = error;
-    // }).whenComplete(() {
-    //   isErrorBypopularity = errorBypopularity != null;
-    //   notifyListeners();
-    // });
+    useCase.execute(rankingType: RankingTypeEntity.byPopularity.id).then((result) {
+      if (result.isSuccess) {
+        itemsBypopularity = result.success;
+        isErrorUpcoming = false;
+        errorBypopularity = null;
+      } else {
+        errorBypopularity = result.failure.name;
+        isErrorBypopularity = true;
+      }
+      notifyListeners();
+    });
   }
 }

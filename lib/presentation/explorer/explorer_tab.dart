@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_bloc.dart';
 
 import '../../domain/usecase/get_anime_list_use_case.dart';
-import '../anime/anime_details.dart';
+import '../detail_anime/anime_details.dart';
 import 'explorer_page.dart';
 
 class ExplorerTabRoutes {
@@ -12,7 +12,7 @@ class ExplorerTabRoutes {
 }
 
 class ExplorerTab extends StatelessWidget {
-  final GlobalKey<NavigatorState>? navigatorKey;
+  final GlobalKey<NavigatorState> navigatorKey;
 
   const ExplorerTab({super.key, required this.navigatorKey});
 
@@ -31,7 +31,7 @@ class ExplorerTab extends StatelessWidget {
                 ),
                 child: ExplorerPage(
                   onAnimeDetailsClicked: (id) {
-                    navigatorKey?.currentState?.pushNamed(
+                    navigatorKey.currentState?.pushNamed(
                       ExplorerTabRoutes.animeDetail,
                       arguments: AnimeDetailsArguments(id: id),
                     );

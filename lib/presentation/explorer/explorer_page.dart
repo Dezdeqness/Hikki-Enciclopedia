@@ -36,6 +36,7 @@ class _ExplorerPage extends State<ExplorerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

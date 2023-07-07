@@ -6,11 +6,13 @@ class PromotionalItem extends StatelessWidget {
   final String name;
   final String kind;
   final String imageUrl;
+  final double height;
 
   const PromotionalItem({
     required this.name,
     required this.kind,
     required this.imageUrl,
+    required this.height,
     super.key,
   });
 
@@ -22,6 +24,7 @@ class PromotionalItem extends StatelessWidget {
           child: Stack(
             children: [
               SizedBox(
+                height: height,
                 width: double.infinity,
                 child: Image.network(
                   imageUrl,

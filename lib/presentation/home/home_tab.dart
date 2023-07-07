@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/presentation/anime/anime_details.dart';
 
 import '../../generated/l10n.dart';
+import '../detail_anime/anime_details.dart';
 import 'home_page.dart';
 
 class HomeTabRoutes {

@@ -27,12 +27,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     super.initState();
     // WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<HomeProvider>(context, listen: false).fetchHomePage();
+    Provider.of<HomeProvider>(context, listen: false).fetchHomePage();
     // });
   }
 
@@ -49,12 +48,6 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.list),
-          color: Colors.black,
-          splashRadius: 24,
-          onPressed: () {},
-        ),
       );
 
   _buildHomePage() {
@@ -106,13 +99,15 @@ class _HomePageState extends State<HomePage> {
       );
 
   _buildNewsPager() {
+    const double height = 180;
     final PageController controller = PageController();
     return SizedBox(
-      height: 180,
+      height: height,
       child: PageView(
         controller: controller,
-        children:
-            getNewsList().map((element) => NewsItem(news: element)).toList(),
+        children: getNewsList()
+            .map((element) => NewsItem(news: element, height: height))
+            .toList(),
       ),
     );
   }
@@ -162,9 +157,10 @@ class _HomePageState extends State<HomePage> {
       );
 
   _buildPromotionalPager() {
+    const double height = 190;
     final PageController controller = PageController();
     return SizedBox(
-      height: 190,
+      height: height,
       child: PageView(
         controller: controller,
         children: getPromotionalList()
@@ -172,6 +168,7 @@ class _HomePageState extends State<HomePage> {
                   name: element.name,
                   kind: element.kind,
                   imageUrl: element.imageUrl,
+                  height: height,
                 ))
             .toList(),
       ),
@@ -201,6 +198,7 @@ class _HomePageState extends State<HomePage> {
                     score: element.score,
                     imageUrl: element.imageUrl,
                     onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
+                    height: 210,
                   ))
               .toList(),
         ),
