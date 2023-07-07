@@ -33,7 +33,7 @@ class AnimeService {
         '/anime/$animeId',
         queryParameters: {
           "fields":
-              "synopsis, mean, genres, media_type,status, num_episodes, rating, studios, pictures, related_anime, recommendations, statistics",
+              "id,title,main_picture,,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,source,average_episode_duration,rating,pictures,related_anime,recommendations,studios,statistics",
         },
       );
 }

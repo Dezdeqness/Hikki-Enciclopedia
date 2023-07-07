@@ -9,9 +9,9 @@ class AnimeApi {
   AnimeApi({required this.data});
 
   factory AnimeApi.fromJson(Map<String, dynamic> json) =>
-      _$AnimeResponseFromJson(json);
+      _$AnimeApiFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AnimeResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AnimeApiToJson(this);
 }
 
 @JsonSerializable()

@@ -45,7 +45,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
       final response = await _animeService.getAnimeDetails(animeId);
 
       if (response.isSuccessRequest()) {
-        return Success(_animeMapper.mapAnimeDetails(response.data));
+        return Success(_animeMapper.mapAnimeDetails(response));
       } else {
         return Failure(ErrorEntity.unknown);
       }
