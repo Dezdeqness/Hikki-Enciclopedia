@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "783034581282",
+    "project_id": "hikki-enciclopedia",
+    "storage_bucket": "hikki-enciclopedia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783034581282:android:59fb0df09e8bd8a18b257b",
+        "android_client_info": {
+          "package_name": "com.dezdeqness.hikkienciclopedia.hikki_enciclopedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783034581282-f3ttrtt4v86ej4s4dptcei27dt0bjgj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqUpVNwkTQTFD74F_w93pX5cqQV-IBplg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783034581282-f3ttrtt4v86ej4s4dptcei27dt0bjgj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
