@@ -1,14 +1,16 @@
 import 'package:equatable/equatable.dart';
 
-class Promotional extends Equatable {
+class PromotionalEntity extends Equatable {
   final String name;
   final String kind;
   final String imageUrl;
+  final String url;
 
-  const Promotional({
+  const PromotionalEntity({
     required this.name,
     required this.kind,
     required this.imageUrl,
+    required this.url,
   });
 
   @override
@@ -16,5 +18,6 @@ class Promotional extends Equatable {
         name,
         kind,
         imageUrl,
+        url,
       ];
 }
