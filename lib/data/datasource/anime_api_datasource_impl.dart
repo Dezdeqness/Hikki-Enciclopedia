@@ -23,10 +23,15 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
   ) : super(errorMapper);
 
   @override
-  Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeList(
-      {required String rankingType}) async {
+  Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeList({
+    required String rankingType,
+    required int offset,
+  }) async {
     try {
-      final response = await _animeService.getAnimeListByRank(rankingType);
+      final response = await _animeService.getAnimeListByRank(
+        rankingType: rankingType,
+        offset: offset,
+      );
 
       if (response.isSuccessRequest()) {
         return Success(_animeMapper.mapAnimeList(response));

@@ -7,6 +7,7 @@ import '../../domain/model/error_entity.dart';
 abstract class AnimeApiDataSource {
   Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeList({
     required String rankingType,
+    required int offset,
   });
 
   Future<Result<AnimeDetailsEntity, ErrorEntity>> getAnimeDetails({

@@ -6,6 +6,7 @@ import 'package:result_type/result_type.dart';
 abstract class AnimeRepository {
   Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeListByRanking({
     required String rankingType,
+    required int offset,
   });
 
   Future<Result<AnimeDetailsEntity, ErrorEntity>> getAnimeDetails({

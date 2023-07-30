@@ -11,7 +11,16 @@ class GetExplorerPageEvent extends ExplorerEvent {
   List<Object?> get props => [rankingType];
 }
 
-class TestEvent extends ExplorerEvent {
+class GetExplorerNextPageEvent extends ExplorerEvent {
+  GetExplorerNextPageEvent();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class RefreshEvent extends ExplorerEvent {
+  RefreshEvent();
+
   @override
   List<Object?> get props => [];
 }

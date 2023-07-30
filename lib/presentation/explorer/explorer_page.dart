@@ -4,10 +4,11 @@ import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_bloc.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_event.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_state.dart';
-import 'package:hikki_enciclopedia/presentation/explorer/ranking_type_filter.dart';
+import 'package:hikki_enciclopedia/presentation/explorer/models/ranking_type_filter.dart';
 import 'package:hikki_enciclopedia/ui/anime_item.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/ui/custom_refresh_indicator.dart';
 import '../../domain/model/anime_entity.dart';
 
 class ExplorerPage extends StatefulWidget {
@@ -55,7 +56,8 @@ class _ExplorerPage extends State<ExplorerPage> {
                     }
                   },
                   items: getRankingTypeFilter(context)
-                      .map<DropdownMenuItem<String>>((RankingTypeFilter value) {
+                      .map<DropdownMenuItem<String>>(
+                          (RankingTypeFilterUiModel value) {
                     return DropdownMenuItem<String>(
                       value: value.id,
                       child: Text(value.displayName),
@@ -70,41 +72,81 @@ class _ExplorerPage extends State<ExplorerPage> {
       body: BlocBuilder(
         bloc: explorerBloc,
         builder: (BuildContext context, ExplorerState state) {
+          Widget? widget;
+
           if (state.isLoading) {
-            return _loadingScreen();
+            widget = _loadingScreen();
           }
           if (state.error.isNotEmpty) {
-            return _errorScreen(state.error);
+            widget = CustomScrollView(
+              slivers: <Widget>[
+                SliverFillRemaining(child: _errorScreen(state.error)),
+              ],
+            );
           }
 
-          return _buildHomePage(state.items);
+          widget ??= _buildHomePage(state.items, state.isPageLoading);
+
+          return RefreshIndicator1(
+            onRefresh: () {
+              explorerBloc.add(RefreshEvent());
+            },
+            isRefreshing: state.isRefreshing,
+            child: widget!,
+          );
         },
       ),
     );
   }
 
-  _buildHomePage(List<AnimeEntity> items) => Column(
-        children: [
-          Expanded(
-            child: OrientationBuilder(builder: (context, orientation) {
-              return GridView.count(
-                childAspectRatio: 0.66,
-                crossAxisCount: orientation == Orientation.portrait ? 2 : 4,
-                children: items
-                    .map((element) => AnimeItem(
-                          id: element.id,
-                          title: element.title,
-                          score: element.score,
-                          imageUrl: element.imageUrl,
-                          genres: element.type,
-                          onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
-                        ))
-                    .toList(),
-              );
-            }),
+  _buildHomePage(List<AnimeEntity> items, bool isPageLoading) {
+    final scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent * 0.9 <
+          scrollController.position.pixels) {
+        explorerBloc.add(GetExplorerNextPageEvent());
+      }
+    });
+    final List<Widget> widgets = items
+        .map((element) => Container(
+              child: AnimeItem(
+                id: element.id,
+                title: element.title,
+                score: element.score,
+                imageUrl: element.imageUrl,
+                genres: element.type,
+                onAnimeDetailsClicked: widget.onAnimeDetailsClicked,
+              ),
+            ))
+        .toList();
+
+    if (isPageLoading == true) {
+      widgets.add(
+        Container(
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
-        ],
+        ),
       );
+    }
+    return Column(
+      children: [
+        Expanded(
+          child: OrientationBuilder(builder: (context, orientation) {
+            return GridView.count(
+              controller: scrollController,
+              childAspectRatio: 0.66,
+              crossAxisCount: orientation == Orientation.portrait ? 2 : 4,
+              children: widgets,
+            );
+          }),
+        ),
+      ],
+    );
+  }
 
   _errorScreen(String? error) => Center(
         child: Column(

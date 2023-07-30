@@ -21,6 +21,10 @@ class AnimeRepositoryImpl extends AnimeRepository {
   @override
   Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeListByRanking({
     required String rankingType,
+    required int offset,
   }) =>
-      dataSource.getAnimeList(rankingType: rankingType);
+      dataSource.getAnimeList(
+        rankingType: rankingType,
+        offset: offset,
+      );
 }

@@ -10,6 +10,10 @@ class GetAnimeListUseCase {
 
   Future<Result<List<AnimeEntity>, ErrorEntity>> execute({
     required String rankingType,
+    int offset = 0,
   }) =>
-      animeRepository.getAnimeListByRanking(rankingType: rankingType);
+      animeRepository.getAnimeListByRanking(
+        rankingType: rankingType,
+        offset: offset,
+      );
 }

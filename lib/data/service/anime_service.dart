@@ -12,18 +12,22 @@ class AnimeService {
           requestOptions.headers.putIfAbsent(
               // TODO: setup env
               'X-MAL-CLIENT-ID',
-              () => '0ad808c2b2f8fbf7d88fd21bc75a173b');
+              () => 'cafa1f4d6c21d80b3200dc3610970c22');
           handler.next(requestOptions);
         },
       ),
       LogInterceptor()
     ]);
 
-  Future<Response<dynamic>> getAnimeListByRank(String rankingType) async =>
+  Future<Response<dynamic>> getAnimeListByRank({
+    required String rankingType,
+    required int offset,
+  }) async =>
       await _dio.get(
         '/anime/ranking',
         queryParameters: {
           "ranking_type": rankingType,
+          'offset': offset,
           "fields": "mean, media_type",
         },
       );
