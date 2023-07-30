@@ -10,7 +10,6 @@ import 'package:hikki_enciclopedia/ui/promotional_item.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/model/anime_entity.dart';
-import '../models/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({

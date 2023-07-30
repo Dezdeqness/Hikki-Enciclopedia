@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
+import '../../navigation/app_navigation_routes.dart';
 import '../anime_details/anime_details.dart';
 import 'home_page.dart';
-
-class HomeTabRoutes {
-  static const String root = '/';
-  static const String animeDetail = '/animedetails';
-}
 
 class HomeTab extends StatelessWidget {
   final GlobalKey<NavigatorState>? navigatorKey;
@@ -17,22 +13,22 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Navigator(
         key: navigatorKey,
-        initialRoute: HomeTabRoutes.root,
+        initialRoute: AppNavigationRoutes.root,
         onGenerateRoute: (RouteSettings routeSettings) {
           Widget screen;
           switch (routeSettings.name) {
-            case HomeTabRoutes.root:
+            case AppNavigationRoutes.root:
               screen = HomePage(
                 title: AppLocalizations.of(context).browseAnime,
                 onAnimeDetailsClicked: (id) {
                   navigatorKey?.currentState?.pushNamed(
-                    HomeTabRoutes.animeDetail,
+                    AppNavigationRoutes.animeDetail,
                     arguments: AnimeDetailsArguments(id: id),
                   );
                 },
               );
               break;
-            case HomeTabRoutes.animeDetail:
+            case AppNavigationRoutes.animeDetail:
               screen = const AnimeDetails();
               break;
             default:

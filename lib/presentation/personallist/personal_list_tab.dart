@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
-
-class PersonalListTabRoutes {
-  static const String root = '/';
-}
+import '../../navigation/app_navigation_routes.dart';
 
 class PersonalListTab extends StatelessWidget {
   final GlobalKey<NavigatorState>? navigatorKey;
@@ -14,11 +11,11 @@ class PersonalListTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Navigator(
         key: navigatorKey,
-        initialRoute: PersonalListTabRoutes.root,
+        initialRoute: AppNavigationRoutes.root,
         onGenerateRoute: (RouteSettings routeSettings) {
           Widget screen;
           switch (routeSettings.name) {
-            case PersonalListTabRoutes.root:
+            case AppNavigationRoutes.root:
               screen = Center(
                 child: Text(AppLocalizations.of(context).tabItemPersonalList),
               );
