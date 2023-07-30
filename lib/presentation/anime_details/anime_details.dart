@@ -15,6 +15,7 @@ import 'package:hikki_enciclopedia/presentation/anime_details/ui/related_carouse
 import 'package:hikki_enciclopedia/presentation/anime_details/ui/screenshot_carousel.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/ui/statistics_panel.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../domain/model/anime_details_entity.dart';
 import 'models/statistics_anime_ui_model.dart';
@@ -128,7 +129,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
           IconButton(
             icon: const Icon(Icons.share_outlined),
             onPressed: () {
-              /* ... */
+              Share.share('https://myanimelist.net/anime/${_item?.id ?? ''}');
             },
           ),
         ],
@@ -164,11 +165,12 @@ class _AnimeDetailsState extends State<AnimeDetails> {
 
     final List<BriefInfoAnimeUIModel> briefInfoItems = [];
     if (_item?.startDate != null) {
-      _item!.startDate;
-      final date = DateTime.parse(_item!.startDate);
-      briefInfoItems.add(
-        BriefInfoAnimeUIModel(title: 'Year', value: date.year.toString()),
-      );
+      final date = DateTime.tryParse(_item!.startDate);
+      if (date != null) {
+        briefInfoItems.add(
+          BriefInfoAnimeUIModel(title: 'Year', value: date.year.toString()),
+        );
+      }
     }
 
     if (_item?.status != null && _item?.status != StatusAnimeEntity.unknown) {
