@@ -1,13 +1,10 @@
-import 'package:hikki_enciclopedia/core/extensions/response_extension.dart';
-import 'package:hikki_enciclopedia/data/datasource/promo_api_datasource.dart';
+import 'package:hikki_api_service/hikki_api_service.dart';
+import 'package:hikki_enciclopedia/data/datasource/promo/promo_api_datasource.dart';
 import 'package:hikki_enciclopedia/data/mapper/promo_mapper.dart';
 import 'package:hikki_enciclopedia/domain/model/promotional_entitiy.dart';
 import 'package:result_type/result_type.dart';
 
-import '../../domain/model/error_entity.dart';
-import '../core/base_api_datasource.dart';
-import '../mapper/error_mapper.dart';
-import '../service/promo_service.dart';
+import '../../core/base_api_datasource.dart';
 
 class PromoApiDatasourceImpl extends BaseApiDatasource
     implements PromoApiDataSource {

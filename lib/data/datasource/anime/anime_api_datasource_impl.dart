@@ -1,15 +1,12 @@
-import 'package:hikki_enciclopedia/core/extensions/response_extension.dart';
 import 'dart:async';
 
+import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/core/base_api_datasource.dart';
-import 'package:hikki_enciclopedia/data/datasource/anime_api_datasource.dart';
-import 'package:hikki_enciclopedia/data/mapper/error_mapper.dart';
-import 'package:hikki_enciclopedia/data/service/anime_service.dart';
-import 'package:hikki_enciclopedia/domain/model/error_entity.dart';
+import 'package:hikki_enciclopedia/data/datasource/anime/anime_api_datasource.dart';
 import 'package:result_type/result_type.dart';
-import '../../domain/model/anime_details_entity.dart';
-import '../../domain/model/anime_entity.dart';
-import '../mapper/anime_mapper.dart';
+import '../../../domain/model/anime_details_entity.dart';
+import '../../../domain/model/anime_entity.dart';
+import '../../mapper/anime_mapper.dart';
 
 class AnimeApiDataSourceImpl extends BaseApiDatasource
     implements AnimeApiDataSource {

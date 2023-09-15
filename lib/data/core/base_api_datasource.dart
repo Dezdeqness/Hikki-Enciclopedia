@@ -1,4 +1,4 @@
-import 'package:hikki_enciclopedia/data/mapper/error_mapper.dart';
+import 'package:hikki_api_service/hikki_api_service.dart';
 
 abstract class BaseApiDatasource {
   final ErrorMapper errorMapper;

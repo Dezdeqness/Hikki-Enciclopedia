@@ -1,12 +1,9 @@
-import 'package:hikki_enciclopedia/core/extensions/response_extension.dart';
-import 'package:hikki_enciclopedia/data/datasource/news_api_datasource.dart';
-import 'package:hikki_enciclopedia/data/service/news_service.dart';
-import 'package:hikki_enciclopedia/domain/model/error_entity.dart';
+import 'package:hikki_api_service/hikki_api_service.dart';
+import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource.dart';
 import 'package:hikki_enciclopedia/domain/model/news_entity.dart';
 import 'package:result_type/result_type.dart';
-import '../core/base_api_datasource.dart';
-import '../mapper/error_mapper.dart';
-import '../mapper/news_mapper.dart';
+import '../../core/base_api_datasource.dart';
+import '../../mapper/news_mapper.dart';
 
 class NewsApiDatasourceImpl extends BaseApiDatasource
     implements NewsApiDataSource {

@@ -1,5 +1,5 @@
+import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/domain/model/anime_details_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/error_entity.dart';
 import 'package:result_type/result_type.dart';
 
 import '../repository/anime_repository.dart';

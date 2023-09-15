@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:hikki_enciclopedia/domain/model/error_entity.dart';
+
+import 'error_entity.dart';
+
 
 class DioErrorMapper {
-  ErrorEntity mapDioError(DioError error) {
+  ErrorEntity mapDioError(DioException error) {
     switch (error.response?.statusCode) {
       case 401:
         {
