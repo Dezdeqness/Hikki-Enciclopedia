@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
 
-import '../../../domain/model/anime_entity.dart';
 
 final class ExplorerState extends Equatable {
   final RankingTypeEntity rankingType;

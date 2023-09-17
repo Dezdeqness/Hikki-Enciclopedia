@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:hikki_enciclopedia/theme/colors.dart';
-import 'package:hikki_enciclopedia/theme/styles.dart';
-
-import '../generated/l10n.dart';
 import 'cell_header.dart';
 
-class ContainerHeaderFull extends StatelessWidget {
+class ContainerHeader extends StatelessWidget {
   final String header;
   final Widget content;
-  final bool isActionPresent;
 
-  const ContainerHeaderFull({
-    super.key,
+  const ContainerHeader({
     required this.header,
     required this.content,
-    this.isActionPresent = false,
+    super.key,
   });
 
   @override

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 
-import '../../generated/l10n.dart';
-import '../../navigation/app_navigation_routes.dart';
-import '../anime_details/anime_details.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/index.dart';
+
+import 'package:hikki_enciclopedia/presentation/anime_details/anime_details.dart';
 import 'home_page.dart';
 
 class HomeTab extends StatelessWidget {
   final GlobalKey<NavigatorState>? navigatorKey;
 
-  const HomeTab({super.key, required this.navigatorKey});
+  const HomeTab({
+    required this.navigatorKey,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Navigator(
@@ -19,7 +23,7 @@ class HomeTab extends StatelessWidget {
           switch (routeSettings.name) {
             case AppNavigationRoutes.root:
               screen = HomePage(
-                title: AppLocalizations.of(context).browseAnime,
+                title: LocaleKeys.browseAnime.tr(),
                 onAnimeDetailsClicked: (id) {
                   navigatorKey?.currentState?.pushNamed(
                     AppNavigationRoutes.animeDetail,

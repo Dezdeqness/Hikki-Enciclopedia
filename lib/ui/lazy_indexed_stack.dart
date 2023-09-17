@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class LazyIndexedStack extends StatefulWidget {
   const LazyIndexedStack({
-    Key? key,
     this.alignment = AlignmentDirectional.topStart,
     this.textDirection,
     this.sizing = StackFit.loose,
     this.index = 0,
     this.children = const [],
+    Key? key,
   }) : super(key: key);
 
   final AlignmentGeometry alignment;

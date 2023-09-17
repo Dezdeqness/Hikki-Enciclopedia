@@ -1,4 +1,4 @@
-import 'package:hikki_enciclopedia/domain/model/promotional_entitiy.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
 

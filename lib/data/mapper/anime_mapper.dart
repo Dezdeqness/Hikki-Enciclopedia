@@ -1,21 +1,9 @@
-import 'package:dio/dio.dart';
-import 'package:hikki_enciclopedia/domain/model/age_rating_anime_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/genre_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/media_type_anime_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/stats_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/status_anime_entity.dart';
-
-import '../../domain/model/anime_details_entity.dart';
-import '../../domain/model/anime_entity.dart';
-import '../../domain/model/recommendation_entity.dart';
-import '../../domain/model/related_anime_entity.dart';
-import '../../domain/model/studio_entity.dart';
-import '../model/anime_api_model.dart';
-import '../model/anime_details_model.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
+import 'package:hikki_enciclopedia/data/model/index.dart';
 
 class AnimeMapper {
-  List<AnimeEntity> mapAnimeList(Response<dynamic> value) =>
-      AnimeApi.fromJson(value.data).data.map(_mapAnimeItem).toList();
+  List<AnimeEntity> mapAnimeList(dynamic data) =>
+      AnimeApi.fromJson(data).data.map(_mapAnimeItem).toList();
 
   AnimeEntity _mapAnimeItem(Data data) => AnimeEntity(
         id: data.node.id,
@@ -25,8 +13,8 @@ class AnimeMapper {
         imageUrl: data.node.mainPicture['large'] ?? "",
       );
 
-  AnimeDetailsEntity mapAnimeDetails(Response<dynamic> value) {
-    final animeDetailsResponse = AnimeDetailsResponse.fromJson(value.data);
+  AnimeDetailsEntity mapAnimeDetails(dynamic data) {
+    final animeDetailsResponse = AnimeDetailsResponse.fromJson(data);
 
     return AnimeDetailsEntity(
       id: animeDetailsResponse.id,

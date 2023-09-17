@@ -1,7 +1,6 @@
 import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/datasource/anime/anime_api_datasource.dart';
-import 'package:hikki_enciclopedia/domain/model/anime_details_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/anime_entity.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:hikki_enciclopedia/domain/repository/anime_repository.dart';
 import 'package:result_type/result_type.dart';
 

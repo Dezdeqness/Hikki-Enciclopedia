@@ -1,7 +1,8 @@
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
 
-import '../../domain/model/news_entity.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
+
 
 class NewsMapper {
   List<NewsEntity> map(String data) => _getListElements(data).map((element) {

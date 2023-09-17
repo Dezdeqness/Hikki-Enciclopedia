@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/explorer_tab.dart';
 import 'package:hikki_enciclopedia/presentation/personallist/personal_list_tab.dart';
 import 'package:hikki_enciclopedia/presentation/profile/profile_tab.dart';
 import 'package:hikki_enciclopedia/ui/lazy_indexed_stack.dart';
+import 'package:hikki_localization/hikki_localization.dart';
+import 'package:hikki_enciclopedia/presentation/exit_dialog/index.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 import 'home/home_tab.dart';
 import 'main/main_bottom_nav_bar.dart';
@@ -26,44 +30,62 @@ class AppState extends State {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final navState = _navigatorsKeys[_selectedIndex].currentState;
-        final isFirstRouteCurrentTab = !(await navState?.maybePop() ?? false);
-
-        if (isFirstRouteCurrentTab) {
-          if (_selectedIndex != 1) {
-            setState(() {
-              _onItemTapped(1);
-            });
-            return false;
-          }
-        }
-
-        if (isFirstRouteCurrentTab && context.mounted) {
-          bool? result = await showDialog<bool>(
-            context: context,
-            builder: (context) => const ExitDialog(),
-          );
-          return result ?? isFirstRouteCurrentTab;
-        }
-
-        return isFirstRouteCurrentTab;
-      },
-      child: Scaffold(
-          body: LazyIndexedStack(
-            index: _selectedIndex,
-            children: [
-              PersonalListTab(navigatorKey: _navigatorsKeys[0]),
-              HomeTab(navigatorKey: _navigatorsKeys[1]),
-              ExplorerTab(navigatorKey: _navigatorsKeys[2]),
-              ProfileTab(navigatorKey: _navigatorsKeys[3]),
-            ],
+    return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        extensions: <ThemeExtension<HikkiColors>>[
+          HikkiColors(),
+        ],
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.white,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.dark,
           ),
-          bottomNavigationBar: MainBottomNavBar(
-            currentIndex: _selectedIndex,
-            onSelectTab: _onItemTapped,
-          )),
+        ),
+      ),
+      home: WillPopScope(
+        onWillPop: () async {
+          final navState = _navigatorsKeys[_selectedIndex].currentState;
+          final isFirstRouteCurrentTab = !(await navState?.maybePop() ?? false);
+
+          if (isFirstRouteCurrentTab) {
+            if (_selectedIndex != 1) {
+              setState(() {
+                _onItemTapped(1);
+              });
+              return false;
+            }
+          }
+
+          if (isFirstRouteCurrentTab && context.mounted) {
+            bool? result = await showDialog<bool>(
+              context: context,
+              builder: (context) => const ExitDialog(),
+            );
+            return result ?? isFirstRouteCurrentTab;
+          }
+
+          return isFirstRouteCurrentTab;
+        },
+        child: Scaffold(
+            body: LazyIndexedStack(
+              index: _selectedIndex,
+              children: [
+                PersonalListTab(navigatorKey: _navigatorsKeys[0]),
+                HomeTab(navigatorKey: _navigatorsKeys[1]),
+                ExplorerTab(navigatorKey: _navigatorsKeys[2]),
+                ProfileTab(navigatorKey: _navigatorsKeys[3]),
+              ],
+            ),
+            bottomNavigationBar: MainBottomNavBar(
+              currentIndex: _selectedIndex,
+              onSelectTab: _onItemTapped,
+            )),
+      ),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
     );
   }
 
@@ -71,38 +93,5 @@ class AppState extends State {
     setState(() {
       _selectedIndex = index;
     });
-  }
-}
-
-class ExitDialog extends StatelessWidget {
-  const ExitDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Warning Dialog'),
-      content: const Text(
-          'Do You really want to leave the application? We have cookies ^__^'),
-      actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
-          ),
-          child: const Text('Exit'),
-          onPressed: () {
-            Navigator.of(context).pop(true);
-          },
-        ),
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
-          ),
-          child: const Text('Stay'),
-          onPressed: () {
-            Navigator.of(context).pop(false);
-          },
-        ),
-      ],
-    );
   }
 }

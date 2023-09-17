@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../models/brief_info_anime_ui_model.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/brief_info_anime_ui_model.dart';
 
 class BriefInfoCarousel extends StatelessWidget {
-  const BriefInfoCarousel({super.key, required this.items});
-
   final List<BriefInfoAnimeUIModel> items;
+
+  const BriefInfoCarousel({
+    required this.items,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +31,14 @@ class BriefInfoCarousel extends StatelessWidget {
 }
 
 class BriefInfoItem extends StatelessWidget {
-  const BriefInfoItem({super.key, required this.title, required this.value});
-
   final String title;
   final String value;
+
+  const BriefInfoItem({
+    required this.title,
+    required this.value,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

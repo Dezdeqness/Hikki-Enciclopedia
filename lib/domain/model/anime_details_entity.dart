@@ -1,13 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:hikki_enciclopedia/domain/model/age_rating_anime_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/media_type_anime_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/recommendation_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/related_anime_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/stats_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/status_anime_entity.dart';
-import 'package:hikki_enciclopedia/domain/model/studio_entity.dart';
-
-import 'genre_entity.dart';
+import 'index.dart';
 
 class AnimeDetailsEntity extends Equatable {
   final int id;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hikki_enciclopedia/core/ui/custom_refresh_indicator.dart';
+import 'package:hikki_enciclopedia/domain/model/anime_entity.dart';
 import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_bloc.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_event.dart';
@@ -8,16 +10,14 @@ import 'package:hikki_enciclopedia/presentation/explorer/models/ranking_type_fil
 import 'package:hikki_enciclopedia/ui/anime_item.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/ui/custom_refresh_indicator.dart';
-import '../../domain/model/anime_entity.dart';
 
 class ExplorerPage extends StatefulWidget {
-  const ExplorerPage({
-    super.key,
-    required this.onAnimeDetailsClicked,
-  });
-
   final ValueChanged<int> onAnimeDetailsClicked;
+
+  const ExplorerPage({
+    required this.onAnimeDetailsClicked,
+    super.key,
+  });
 
   @override
   State<ExplorerPage> createState() => _ExplorerPage();

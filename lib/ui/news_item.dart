@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 
-import 'package:hikki_enciclopedia/theme/styles.dart';
-
-import '../presentation/models/entities.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class NewsItem extends StatelessWidget {
   final News news;

@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ScreenshotCarousel extends StatelessWidget {
   final List<String> items;
 
   const ScreenshotCarousel({
-    super.key,
     required this.items,
+    super.key,
   });
 
   @override

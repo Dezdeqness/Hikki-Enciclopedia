@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/generated/l10n.dart';
+import 'package:hikki_enciclopedia/presentation/profile/profile_page.dart';
 
-import '../../navigation/app_navigation_routes.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/index.dart';
 
 class ProfileTab extends StatelessWidget {
   final GlobalKey<NavigatorState>? navigatorKey;
 
-  const ProfileTab({super.key, required this.navigatorKey});
+  const ProfileTab({
+    required this.navigatorKey,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Navigator(
@@ -16,8 +19,8 @@ class ProfileTab extends StatelessWidget {
           Widget screen;
           switch (routeSettings.name) {
             case AppNavigationRoutes.root:
-              screen = Center(
-                child: Text( AppLocalizations.of(context).tabItemProfile),
+              screen = const Center(
+                child: ProfilePage(),
               );
               break;
             default:

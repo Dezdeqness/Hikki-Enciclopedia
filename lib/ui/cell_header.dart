@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hikki_enciclopedia/theme/styles.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class CellHeader extends StatelessWidget {
   final String header;
@@ -11,8 +11,7 @@ class CellHeader extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) =>
-      Align(
+  Widget build(BuildContext context) => Align(
         alignment: Alignment.centerLeft,
         child: Padding(
           padding: const EdgeInsets.only(left: 6.0, right: 6.0),
@@ -22,5 +21,4 @@ class CellHeader extends StatelessWidget {
           ),
         ),
       );
-
 }

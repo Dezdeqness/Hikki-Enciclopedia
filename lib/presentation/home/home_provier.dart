@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
+import 'package:hikki_api_service/hikki_api_service.dart';
+import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource_impl.dart';
+import 'package:hikki_enciclopedia/data/datasource/promo/promo_api_datasource_impl.dart';
+import 'package:hikki_enciclopedia/data/mapper/index.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
-
-import '../../domain/model/anime_entity.dart';
 
 class HomeProvider with ChangeNotifier {
   List<AnimeEntity> itemsAiring = [];

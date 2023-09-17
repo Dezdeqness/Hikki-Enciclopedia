@@ -101,7 +101,7 @@ class Studios {
 
 @JsonSerializable()
 class RelatedAnime {
-  final Node node;
+  final DetailsNode node;
   @JsonKey(name: "relation_type")
   final String relationType;
   @JsonKey(name: "relation_type_formatted")
@@ -119,22 +119,22 @@ class RelatedAnime {
 }
 
 @JsonSerializable()
-class Node {
+class DetailsNode {
   final int id;
   final String title;
   @JsonKey(name: "main_picture")
   final Map<String, String> mainPicture;
 
-  Node({required this.id, required this.title, required this.mainPicture});
+  DetailsNode({required this.id, required this.title, required this.mainPicture});
 
-  factory Node.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
+  factory DetailsNode.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
 
   Map<String, dynamic> toJson() => _$NodeToJson(this);
 }
 
 @JsonSerializable()
 class Recommendations {
-  final Node node;
+  final DetailsNode node;
   @JsonKey(name: "num_recommendations")
   final int numRecommendations;
 

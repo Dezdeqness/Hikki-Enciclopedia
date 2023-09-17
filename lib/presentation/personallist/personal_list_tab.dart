@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 
-import '../../generated/l10n.dart';
-import '../../navigation/app_navigation_routes.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/index.dart';
 
 class PersonalListTab extends StatelessWidget {
   final GlobalKey<NavigatorState>? navigatorKey;
 
-  const PersonalListTab({super.key, required this.navigatorKey});
+  const PersonalListTab({
+    required this.navigatorKey,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Navigator(
@@ -17,7 +20,7 @@ class PersonalListTab extends StatelessWidget {
           switch (routeSettings.name) {
             case AppNavigationRoutes.root:
               screen = Center(
-                child: Text(AppLocalizations.of(context).tabItemPersonalList),
+                child: Text(LocaleKeys.tabItemPersonalList.tr()),
               );
               break;
             default:

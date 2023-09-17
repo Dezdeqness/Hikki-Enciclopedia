@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
-import '../../../theme/styles.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class MainImageWithScore extends StatelessWidget {
   final double score;
   final String imageUrl;
 
   const MainImageWithScore({
-    super.key,
     required this.score,
     required this.imageUrl,
+    super.key,
   });
 
   @override
@@ -45,7 +44,8 @@ class MainImageWithScore extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       textAlign: TextAlign.start,
-                      style: AppStyles.animeTypeLabel,
+                      style: context.textTheme.c2
+                          .copyWith(color: context.colors.primaryLight),
                     ),
                   ),
                 ),

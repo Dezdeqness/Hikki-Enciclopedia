@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../anime_details.dart';
-import '../models/recommend_anime_ui_model.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/anime_details.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/recommend_anime_ui_model.dart';
 
 class RecommendCarousel extends StatelessWidget {
-  const RecommendCarousel({super.key, required this.items});
+  const RecommendCarousel({
+    required this.items,
+    super.key,
+  });
 
   final List<RecommendAnimeUiModel> items;
 
@@ -43,8 +45,8 @@ class RecommendItem extends StatelessWidget {
   final RecommendAnimeUiModel item;
 
   const RecommendItem({
-    super.key,
     required this.item,
+    super.key,
   });
 
   @override

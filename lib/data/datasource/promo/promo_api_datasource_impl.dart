@@ -3,8 +3,7 @@ import 'package:hikki_enciclopedia/data/datasource/promo/promo_api_datasource.da
 import 'package:hikki_enciclopedia/data/mapper/promo_mapper.dart';
 import 'package:hikki_enciclopedia/domain/model/promotional_entitiy.dart';
 import 'package:result_type/result_type.dart';
-
-import '../../core/base_api_datasource.dart';
+import 'package:hikki_enciclopedia/data/core/index.dart';
 
 class PromoApiDatasourceImpl extends BaseApiDatasource
     implements PromoApiDataSource {

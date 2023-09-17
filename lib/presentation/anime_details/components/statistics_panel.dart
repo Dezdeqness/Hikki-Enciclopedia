@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/statistics_anime_ui_model.dart';
 
-import '../models/statistics_anime_ui_model.dart';
 
 class StatisticsPanel extends StatelessWidget {
   final List<StatisticsAnimeUiModel> items;
 
-  const StatisticsPanel({super.key, required this.items});
+  const StatisticsPanel({
+    required this.items,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +54,10 @@ class StatisticsItem extends StatelessWidget {
   final double progress;
 
   const StatisticsItem({
-    super.key,
     required this.title,
     required this.value,
     required this.progress,
+    super.key,
   });
 
   @override

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-
-import 'package:hikki_enciclopedia/theme/colors.dart';
-
-import '../theme/styles.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class CategoryItem extends StatelessWidget {
   final String title;
   final IconData icon;
 
   const CategoryItem({
-    super.key,
     required this.title,
     required this.icon,
+    super.key,
   });
 
   @override

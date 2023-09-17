@@ -9,13 +9,13 @@ class AnimeItem extends StatelessWidget {
   final ValueChanged<int> onAnimeDetailsClicked;
 
   const AnimeItem({
-    super.key,
     required this.id,
     required this.title,
     required this.score,
     required this.imageUrl,
     required this.genres,
     required this.onAnimeDetailsClicked,
+    super.key,
   });
 
   @override

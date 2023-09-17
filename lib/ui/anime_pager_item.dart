@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../theme/styles.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class AnimePagerItem extends StatelessWidget {
   final int id;
@@ -12,7 +11,6 @@ class AnimePagerItem extends StatelessWidget {
   final double height;
 
   const AnimePagerItem({
-    super.key,
     required this.id,
     required this.title,
     required this.type,
@@ -20,6 +18,7 @@ class AnimePagerItem extends StatelessWidget {
     required this.imageUrl,
     required this.onAnimeDetailsClicked,
     required this.height,
+    super.key,
   });
 
   @override

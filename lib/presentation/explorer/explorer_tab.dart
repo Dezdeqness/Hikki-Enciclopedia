@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/anime_details.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/bloc/explorer_bloc.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/index.dart';
 
-import '../../domain/usecase/get_anime_list_use_case.dart';
-import '../../navigation/app_navigation_routes.dart';
-import '../anime_details/anime_details.dart';
 import 'explorer_page.dart';
 
 class ExplorerTab extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  const ExplorerTab({super.key, required this.navigatorKey});
+  const ExplorerTab({
+    required this.navigatorKey,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Navigator(

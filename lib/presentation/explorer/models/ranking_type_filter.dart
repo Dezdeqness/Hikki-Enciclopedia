@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-
-import '../../../generated/l10n.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 
 class RankingTypeFilterUiModel {
   final String id;
@@ -14,21 +13,17 @@ class RankingTypeFilterUiModel {
 
 List<RankingTypeFilterUiModel> getRankingTypeFilter(BuildContext context) => [
       RankingTypeFilterUiModel(
-          id: "all", displayName: AppLocalizations.of(context).filterAll),
+          id: "all", displayName: LocaleKeys.filterAll.tr()),
       RankingTypeFilterUiModel(
-          id: "airing", displayName: AppLocalizations.of(context).filterAiring),
+          id: "airing", displayName: LocaleKeys.filterAiring.tr()),
       RankingTypeFilterUiModel(
-          id: "upcoming",
-          displayName: AppLocalizations.of(context).filterUpcoming),
+          id: "upcoming", displayName: LocaleKeys.filterUpcoming.tr()),
       RankingTypeFilterUiModel(
-          id: "movie", displayName: AppLocalizations.of(context).filterMovie),
+          id: "movie", displayName: LocaleKeys.filterMovie.tr()),
       RankingTypeFilterUiModel(
-          id: "special",
-          displayName: AppLocalizations.of(context).filterSpecial),
+          id: "special", displayName: LocaleKeys.filterSpecial.tr()),
       RankingTypeFilterUiModel(
-          id: "bypopularity",
-          displayName: AppLocalizations.of(context).filterByPopularity),
+          id: "bypopularity", displayName: LocaleKeys.filterByPopularity.tr()),
       RankingTypeFilterUiModel(
-          id: "favorite",
-          displayName: AppLocalizations.of(context).filterFavorite)
+          id: "favorite", displayName: LocaleKeys.filterFavorite.tr())
     ];

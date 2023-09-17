@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:hikki_enciclopedia/theme/styles.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PromotionalItem extends StatelessWidget {
   final String name;

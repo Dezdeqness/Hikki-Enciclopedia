@@ -16,7 +16,7 @@ class AnimeApi {
 
 @JsonSerializable()
 class Data {
-  final Node node;
+  final AnimeNode node;
 
   Data({required this.node});
 
@@ -26,7 +26,7 @@ class Data {
 }
 
 @JsonSerializable()
-class Node {
+class AnimeNode {
   final int id;
   final String title;
   @JsonKey(name: "main_picture")
@@ -35,14 +35,14 @@ class Node {
   final String mediaType;
   final double? mean;
 
-  Node(
+  AnimeNode(
       {required this.id,
       required this.title,
       required this.mainPicture,
       required this.mediaType,
       required this.mean});
 
-  factory Node.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
+  factory AnimeNode.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
 
   Map<String, dynamic> toJson() => _$NodeToJson(this);
 }

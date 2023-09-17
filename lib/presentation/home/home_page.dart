@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/generated/l10n.dart';
+import 'package:hikki_enciclopedia/domain/model/anime_entity.dart';
 import 'package:hikki_enciclopedia/presentation/home/home_provier.dart';
 
 import 'package:hikki_enciclopedia/ui/anime_pager_item.dart';
@@ -7,19 +7,19 @@ import 'package:hikki_enciclopedia/ui/category_item.dart';
 import 'package:hikki_enciclopedia/ui/container_headerfull.dart';
 import 'package:hikki_enciclopedia/ui/news_item.dart';
 import 'package:hikki_enciclopedia/ui/promotional_item.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/model/anime_entity.dart';
-
 class HomePage extends StatefulWidget {
-  const HomePage({
-    super.key,
-    required this.title,
-    required this.onAnimeDetailsClicked,
-  });
 
   final ValueChanged<int> onAnimeDetailsClicked;
   final String title;
+
+  const HomePage({
+    required this.title,
+    required this.onAnimeDetailsClicked,
+    super.key,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -57,13 +57,13 @@ class _HomePageState extends State<HomePage> {
           _buildNewsContainer(),
           _buildPromotionalContainer(),
           _buildHorizontalListAiring(
-            header: AppLocalizations.of(context).airingHeader,
+            header: LocaleKeys.airingHeader.tr(),
           ),
           _buildHorizontalListUpcoming(
-            header: AppLocalizations.of(context).upcomingHeader,
+            header: LocaleKeys.upcomingHeader.tr(),
           ),
           _buildHorizontalListBypopularity(
-            header: AppLocalizations.of(context).recommendationsHeader,
+            header: LocaleKeys.recommendationsHeader.tr(),
           ),
           const SizedBox(height: 50),
         ],
@@ -71,8 +71,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildNewsContainer() => ContainerHeaderFull(
-        header: AppLocalizations.of(context).latestHeader,
+  _buildNewsContainer() => ContainerHeader(
+        header: LocaleKeys.latestHeader.tr(),
         content: _buildNewsPager(),
       );
 
@@ -82,14 +82,14 @@ class _HomePageState extends State<HomePage> {
           children: [
             Flexible(
               child: CategoryItem(
-                title: AppLocalizations.of(context).topAnime,
+                title: LocaleKeys.topAnime.tr(),
                 icon: Icons.trending_up,
               ),
             ),
             const SizedBox(width: 16),
             Flexible(
               child: CategoryItem(
-                title: AppLocalizations.of(context).seasonal,
+                title: LocaleKeys.seasonal.tr(),
                 icon: Icons.sunny,
               ),
             ),
@@ -113,45 +113,42 @@ class _HomePageState extends State<HomePage> {
 
   _buildPromotionalContainer() => Container(
         padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
-          header: AppLocalizations.of(context).promotionalHeader,
+        child: ContainerHeader(
+          header: LocaleKeys.promotionalHeader.tr(),
           content: _buildPromotionalPager(),
         ),
       );
 
   _buildHorizontalListAiring({required String header}) => Container(
         padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
+        child: ContainerHeader(
           header: header,
           content: Consumer<HomeProvider>(builder: (context, explorer, child) {
             return _buildPager(explorer.itemsAiring, explorer.isErrorAiring,
                 explorer.errorAiring);
           }),
-          isActionPresent: true,
         ),
       );
 
   _buildHorizontalListUpcoming({required String header}) => Container(
         padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
+        child: ContainerHeader(
           header: header,
           content: Consumer<HomeProvider>(builder: (context, explorer, child) {
             return _buildPager(explorer.itemsUpcoming, explorer.isErrorUpcoming,
                 explorer.errorUpcoming);
           }),
-          isActionPresent: true,
         ),
       );
 
   _buildHorizontalListBypopularity({required String header}) => Container(
         padding: const EdgeInsets.only(top: 16),
-        child: ContainerHeaderFull(
+        child: ContainerHeader(
           header: header,
           content: Consumer<HomeProvider>(builder: (context, explorer, child) {
             return _buildPager(explorer.itemsBypopularity,
                 explorer.isErrorBypopularity, explorer.errorBypopularity);
           }),
-          isActionPresent: true,
         ),
       );
 

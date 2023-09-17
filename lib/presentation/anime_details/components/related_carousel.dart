@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/anime_details.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/models/related_anime_ui_model.dart';
 
-import '../anime_details.dart';
-import '../models/related_anime_ui_model.dart';
 
 class RelatedCarousel extends StatelessWidget {
-  const RelatedCarousel({super.key, required this.items});
+  const RelatedCarousel({
+    required this.items,
+    super.key,
+  });
 
   final List<RelatedAnimeUiModel> items;
 
@@ -43,8 +46,8 @@ class RelatedItem extends StatelessWidget {
   final RelatedAnimeUiModel item;
 
   const RelatedItem({
-    super.key,
     required this.item,
+    super.key,
   });
 
   @override

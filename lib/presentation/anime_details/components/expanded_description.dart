@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hikki_enciclopedia/core/extensions/measure_extension.dart';
+import 'package:hikki_enciclopedia/core/extensions/index.dart';
 
 const _trashHoldHeight = 50;
 
 class ExpandedDescription extends StatefulWidget {
-  const ExpandedDescription({
-    super.key,
-    required this.text,
-    required this.textStyle,
-    required this.textPadding,
-  });
-
   final String text;
   final TextStyle textStyle;
   final EdgeInsets textPadding;
+
+  const ExpandedDescription({
+    required this.text,
+    required this.textStyle,
+    required this.textPadding,
+    super.key,
+  });
 
   @override
   ExpandedDescriptionState createState() => ExpandedDescriptionState();

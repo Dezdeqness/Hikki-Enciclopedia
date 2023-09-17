@@ -4,9 +4,8 @@ import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/core/base_api_datasource.dart';
 import 'package:hikki_enciclopedia/data/datasource/anime/anime_api_datasource.dart';
 import 'package:result_type/result_type.dart';
-import '../../../domain/model/anime_details_entity.dart';
-import '../../../domain/model/anime_entity.dart';
-import '../../mapper/anime_mapper.dart';
+import 'package:hikki_enciclopedia/domain/model/index.dart';
+import 'package:hikki_enciclopedia/data/mapper/index.dart';
 
 class AnimeApiDataSourceImpl extends BaseApiDatasource
     implements AnimeApiDataSource {
@@ -31,7 +30,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
       );
 
       if (response.isSuccessRequest()) {
-        return Success(_animeMapper.mapAnimeList(response));
+        return Success(_animeMapper.mapAnimeList(response.data));
       } else {
         return Failure(ErrorEntity.unknown);
       }
@@ -47,7 +46,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
       final response = await _animeService.getAnimeDetails(animeId);
 
       if (response.isSuccessRequest()) {
-        return Success(_animeMapper.mapAnimeDetails(response));
+        return Success(_animeMapper.mapAnimeDetails(response.data));
       } else {
         return Failure(ErrorEntity.unknown);
       }

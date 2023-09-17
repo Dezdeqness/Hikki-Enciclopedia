@@ -4,8 +4,8 @@ class GenreCarousel extends StatelessWidget {
   final List<String> items;
 
   const GenreCarousel({
-    super.key,
     required this.items,
+    super.key,
   });
 
   @override

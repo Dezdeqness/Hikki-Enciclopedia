@@ -2,8 +2,8 @@ import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource.dart';
 import 'package:hikki_enciclopedia/domain/model/news_entity.dart';
 import 'package:result_type/result_type.dart';
-import '../../core/base_api_datasource.dart';
-import '../../mapper/news_mapper.dart';
+import 'package:hikki_enciclopedia/data/core/index.dart';
+import 'package:hikki_enciclopedia/data/mapper/index.dart';
 
 class NewsApiDatasourceImpl extends BaseApiDatasource
     implements NewsApiDataSource {

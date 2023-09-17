@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/generated/l10n.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 
 class MainBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onSelectTab;
 
   const MainBottomNavBar({
-    super.key,
     required this.currentIndex,
     required this.onSelectTab,
+    super.key,
   });
 
   @override
@@ -16,19 +16,19 @@ class MainBottomNavBar extends StatelessWidget {
     final items = [
       NavBarItem(
         icon: const Icon(Icons.bookmark),
-        label: AppLocalizations.of(context).tabItemPersonalList,
+        label: LocaleKeys.tabItemPersonalList.tr(),
       ),
       NavBarItem(
         icon: const Icon(Icons.home),
-        label: AppLocalizations.of(context).tabItemHome,
+        label: LocaleKeys.tabItemHome.tr(),
       ),
       NavBarItem(
         icon: const Icon(Icons.explore),
-        label: AppLocalizations.of(context).tabItemExplorer,
+        label: LocaleKeys.tabItemExplorer.tr(),
       ),
       NavBarItem(
         icon: const Icon(Icons.person),
-        label: AppLocalizations.of(context).tabItemProfile,
+        label: LocaleKeys.tabItemProfile.tr(),
       ),
     ].map((value) {
       return _buildItem(value);
