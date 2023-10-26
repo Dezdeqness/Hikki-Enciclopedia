@@ -1,11 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class GenreEntity extends Equatable {
-  final int id;
-  final String name;
+part 'genre_entity.freezed.dart';
 
-  const GenreEntity({required this.id, required this.name});
-
-  @override
-  List<Object?> get props => [id, name];
+@freezed
+class GenreEntity with _$GenreEntity {
+  factory GenreEntity({
+    required int id,
+    required String name,
+  }) = _GenreEntity;
 }

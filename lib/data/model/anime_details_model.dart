@@ -127,9 +127,9 @@ class DetailsNode {
 
   DetailsNode({required this.id, required this.title, required this.mainPicture});
 
-  factory DetailsNode.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
+  factory DetailsNode.fromJson(Map<String, dynamic> json) => _$DetailsNodeFromJson(json);
 
-  Map<String, dynamic> toJson() => _$NodeToJson(this);
+  Map<String, dynamic> toJson() => _$DetailsNodeToJson(this);
 }
 
 @JsonSerializable()

@@ -1,29 +1,15 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class StatsEntity extends Equatable {
-  final int numListUsers;
-  final int watching;
-  final int completed;
-  final int onHold;
-  final int dropped;
-  final int planToWatch;
+part 'stats_entity.freezed.dart';
 
-  const StatsEntity({
-    required this.numListUsers,
-    required this.watching,
-    required this.completed,
-    required this.onHold,
-    required this.dropped,
-    required this.planToWatch,
-  });
-
-  @override
-  List<Object?> get props => [
-        numListUsers,
-        watching,
-        completed,
-        onHold,
-        dropped,
-        planToWatch,
-      ];
+@freezed
+class StatsEntity with _$StatsEntity {
+  factory StatsEntity({
+     required int numListUsers,
+     required int watching,
+     required int completed,
+     required int onHold,
+     required int dropped,
+     required int planToWatch,
+  }) = _StatsEntity;
 }

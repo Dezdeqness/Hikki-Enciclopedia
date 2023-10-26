@@ -1,23 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class NewsEntity extends Equatable {
-  final String title;
-  final String description;
-  final String imageUrl;
-  final String url;
+part 'news_entity.freezed.dart';
 
-  const NewsEntity({
-    required this.title,
-    required this.description,
-    required this.imageUrl,
-    required this.url,
-  });
-
-  @override
-  List<Object?> get props => [
-        title,
-        description,
-        imageUrl,
-        url,
-      ];
+@freezed
+class NewsEntity with _$NewsEntity {
+  factory NewsEntity({
+    required String title,
+    required String description,
+    required String imageUrl,
+    required String url,
+  }) = _NewsEntity;
 }

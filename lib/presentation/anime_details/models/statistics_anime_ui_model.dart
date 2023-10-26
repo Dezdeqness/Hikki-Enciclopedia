@@ -1,20 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class StatisticsAnimeUiModel extends Equatable {
-  final String title;
-  final String value;
-  final double progress;
+part 'statistics_anime_ui_model.freezed.dart';
 
-  const StatisticsAnimeUiModel({
-    required this.title,
-    required this.value,
-    required this.progress,
-  });
-
-  @override
-  List<Object?> get props => [
-        title,
-        value,
-        progress,
-      ];
+@freezed
+class StatisticsAnimeUiModel with _$StatisticsAnimeUiModel {
+  factory StatisticsAnimeUiModel({
+    required String title,
+    required String value,
+    required double progress,
+  }) = _StatisticsAnimeUiModel;
 }

@@ -1,26 +1,16 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RelatedAnimeEntity extends Equatable {
-  final int id;
-  final String title;
-  final String imageUrl;
-  final String relationType;
-  final String relationTypeFormatted;
+part 'related_anime_entity.freezed.dart';
 
-  const RelatedAnimeEntity({
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-    required this.relationType,
-    required this.relationTypeFormatted,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        title,
-        imageUrl,
-        relationType,
-        relationTypeFormatted,
-      ];
+@freezed
+class RelatedAnimeEntity with _$RelatedAnimeEntity {
+  factory RelatedAnimeEntity({
+    required int id,
+    required String title,
+    required String imageUrl,
+    required String relationType,
+    required String relationTypeFormatted,
+  }) = _RelatedAnimeEntity;
 }
+
+

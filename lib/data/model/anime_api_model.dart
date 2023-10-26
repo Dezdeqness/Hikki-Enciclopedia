@@ -42,7 +42,7 @@ class AnimeNode {
       required this.mediaType,
       required this.mean});
 
-  factory AnimeNode.fromJson(Map<String, dynamic> json) => _$NodeFromJson(json);
+  factory AnimeNode.fromJson(Map<String, dynamic> json) => _$AnimeNodeFromJson(json);
 
-  Map<String, dynamic> toJson() => _$NodeToJson(this);
+  Map<String, dynamic> toJson() => _$AnimeNodeToJson(this);
 }

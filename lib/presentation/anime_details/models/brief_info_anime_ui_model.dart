@@ -1,14 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class BriefInfoAnimeUIModel extends Equatable {
-  final String title;
-  final String value;
+part 'brief_info_anime_ui_model.freezed.dart';
 
-  const BriefInfoAnimeUIModel({
-    required this.title,
-    required this.value,
-  });
-
-  @override
-  List<Object?> get props => [title, value];
+@freezed
+class BriefInfoAnimeUIModel with _$BriefInfoAnimeUIModel {
+  factory BriefInfoAnimeUIModel({
+    required String title,
+    required String value,
+  }) = _BriefInfoAnimeUIModel;
 }

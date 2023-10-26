@@ -1,23 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RelatedAnimeUiModel extends Equatable {
-  final int id;
-  final String title;
-  final String imageUrl;
-  final String relationType;
+part 'related_anime_ui_model.freezed.dart';
 
-  const RelatedAnimeUiModel({
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-    required this.relationType,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        title,
-        imageUrl,
-        relationType,
-      ];
+@freezed
+class RelatedAnimeUiModel with _$RelatedAnimeUiModel {
+  factory RelatedAnimeUiModel({
+    required int id,
+    required String title,
+    required String imageUrl,
+    required String relationType,
+  }) = _RelatedAnimeUiModel;
 }

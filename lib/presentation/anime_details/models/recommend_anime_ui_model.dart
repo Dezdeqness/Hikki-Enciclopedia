@@ -1,20 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RecommendAnimeUiModel extends Equatable {
-  final int id;
-  final String title;
-  final String imageUrl;
+part 'recommend_anime_ui_model.freezed.dart';
 
-  const RecommendAnimeUiModel({
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        title,
-        imageUrl,
-      ];
+@freezed
+class RecommendAnimeUiModel with _$RecommendAnimeUiModel {
+  factory RecommendAnimeUiModel({
+    required int id,
+    required String title,
+    required String imageUrl,
+  }) = _RecommendAnimeUiModel;
 }

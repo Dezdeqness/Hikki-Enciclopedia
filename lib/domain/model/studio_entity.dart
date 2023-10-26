@@ -1,11 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class StudioEntity extends Equatable {
-  final int id;
-  final String name;
+part 'studio_entity.freezed.dart';
 
-  const StudioEntity({required this.id, required this.name});
-
-  @override
-  List<Object?> get props => [id, name];
+@freezed
+class StudioEntity with _$StudioEntity {
+  factory StudioEntity({
+    required int id,
+    required String name,
+  }) = _StudioEntity;
 }

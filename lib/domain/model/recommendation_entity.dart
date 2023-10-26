@@ -1,23 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RecommendationEntity extends Equatable {
-  final int id;
-  final String title;
-  final String imageUrl;
-  final int numRecommendations;
+part 'recommendation_entity.freezed.dart';
 
-  const RecommendationEntity({
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-    required this.numRecommendations,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        title,
-        imageUrl,
-        numRecommendations,
-      ];
+@freezed
+class RecommendationEntity with _$RecommendationEntity {
+  factory RecommendationEntity({
+    required int id,
+    required String title,
+    required String imageUrl,
+    required int numRecommendations,
+  }) = _RecommendationEntity;
 }
