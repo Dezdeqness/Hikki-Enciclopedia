@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/datasource/anime/anime_api_datasource_impl.dart';
-import 'package:hikki_enciclopedia/data/mapper/anime_mapper.dart';
+import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource.dart';
+import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource_impl.dart';
+import 'package:hikki_enciclopedia/data/datasource/promo/promo_api_datasource.dart';
+import 'package:hikki_enciclopedia/data/datasource/promo/promo_api_datasource_impl.dart';
+import 'package:hikki_enciclopedia/data/mapper/index.dart';
 import 'package:hikki_enciclopedia/data/repository/anime_repository_impl.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_details_use_case.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
@@ -11,9 +15,11 @@ import 'package:hikki_localization/hikki_localization.dart';
 import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 import 'package:provider/provider.dart';
 
-import 'presentation/home/home_provier.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   // TODO: DI
   final animeService = AnimeService();
   final animeMapper = AnimeMapper();
@@ -22,9 +28,13 @@ void main() {
   final datasource =
       AnimeApiDataSourceImpl(animeService, animeMapper, errorMapper);
   final repository = AnimeRepositoryImpl(dataSource: datasource);
+  final newsService = NewsService();
+  final promoService = PromoService();
+  final newsMapper = NewsMapper();
+  final promoMapper = PromoMapper();
 
-  runApp(
-    MultiProvider(
+  runApp(HikkiLocalizationWrapper(
+    child: MultiProvider(
       providers: [
         Provider<GetAnimeListUseCase>(
           create: (context) => GetAnimeListUseCase(animeRepository: repository),
@@ -33,30 +43,20 @@ void main() {
           create: (context) =>
               GetAnimeDetailsUseCase(animeRepository: repository),
         ),
-        ChangeNotifierProvider<HomeProvider>(create: (context) {
-          final useCase = Provider.of<GetAnimeListUseCase>(context, listen: false);
-          return HomeProvider(useCase: useCase);
-        }),
-      ],
-      child: MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-          appBarTheme: const AppBarTheme(
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark,
-              statusBarBrightness: Brightness.dark,
-            ),
-          ),
+        Provider<NewsApiDataSource>(
+          create: (context) =>
+              NewsApiDatasourceImpl(newsService, newsMapper, errorMapper),
         ),
-        home: const App(),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.delegate.supportedLocales,
+        Provider<PromoApiDataSource>(
+          create: (context) =>
+              PromoApiDatasourceImpl(promoService, promoMapper, errorMapper),
+        ),
+      ],
+      child: HikkiThemeProvider(
+        builder: (BuildContext context) {
+          return const App();
+        },
       ),
     ),
-  );
+  ));
 }

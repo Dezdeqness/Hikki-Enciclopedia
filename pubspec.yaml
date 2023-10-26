@@ -27,6 +27,7 @@ dependencies:
   html: 0.15.4
   webview_flutter: 4.2.4
   shared_preferences: 2.2.1
+  auto_route: 7.8.4
 
   hikki_api_service:
     path: packages/hikki_api_service
@@ -42,7 +43,8 @@ dev_dependencies:
     sdk: flutter
 
   json_serializable: 6.7.1
-  build_runner: 2.3.3
+  build_runner: 2.4.6
+  auto_route_generator: 7.3.2
 
   flutter_lints: 2.0.3
 
@@ -50,5 +52,4 @@ flutter:
   generate: true
 
   uses-material-design: true
-  assets:
-    - assets/shevron.svg
+
