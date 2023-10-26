@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class InkWrapper extends StatelessWidget {
+class InkWellWrapper extends StatelessWidget {
   final Widget child;
   final VoidCallback onTap;
 
-  const InkWrapper({
-    super.key,
+  const InkWellWrapper({
     required this.child,
     required this.onTap,
+    super.key,
   });
 
   @override

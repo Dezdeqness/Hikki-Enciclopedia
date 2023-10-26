@@ -1,0 +1,39 @@
+name: hikki_ui_kit
+description: UI Components
+version: 0.0.1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: 2.0.7
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 2.0.3
+  flutter_gen_runner: 5.3.2
+  build_runner: 2.4.6
+
+flutter:
+  generate: true
+
+  uses-material-design: true
+  assets:
+    - assets/icons/
+
+flutter_gen:
+  output: lib/src/assets/
+  line_length: 100
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+      class_name: HikkiAssets
+
+  integrations:
+    flutter_svg: true
+
