@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 
 class ScreenshotCarousel extends StatelessWidget {
   final List<String> items;
@@ -36,13 +37,13 @@ class ScreenshotCarousel extends StatelessWidget {
         .toList();
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Screenshots',
-              style: TextStyle(
+              LocaleKeys.animeDetailCarouselScreenshots.tr(context: context),
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 20,

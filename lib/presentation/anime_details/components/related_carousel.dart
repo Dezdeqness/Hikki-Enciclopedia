@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/presentation/anime_details/anime_details.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/related_anime_ui_model.dart';
-
+import 'package:hikki_localization/hikki_localization.dart';
 
 class RelatedCarousel extends StatelessWidget {
   const RelatedCarousel({
@@ -15,13 +14,13 @@ class RelatedCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Related anime',
-              style: TextStyle(
+              LocaleKeys.animeDetailCarouselRelatedAnime.tr(context: context),
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
@@ -56,10 +55,7 @@ class RelatedItem extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         child: InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(
-              "/animedetails",
-              arguments: AnimeDetailsArguments(id: item.id),
-            );
+            // context.pushRoute(AnimeDetailsRoute(id: item.id));
           },
           child: SizedBox(
             width: 130,

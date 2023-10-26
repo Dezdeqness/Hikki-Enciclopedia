@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/presentation/anime_details/anime_details.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/recommend_anime_ui_model.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 
 class RecommendCarousel extends StatelessWidget {
   const RecommendCarousel({
@@ -14,13 +14,14 @@ class RecommendCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Recommended anime',
-              style: TextStyle(
+              LocaleKeys.animeDetailCarouselRecommendedAnime
+                  .tr(context: context),
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
@@ -55,10 +56,7 @@ class RecommendItem extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         child: InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(
-              "/animedetails",
-              arguments: AnimeDetailsArguments(id: item.id),
-            );
+            // context.pushRoute(AnimeDetailsRoute(id: item.id));
           },
           child: SizedBox(
             width: 130,

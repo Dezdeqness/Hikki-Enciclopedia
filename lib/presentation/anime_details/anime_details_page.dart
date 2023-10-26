@@ -1,9 +1,13 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
+import 'package:hikki_enciclopedia/core/ui/loading_screen.dart';
 import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_details_use_case.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/brief_info_anime_ui_model.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/recommend_anime_ui_model.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/related_anime_ui_model.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -17,20 +21,20 @@ import 'components/screenshot_carousel.dart';
 import 'components/statistics_panel.dart';
 import 'models/statistics_anime_ui_model.dart';
 
-class AnimeDetailsArguments {
+@RoutePage()
+class AnimeDetailsPage extends StatefulWidget {
   final int id;
 
-  AnimeDetailsArguments({required this.id});
-}
-
-class AnimeDetails extends StatefulWidget {
-  const AnimeDetails({super.key});
+  const AnimeDetailsPage({
+    required this.id,
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() => _AnimeDetailsState();
 }
 
-class _AnimeDetailsState extends State<AnimeDetails> {
+class _AnimeDetailsState extends State<AnimeDetailsPage> {
   AnimeDetailsEntity? _item;
   bool _isError = false;
   String? _error;
@@ -45,10 +49,8 @@ class _AnimeDetailsState extends State<AnimeDetails> {
 
     Future.delayed(Duration.zero, () {
       var useCase = Provider.of<GetAnimeDetailsUseCase>(context, listen: false);
-      final args =
-          ModalRoute.of(context)?.settings.arguments as AnimeDetailsArguments;
 
-      useCase.execute(animeId: args.id).then((result) => setState(() {
+      useCase.execute(animeId: widget.id).then((result) => setState(() {
             if (result.isSuccess) {
               _item = result.success;
               _isError = false;
@@ -89,10 +91,10 @@ class _AnimeDetailsState extends State<AnimeDetails> {
   @override
   Widget build(BuildContext context) {
     if (_item == null) {
-      return _loadingScreen();
+      return const LoadingScreen();
     }
     if (_isError) {
-      return _errorScreen(_error);
+      return ErrorScreen(error: _error ?? '');
     }
     Color color = Color(0xFFF5F5F5);
     if (isTransparentToolbar) {
@@ -106,7 +108,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
       text = null;
     } else {
       text = Text(
-        _item?.title ?? "Anime",
+        _item?.title ?? LocaleKeys.animeDetailTitle.tr(context: context),
         style: const TextStyle(
           color: Colors.black,
           overflow: TextOverflow.ellipsis,
@@ -165,7 +167,9 @@ class _AnimeDetailsState extends State<AnimeDetails> {
       final date = DateTime.tryParse(_item!.startDate);
       if (date != null) {
         briefInfoItems.add(
-          BriefInfoAnimeUIModel(title: 'Year', value: date.year.toString()),
+          BriefInfoAnimeUIModel(
+              title: LocaleKeys.animeDetailYear.tr(context: context),
+              value: date.year.toString()),
         );
       }
     }
@@ -173,7 +177,8 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     if (_item?.status != null && _item?.status != StatusAnimeEntity.unknown) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-            title: 'Status', value: _getStatusDisplayName(_item!.status)),
+            title: LocaleKeys.animeDetailStatus.tr(context: context),
+            value: _getStatusDisplayName(_item!.status)),
       );
     }
 
@@ -181,7 +186,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
         _item?.mediaType != MediaTypeAnimeEntity.unknown) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-          title: 'Type',
+          title: LocaleKeys.animeDetailType.tr(context: context),
           value: _getMediaTypeDisplayName(_item!.mediaType),
         ),
       );
@@ -190,7 +195,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     if (_item?.numEpisodes != null) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-          title: 'Episodes',
+          title: LocaleKeys.animeDetailEpisodes.tr(context: context),
           value: _item!.numEpisodes.toString(),
         ),
       );
@@ -199,8 +204,9 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     if (_item?.averageEpisodeDuration != null) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-            title: 'Time episode',
-            value: '${(_item!.averageEpisodeDuration / 60).round()} min'),
+            title: LocaleKeys.animeDetailTimeEpisode.tr(context: context),
+            value:
+                '${(_item!.averageEpisodeDuration / 60).round()}  ${LocaleKeys.animeDetailMinute.tr(context: context)}'),
       );
     }
 
@@ -208,7 +214,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
         _item?.rating != AgeRatingAnimeEntity.unknown) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-          title: 'Age Rating',
+          title: LocaleKeys.animeDetailAgeRating.tr(context: context),
           value: _item!.rating.displayName,
         ),
       );
@@ -217,7 +223,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     if (_item?.rank != null) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-          title: 'Rank',
+          title: LocaleKeys.animeDetailRank.tr(context: context),
           value: _item!.rank.toString(),
         ),
       );
@@ -226,7 +232,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     if (_item?.startDate != null) {
       briefInfoItems.add(
         BriefInfoAnimeUIModel(
-          title: 'Popularity',
+          title: LocaleKeys.animeDetailPopularity.tr(context: context),
           value: _item!.popularity.toString(),
         ),
       );
@@ -308,27 +314,27 @@ class _AnimeDetailsState extends State<AnimeDetails> {
         child: StatisticsPanel(
           items: [
             StatisticsAnimeUiModel(
-              title: 'Watching',
+              title: LocaleKeys.animeDetailStatsWatching.tr(context: context),
               value: _item?.stats.watching.toString() ?? '',
               progress: _item!.stats.watching / (_item!.stats.numListUsers),
             ),
             StatisticsAnimeUiModel(
-              title: 'Completed',
+              title: LocaleKeys.animeDetailStatsCompleted.tr(context: context),
               value: _item?.stats.completed.toString() ?? '',
               progress: _item!.stats.completed / (_item!.stats.numListUsers),
             ),
             StatisticsAnimeUiModel(
-              title: 'On Hold',
+              title: LocaleKeys.animeDetailStatsOnHold.tr(context: context),
               value: _item?.stats.onHold.toString() ?? '',
               progress: _item!.stats.onHold / (_item!.stats.numListUsers),
             ),
             StatisticsAnimeUiModel(
-              title: 'Dropped',
+              title: LocaleKeys.animeDetailStatsDropped.tr(context: context),
               value: _item?.stats.dropped.toString() ?? '',
               progress: _item!.stats.dropped / (_item!.stats.numListUsers),
             ),
             StatisticsAnimeUiModel(
-              title: 'Plan to watch',
+              title: LocaleKeys.animeDetailStatsPlanWatch.tr(context: context),
               value: _item?.stats.planToWatch.toString() ?? '',
               progress: _item!.stats.planToWatch / (_item!.stats.numListUsers),
             ),
@@ -345,42 +351,18 @@ class _AnimeDetailsState extends State<AnimeDetails> {
     );
   }
 
-  _errorScreen(String? error) => Container(
-        color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.error_outline,
-                color: Colors.red,
-                size: 60,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Text('Error: $error'),
-              ),
-            ],
-          ),
-        ),
-      );
-
-  _loadingScreen() => const Center(
-        child: CircularProgressIndicator(),
-      );
-
   String _getMediaTypeDisplayName(MediaTypeAnimeEntity item) {
     switch (item) {
       case MediaTypeAnimeEntity.movie:
-        return 'Movie';
+        return LocaleKeys.animeDetailTypeMovie.tr(context: context);
       case MediaTypeAnimeEntity.tv:
-        return 'TV';
+        return LocaleKeys.animeDetailTypeTv.tr(context: context);
       case MediaTypeAnimeEntity.ona:
-        return 'Ona';
+        return LocaleKeys.animeDetailTypeOna.tr(context: context);
       case MediaTypeAnimeEntity.ova:
-        return 'Ova';
+        return LocaleKeys.animeDetailTypeOva.tr(context: context);
       case MediaTypeAnimeEntity.music:
-        return 'Music';
+        return LocaleKeys.animeDetailTypeMusic.tr(context: context);
       default:
         return "";
     }
@@ -389,11 +371,11 @@ class _AnimeDetailsState extends State<AnimeDetails> {
   String _getStatusDisplayName(StatusAnimeEntity item) {
     switch (item) {
       case StatusAnimeEntity.airing:
-        return 'Airing';
+        return LocaleKeys.animeDetailTypeAiring.tr(context: context);
       case StatusAnimeEntity.finished:
-        return 'Finished';
+        return LocaleKeys.animeDetailTypeFinished.tr(context: context);
       case StatusAnimeEntity.notStarted:
-        return 'Not started yet';
+        return LocaleKeys.animeDetailTypeNotStartedYet.tr(context: context);
       default:
         return '';
     }

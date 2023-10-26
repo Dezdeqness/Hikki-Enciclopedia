@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/statistics_anime_ui_model.dart';
-
+import 'package:hikki_localization/hikki_localization.dart';
 
 class StatisticsPanel extends StatelessWidget {
   final List<StatisticsAnimeUiModel> items;
@@ -24,13 +24,13 @@ class StatisticsPanel extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Statistics',
-              style: TextStyle(
+              LocaleKeys.animeDetailStats.tr(context: context),
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
                 fontSize: 20,

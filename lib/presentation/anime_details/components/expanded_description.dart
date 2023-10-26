@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hikki_enciclopedia/core/extensions/index.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 const _trashHoldHeight = 50;
 
@@ -81,9 +81,11 @@ class ExpandedDescriptionState extends State<ExpandedDescription>
           width: double.infinity,
           child: RotationTransition(
             turns: _animation,
-            child: SvgPicture.asset(
-              'assets/shevron.svg',
-              color: Colors.black,
+            child: HikkiAssets.icons.shevron.svg(
+              colorFilter: const ColorFilter.mode(
+                Colors.black,
+                BlendMode.srcIn,
+              ),
             ),
           ),
         ),
