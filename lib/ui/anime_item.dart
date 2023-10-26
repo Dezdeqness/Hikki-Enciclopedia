@@ -36,7 +36,7 @@ class AnimeItem extends StatelessWidget {
                   imageUrl,
                   width: 300,
                   height: 450,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 Align(
                   alignment: Alignment.topLeft,

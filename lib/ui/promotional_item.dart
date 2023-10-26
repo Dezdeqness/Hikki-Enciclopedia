@@ -7,6 +7,7 @@ class PromotionalItem extends StatelessWidget {
   final String name;
   final String kind;
   final String imageUrl;
+  final String url;
   final double height;
 
   const PromotionalItem({
@@ -14,14 +15,24 @@ class PromotionalItem extends StatelessWidget {
     required this.kind,
     required this.imageUrl,
     required this.height,
+    required this.url,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Card(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Card(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: InkWellWrapper(
+          onTap: () async {
+            final uri = Uri.parse(url);
+            await launchUrl(
+              uri,
+              mode: LaunchMode.externalApplication,
+            );
+          },
           child: Stack(
             children: [
               SizedBox(
@@ -44,13 +55,15 @@ class PromotionalItem extends StatelessWidget {
                     Text(
                       name,
                       textAlign: TextAlign.start,
-                      style: AppStyles.promotionalText,
+                      style: context.textTheme.c2
+                          .copyWith(color: context.colors.primaryLight),
                     ),
                     const SizedBox(height: 6),
                     Text(
                       kind,
                       textAlign: TextAlign.start,
-                      style: AppStyles.promotionalText,
+                      style: context.textTheme.c2
+                          .copyWith(color: context.colors.primaryLight),
                     ),
                   ],
                 ),
@@ -58,5 +71,7 @@ class PromotionalItem extends StatelessWidget {
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

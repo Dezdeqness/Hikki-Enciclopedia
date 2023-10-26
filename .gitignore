@@ -17,6 +17,7 @@
 .idea/
 
 **.g.dart
+**.freezed.dart
 
 # Visual Studio Code related
 .classpath

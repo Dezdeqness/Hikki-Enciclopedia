@@ -11,14 +11,17 @@ class CellHeader extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-          child: Text(
-            header,
-            style: AppStyles.headerText,
-          ),
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+        child: Text(
+          header,
+          style:
+              context.textTheme.d1.copyWith(color: context.colors.primaryDark),
         ),
-      );
+      ),
+    );
+  }
 }

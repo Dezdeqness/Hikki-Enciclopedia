@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hikki_localization/hikki_localization.dart';
 import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class AnimePagerItem extends StatelessWidget {
@@ -23,7 +24,9 @@ class AnimePagerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String formatScore = score == 0.0 ? "N/A" : score.toString();
+    final String formatScore = score == 0.0
+        ? LocaleKeys.generalNoAvailable.tr(context: context)
+        : score.toString();
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       surfaceTintColor: Colors.transparent,
@@ -33,8 +36,9 @@ class AnimePagerItem extends StatelessWidget {
         },
         child: SizedBox(
           width: 110,
-          height: height,
+          // height: height,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
                 flex: 70,
@@ -56,7 +60,8 @@ class AnimePagerItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           textAlign: TextAlign.start,
-                          style: AppStyles.animeTypeLabel,
+                          style: context.textTheme.c2
+                              .copyWith(color: context.colors.primaryLight),
                         ),
                       ),
                     ),
@@ -68,6 +73,7 @@ class AnimePagerItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
@@ -76,7 +82,8 @@ class AnimePagerItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           textAlign: TextAlign.start,
-                          style: AppStyles.animeTitle,
+                          style: context.textTheme.c1
+                              .copyWith(color: context.colors.primaryDark),
                         ),
                       ),
                       Expanded(
@@ -91,7 +98,8 @@ class AnimePagerItem extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 formatScore,
-                                style: AppStyles.animeScore,
+                                style: context.textTheme.c1.copyWith(
+                                    color: context.colors.primaryDark),
                               ),
                             ),
                           ],
