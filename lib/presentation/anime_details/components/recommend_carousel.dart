@@ -3,12 +3,12 @@ import 'package:hikki_enciclopedia/presentation/anime_details/models/recommend_a
 import 'package:hikki_localization/hikki_localization.dart';
 
 class RecommendCarousel extends StatelessWidget {
+  final List<RecommendAnimeUiModel> items;
+
   const RecommendCarousel({
     required this.items,
     super.key,
   });
-
-  final List<RecommendAnimeUiModel> items;
 
   @override
   Widget build(BuildContext context) {

@@ -34,12 +34,12 @@ class MainPage extends StatelessWidget {
               PopularityCubit(useCase: context.read<GetAnimeListUseCase>()),
         ),
         BlocProvider<NewsCubit>(
-          create: (context) => NewsCubit(
-              dataSource: context.read<NewsApiDataSource>()),
+          create: (context) =>
+              NewsCubit(dataSource: context.read<NewsApiDataSource>()),
         ),
         BlocProvider<PromoCubit>(
-          create: (context) => PromoCubit(
-              dataSource: context.read<PromoApiDataSource>()),
+          create: (context) =>
+              PromoCubit(dataSource: context.read<PromoApiDataSource>()),
         ),
         BlocProvider<ExplorerCubit>(
           create: (context) => ExplorerCubit(

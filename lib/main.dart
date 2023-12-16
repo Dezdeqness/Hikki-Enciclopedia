@@ -9,6 +9,7 @@ import 'package:hikki_enciclopedia/data/mapper/index.dart';
 import 'package:hikki_enciclopedia/data/repository/anime_repository_impl.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_details_use_case.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/composer/anime_details_composer.dart';
 
 import 'package:hikki_enciclopedia/presentation/app.dart';
 import 'package:hikki_localization/hikki_localization.dart';
@@ -51,6 +52,9 @@ Future<void> main() async {
           create: (context) =>
               PromoApiDatasourceImpl(promoService, promoMapper, errorMapper),
         ),
+        Provider<AnimeDetailsComposer>(
+          create: (context) => AnimeDetailsComposer(),
+        )
       ],
       child: HikkiThemeProvider(
         builder: (BuildContext context) {

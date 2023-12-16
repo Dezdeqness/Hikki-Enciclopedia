@@ -1,3 +1,5 @@
+import 'package:hikki_localization/hikki_localization.dart';
+
 enum StatusAnimeEntity {
   finished(status: "finished_airing"),
   airing(status: "currently_airing"),
@@ -17,5 +19,18 @@ enum StatusAnimeEntity {
       }
     }
     return unknown;
+  }
+
+  static String getDisplayNameKey(StatusAnimeEntity item) {
+    switch (item) {
+      case StatusAnimeEntity.airing:
+        return LocaleKeys.animeDetailTypeAiring;
+      case StatusAnimeEntity.finished:
+        return LocaleKeys.animeDetailTypeFinished;
+      case StatusAnimeEntity.notStarted:
+        return LocaleKeys.animeDetailTypeNotStartedYet;
+      default:
+        return '';
+    }
   }
 }

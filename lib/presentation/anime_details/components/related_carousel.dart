@@ -3,12 +3,12 @@ import 'package:hikki_enciclopedia/presentation/anime_details/models/related_ani
 import 'package:hikki_localization/hikki_localization.dart';
 
 class RelatedCarousel extends StatelessWidget {
-  const RelatedCarousel({
-    required this.items,
-    super.key,
-  });
-
   final List<RelatedAnimeUiModel> items;
+
+  const RelatedCarousel({
+    super.key,
+    required this.items,
+  });
 
   @override
   Widget build(BuildContext context) {
