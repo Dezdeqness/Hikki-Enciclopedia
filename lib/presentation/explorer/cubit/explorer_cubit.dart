@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/cubit/explorer_state.dart';
-import 'package:async/async.dart';
 
 class ExplorerCubit extends Cubit<ExplorerState> {
   final GetAnimeListUseCase getAnimeListUseCase;
@@ -10,8 +9,6 @@ class ExplorerCubit extends Cubit<ExplorerState> {
   ExplorerCubit({required this.getAnimeListUseCase}) : super(ExplorerState());
 
   int _offset = 0;
-
-  CancelableOperation? _jobWorker;
 
   void onSwipeRefreshed() async {
     emit(
@@ -40,7 +37,7 @@ class ExplorerCubit extends Cubit<ExplorerState> {
       emit(
         state.copyWith(
           items: [],
-          error: error.name,
+          error: error.error.name,
           isRefreshing: false,
         ),
       );
@@ -78,7 +75,7 @@ class ExplorerCubit extends Cubit<ExplorerState> {
       emit(
         state.copyWith(
           items: [],
-          error: error.name,
+          error: error.error.name,
           isLoading: false,
         ),
       );

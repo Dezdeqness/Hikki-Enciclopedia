@@ -6,12 +6,12 @@ import 'package:hikki_enciclopedia/presentation/explorer/explorer_page.dart';
 import 'package:hikki_enciclopedia/presentation/home/home_page.dart';
 import 'package:hikki_enciclopedia/presentation/main/main_page.dart';
 import 'package:hikki_enciclopedia/presentation/personal_list/personal_list_page.dart';
-import 'package:hikki_enciclopedia/presentation/profile/profile_page.dart';
+// import 'package:hikki_enciclopedia/presentation/profile/profile_page.dart';
 
 part 'hikki_app_router.gr.dart';
 
 @AutoRouterConfig()
-class HikkiAppRouter extends _$HikkiAppRouter {
+class HikkiAppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
@@ -24,7 +24,7 @@ class HikkiAppRouter extends _$HikkiAppRouter {
               initial: true,
             ),
             AutoRoute(page: ExplorerRoute.page),
-            AutoRoute(page: ProfileRoute.page),
+            // AutoRoute(page: ProfileRoute.page),
           ],
         ),
         AutoRoute(page: AnimeDetailsRoute.page),

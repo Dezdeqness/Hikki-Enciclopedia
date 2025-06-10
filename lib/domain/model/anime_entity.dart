@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'anime_entity.freezed.dart';
 
 @freezed
-class AnimeEntity with _$AnimeEntity {
+abstract class AnimeEntity with _$AnimeEntity {
   factory AnimeEntity({
     required int id,
     required String title,

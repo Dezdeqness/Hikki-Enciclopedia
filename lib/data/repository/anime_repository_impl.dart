@@ -12,13 +12,13 @@ class AnimeRepositoryImpl extends AnimeRepository {
   });
 
   @override
-  Future<Result<AnimeDetailsEntity, ErrorEntity>> getAnimeDetails({
+  Future<Result<AnimeDetailsEntity, HikkiApiException>> getAnimeDetails({
     required int animeId,
   }) =>
       dataSource.getAnimeDetails(animeId: animeId);
 
   @override
-  Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeListByRanking({
+  Future<Result<List<AnimeEntity>, HikkiApiException>> getAnimeListByRanking({
     required String rankingType,
     required int offset,
   }) =>

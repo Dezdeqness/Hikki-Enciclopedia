@@ -9,7 +9,7 @@ class GetAnimeDetailsUseCase {
 
   GetAnimeDetailsUseCase({required this.animeRepository});
 
-  Future<Result<AnimeDetailsEntity, ErrorEntity>> execute({
+  Future<Result<AnimeDetailsEntity, HikkiApiException>> execute({
     required int animeId,
   }) =>
       animeRepository.getAnimeDetails(animeId: animeId);

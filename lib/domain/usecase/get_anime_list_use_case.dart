@@ -8,7 +8,7 @@ class GetAnimeListUseCase {
 
   GetAnimeListUseCase({required this.animeRepository});
 
-  Future<Result<List<AnimeEntity>, ErrorEntity>> execute({
+  Future<Result<List<AnimeEntity>, HikkiApiException>> execute({
     required String rankingType,
     int offset = 0,
   }) =>

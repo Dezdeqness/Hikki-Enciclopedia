@@ -3,12 +3,12 @@ import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:result_type/result_type.dart';
 
 abstract class AnimeRepository {
-  Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeListByRanking({
+  Future<Result<List<AnimeEntity>, HikkiApiException>> getAnimeListByRanking({
     required String rankingType,
     required int offset,
   });
 
-  Future<Result<AnimeDetailsEntity, ErrorEntity>> getAnimeDetails({
+  Future<Result<AnimeDetailsEntity, HikkiApiException>> getAnimeDetails({
     required int animeId,
   });
 }

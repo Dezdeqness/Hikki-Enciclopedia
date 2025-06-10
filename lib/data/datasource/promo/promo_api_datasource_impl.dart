@@ -17,13 +17,13 @@ class PromoApiDatasourceImpl extends BaseApiDatasource
   ) : super(errorMapper);
 
   @override
-  Future<Result<List<PromotionalEntity>, ErrorEntity>> getPromoList() async {
+  Future<Result<List<PromotionalEntity>, HikkiApiException>> getPromoList() async {
     try {
       final response = await _promoService.getPromoDoc();
       if (response.isSuccessRequest()) {
         return Success(_promoMapper.map(response.data.toString()));
       } else {
-        return Failure(ErrorEntity.unknown);
+        return Failure(HikkiApiException.unknown());
       }
     } on Exception catch (e) {
       return Failure(errorMapper.mapException(e));

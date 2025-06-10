@@ -19,7 +19,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
   ) : super(errorMapper);
 
   @override
-  Future<Result<List<AnimeEntity>, ErrorEntity>> getAnimeList({
+  Future<Result<List<AnimeEntity>, HikkiApiException>> getAnimeList({
     required String rankingType,
     required int offset,
   }) async {
@@ -32,7 +32,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
       if (response.isSuccessRequest()) {
         return Success(_animeMapper.mapAnimeList(response.data));
       } else {
-        return Failure(ErrorEntity.unknown);
+        return Failure(HikkiApiException.unknown());
       }
     } on Exception catch (e) {
       return Failure(errorMapper.mapException(e));
@@ -40,7 +40,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
   }
 
   @override
-  Future<Result<AnimeDetailsEntity, ErrorEntity>> getAnimeDetails(
+  Future<Result<AnimeDetailsEntity, HikkiApiException>> getAnimeDetails(
       {required int animeId}) async {
     try {
       final response = await _animeService.getAnimeDetails(animeId);
@@ -48,7 +48,7 @@ class AnimeApiDataSourceImpl extends BaseApiDatasource
       if (response.isSuccessRequest()) {
         return Success(_animeMapper.mapAnimeDetails(response.data));
       } else {
-        return Failure(ErrorEntity.unknown);
+        return Failure(HikkiApiException.unknown());
       }
     } on Exception catch (e) {
       return Failure(errorMapper.mapException(e));

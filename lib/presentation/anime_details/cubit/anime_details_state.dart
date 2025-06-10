@@ -5,7 +5,7 @@ import 'package:hikki_enciclopedia/presentation/anime_details/models/index.dart'
 part 'anime_details_state.freezed.dart';
 
 @freezed
-class AnimeDetailsState with _$AnimeDetailsState {
+abstract class AnimeDetailsState with _$AnimeDetailsState {
   factory AnimeDetailsState({
     @Default(false) bool isLoading,
     @Default(false) bool isError,
@@ -17,7 +17,7 @@ class AnimeDetailsState with _$AnimeDetailsState {
 }
 
 @freezed
-class AnimeInfo with _$AnimeInfo {
+abstract class AnimeInfo with _$AnimeInfo {
   factory AnimeInfo({
     @Default(0) int id,
     @Default('') String title,

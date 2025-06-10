@@ -4,7 +4,7 @@ import 'package:hikki_enciclopedia/domain/model/index.dart';
 part 'anime_details_entity.freezed.dart';
 
 @freezed
-class AnimeDetailsEntity with _$AnimeDetailsEntity {
+abstract class AnimeDetailsEntity with _$AnimeDetailsEntity {
   factory AnimeDetailsEntity({
     required int id,
     required String title,

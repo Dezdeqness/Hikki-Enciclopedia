@@ -27,27 +27,27 @@ class AnimeDetailsComposer {
   List<StatisticsAnimeUiModel> _composeStats(AnimeDetailsEntity entity) => [
         StatisticsAnimeUiModel(
           title: LocaleKeys.animeDetailStatsWatching.tr(),
-          value: entity.stats.watching.toString() ?? '',
+          value: entity.stats.watching.toString(),
           progress: entity.stats.watching / (entity.stats.numListUsers),
         ),
         StatisticsAnimeUiModel(
           title: LocaleKeys.animeDetailStatsCompleted.tr(),
-          value: entity.stats.completed.toString() ?? '',
+          value: entity.stats.completed.toString(),
           progress: entity.stats.completed / (entity.stats.numListUsers),
         ),
         StatisticsAnimeUiModel(
           title: LocaleKeys.animeDetailStatsOnHold.tr(),
-          value: entity.stats.onHold.toString() ?? '',
+          value: entity.stats.onHold.toString(),
           progress: entity.stats.onHold / (entity.stats.numListUsers),
         ),
         StatisticsAnimeUiModel(
           title: LocaleKeys.animeDetailStatsDropped.tr(),
-          value: entity.stats.dropped.toString() ?? '',
+          value: entity.stats.dropped.toString(),
           progress: entity.stats.dropped / (entity.stats.numListUsers),
         ),
         StatisticsAnimeUiModel(
           title: LocaleKeys.animeDetailStatsPlanWatch.tr(),
-          value: entity.stats.planToWatch.toString() ?? '',
+          value: entity.stats.planToWatch.toString(),
           progress: entity.stats.planToWatch / (entity.stats.numListUsers),
         ),
       ];

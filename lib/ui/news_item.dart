@@ -30,13 +30,16 @@ class NewsItem extends StatelessWidget {
           onTap: () async {
             final theme = Theme.of(context);
             try {
-              await launch(
-                url,
-                customTabsOption: CustomTabsOption(
-                  toolbarColor: theme.primaryColor,
-                  enableDefaultShare: true,
-                  enableUrlBarHiding: true,
-                  showPageTitle: true,
+              await launchUrl(
+                Uri.parse(url),
+                customTabsOptions: CustomTabsOptions(
+                  colorSchemes: CustomTabsColorSchemes(
+                      defaultPrams: CustomTabsColorSchemeParams(
+                    toolbarColor: theme.primaryColor,
+                  )),
+                  shareIdentityEnabled: true,
+                  urlBarHidingEnabled: true,
+                  showTitle: true,
                 ),
               );
             } catch (e) {

@@ -11,23 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: 1.0.6
-  json_annotation: 4.8.1
-  provider: 6.0.5
-  result_type: 0.2.0
-  flutter_bloc: 8.1.3
-  bloc: 8.1.2
-  share_plus: 7.2.1
-  url_launcher: 6.2.1
-  flutter_custom_tabs: 1.2.1
-  async: 2.11.0
+  cupertino_icons: 1.0.8
+  json_annotation: 4.9.0
+  provider: 6.1.5
+  result_type: 1.0.0
+  flutter_bloc: 9.1.1
+  bloc: 9.0.0
+  share_plus: 11.0.0
+  url_launcher: 6.3.1
+  flutter_custom_tabs: 2.4.0
+  async: 2.13.0
   flutter_localizations:
     sdk: flutter
-  html: 0.15.4
-  webview_flutter: 4.4.1
-  shared_preferences: 2.2.2
-  auto_route: 7.8.4
-  freezed_annotation: 2.4.1
+  html: 0.15.6
+  webview_flutter: 4.13.0
+  shared_preferences: 2.5.3
+  auto_route: 10.1.0+1
+  freezed_annotation: 3.0.0
 
   hikki_api_service:
     path: packages/hikki_api_service
@@ -41,12 +41,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  freezed: 2.4.5
-  json_serializable: 6.7.1
-  build_runner: 2.4.6
-  auto_route_generator: 7.3.2
+  freezed: 3.0.6
+  json_serializable: 6.9.5
+  build_runner: 2.4.15
+  auto_route_generator: 10.2.3
 
-  flutter_lints: 2.0.3
+  flutter_lints: 6.0.0
 
 flutter:
   uses-material-design: true

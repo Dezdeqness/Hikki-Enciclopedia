@@ -4,20 +4,20 @@ import 'error_entity.dart';
 
 
 class DioErrorMapper {
-  ErrorEntity mapDioError(DioException error) {
+  HikkiApiException mapDioError(DioException error) {
     switch (error.response?.statusCode) {
       case 401:
         {
-          return ErrorEntity.unauthorized;
+          return HikkiApiException.unauthorized();
         }
       case 403:
         {
-          return ErrorEntity.forbidden;
+          return HikkiApiException.forbidden();
         }
       case 400:
-        return ErrorEntity.badRequest;
+        return HikkiApiException.badRequest();
       default:
-        return ErrorEntity.unknown;
+        return HikkiApiException.unknown();
     }
   }
 }

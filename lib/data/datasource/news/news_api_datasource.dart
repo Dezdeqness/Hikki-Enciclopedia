@@ -4,5 +4,5 @@ import 'package:result_type/result_type.dart';
 
 
 abstract class NewsApiDataSource {
-  Future<Result<List<NewsEntity>, ErrorEntity>> getNewsList();
+  Future<Result<List<NewsEntity>, HikkiApiException>> getNewsList();
 }

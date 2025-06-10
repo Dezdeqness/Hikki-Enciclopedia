@@ -8,10 +8,10 @@ class ErrorMapper {
 
   ErrorMapper(this._dioErrorMapper);
 
-  ErrorEntity mapException(Exception exception) {
+  HikkiApiException mapException(Exception exception) {
     if (exception is DioException) {
       return _dioErrorMapper.mapDioError(exception);
     }
-    return ErrorEntity.unknown;
+    return HikkiApiException.unknown();
   }
 }

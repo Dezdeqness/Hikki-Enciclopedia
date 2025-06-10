@@ -17,13 +17,13 @@ class NewsApiDatasourceImpl extends BaseApiDatasource
   ) : super(errorMapper);
 
   @override
-  Future<Result<List<NewsEntity>, ErrorEntity>> getNewsList() async {
+  Future<Result<List<NewsEntity>, HikkiApiException>> getNewsList() async {
     try {
       final response = await _newsService.getNewsDoc();
       if (response.isSuccessRequest()) {
         return Success(_newsMapper.map(response.data.toString()));
       } else {
-        return Failure(ErrorEntity.unknown);
+        return Failure(HikkiApiException.unknown());
       }
     } on Exception catch (e) {
       return Failure(errorMapper.mapException(e));

@@ -4,7 +4,7 @@ import 'package:hikki_enciclopedia/domain/model/index.dart';
 part 'explorer_state.freezed.dart';
 
 @freezed
-class ExplorerState with _$ExplorerState {
+abstract class ExplorerState with _$ExplorerState {
   factory ExplorerState({
     @Default(RankingTypeEntity.all) RankingTypeEntity rankingType,
     @Default([]) List<AnimeEntity> items,

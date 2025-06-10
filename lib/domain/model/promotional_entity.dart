@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'promotional_entity.freezed.dart';
 
 @freezed
-class PromotionalEntity with _$PromotionalEntity {
+abstract class PromotionalEntity with _$PromotionalEntity {
   factory PromotionalEntity({
     required String name,
     required String kind,
