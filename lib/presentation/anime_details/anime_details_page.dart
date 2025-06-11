@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
 import 'package:hikki_enciclopedia/core/ui/loading_screen.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_details_use_case.dart';
+import 'package:hikki_enciclopedia/main.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/components/index.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/composer/anime_details_composer.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/cubit/anime_details_cubit.dart';
@@ -23,8 +24,8 @@ class AnimeDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<AnimeDetailsCubit>(
       create: (context) => AnimeDetailsCubit(
-        useCase: context.read<GetAnimeDetailsUseCase>(),
-        composer: context.read<AnimeDetailsComposer>(),
+        useCase: getIt<GetAnimeDetailsUseCase>(),
+        composer: getIt<AnimeDetailsComposer>(),
       ),
       child: Builder(builder: (context) {
         return BlocConsumer<AnimeDetailsCubit, AnimeDetailsState>(

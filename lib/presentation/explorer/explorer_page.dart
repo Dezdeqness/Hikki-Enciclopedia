@@ -120,7 +120,7 @@ class _ExplorerPage extends State<ExplorerPage> {
                   child: OrientationBuilder(builder: (context, orientation) {
                     return GridView.count(
                       controller: scrollController,
-                      childAspectRatio: 0.66,
+                      childAspectRatio: 0.5,
                       crossAxisCount:
                           orientation == Orientation.portrait ? 2 : 4,
                       children: widgets,

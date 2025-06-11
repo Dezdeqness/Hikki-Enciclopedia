@@ -30,23 +30,26 @@ class AnimeItem extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 8,
+              flex: 80,
               child: Stack(children: [
-                Image.network(
-                  imageUrl,
-                  width: 300,
-                  height: 450,
-                  fit: BoxFit.fill,
-                ),
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      imageUrl,
+                      width: 300,
+                      height: 450,
+                      fit: BoxFit.cover,
+                    )),
                 Align(
                   alignment: Alignment.topLeft,
                   child: DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.black,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     ),
                     child: SizedBox(
                       child: Padding(
-                        padding: const EdgeInsets.all(3.0),
+                        padding: const EdgeInsets.all(6.0),
                         child: Text(
                           score.toString(),
                           style: const TextStyle(color: Colors.white),
@@ -57,8 +60,8 @@ class AnimeItem extends StatelessWidget {
                 ),
               ]),
             ),
-            Flexible(
-              flex: 2,
+            Expanded(
+              flex: 25,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -66,6 +69,7 @@ class AnimeItem extends StatelessWidget {
                     title,
                     maxLines: 2,
                     textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),
