@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hikki_enciclopedia/core/ui/custom_refresh_indicator.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
 import 'package:hikki_enciclopedia/core/ui/loading_screen.dart';
+import 'package:hikki_enciclopedia/domain/model/ranking_type_entity.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/cubit/explorer_cubit.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/cubit/explorer_state.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/models/ranking_type_filter.dart';
@@ -48,7 +49,8 @@ class _ExplorerPage extends State<ExplorerPage> {
                     final filteredList = getRankingTypeFilter(context)
                         .where((element) => element.id == value);
                     if (filteredList.isNotEmpty) {
-                      explorerCubit.onLoadMore();
+                      final id = filteredList.first.id;
+                      explorerCubit.fetchInitialPage(rankingType: RankingTypeEntity.fromId(id));
                     }
                   },
                   items: getRankingTypeFilter(context)
@@ -82,7 +84,7 @@ class _ExplorerPage extends State<ExplorerPage> {
             scrollController.addListener(() {
               if (scrollController.position.maxScrollExtent * 0.9 <
                   scrollController.position.pixels) {
-                explorerCubit;
+                explorerCubit.onLoadMore();
               }
             });
             final List<Widget> widgets = state.items
