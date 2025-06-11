@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource.dart';
 import 'package:hikki_enciclopedia/data/datasource/promo/promo_api_datasource.dart';
 import 'package:hikki_enciclopedia/domain/usecase/get_anime_list_use_case.dart';
+import 'package:hikki_enciclopedia/main.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/cubit/explorer_cubit.dart';
 import 'package:hikki_enciclopedia/presentation/home/cubit/airing/airing_cubit.dart';
 import 'package:hikki_enciclopedia/presentation/home/cubit/news/news_cubit.dart';
@@ -23,27 +24,27 @@ class MainPage extends StatelessWidget {
       providers: [
         BlocProvider<UpcomingCubit>(
           create: (context) =>
-              UpcomingCubit(useCase: context.read<GetAnimeListUseCase>()),
+              UpcomingCubit(useCase: getIt<GetAnimeListUseCase>()),
         ),
         BlocProvider<AiringCubit>(
           create: (context) =>
-              AiringCubit(useCase: context.read<GetAnimeListUseCase>()),
+              AiringCubit(useCase: getIt<GetAnimeListUseCase>()),
         ),
         BlocProvider<PopularityCubit>(
           create: (context) =>
-              PopularityCubit(useCase: context.read<GetAnimeListUseCase>()),
+              PopularityCubit(useCase: getIt<GetAnimeListUseCase>()),
         ),
         BlocProvider<NewsCubit>(
           create: (context) =>
-              NewsCubit(dataSource: context.read<NewsApiDataSource>()),
+              NewsCubit(dataSource: getIt<NewsApiDataSource>()),
         ),
         BlocProvider<PromoCubit>(
           create: (context) =>
-              PromoCubit(dataSource: context.read<PromoApiDataSource>()),
+              PromoCubit(dataSource: getIt<PromoApiDataSource>()),
         ),
         BlocProvider<ExplorerCubit>(
           create: (context) => ExplorerCubit(
-              getAnimeListUseCase: context.read<GetAnimeListUseCase>()),
+              getAnimeListUseCase: getIt<GetAnimeListUseCase>()),
         ),
       ],
       child: WillPopScope(

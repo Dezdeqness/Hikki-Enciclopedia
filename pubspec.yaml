@@ -38,6 +38,8 @@ dependencies:
   hikki_localization:
     path: packages/hikki_localization
 
+  get_it: 8.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/datasource/anime/anime_api_datasource_impl.dart';
 import 'package:hikki_enciclopedia/data/datasource/news/news_api_datasource.dart';
@@ -14,53 +15,52 @@ import 'package:hikki_enciclopedia/presentation/anime_details/composer/anime_det
 import 'package:hikki_enciclopedia/presentation/app.dart';
 import 'package:hikki_localization/hikki_localization.dart';
 import 'package:hikki_ui_kit/hikki_ui_kit.dart';
-import 'package:provider/provider.dart';
 
+GetIt getIt = GetIt.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  // TODO: DI
-  final animeService = AnimeService();
-  final animeMapper = AnimeMapper();
-  final dioErrorMapper = DioErrorMapper();
-  final errorMapper = ErrorMapper(dioErrorMapper);
-  final datasource =
-      AnimeApiDataSourceImpl(animeService, animeMapper, errorMapper);
-  final repository = AnimeRepositoryImpl(dataSource: datasource);
-  final newsService = NewsService();
-  final promoService = PromoService();
-  final newsMapper = NewsMapper();
-  final promoMapper = PromoMapper();
+  // Services
+  getIt.registerLazySingleton(() => AnimeService());
+  getIt.registerLazySingleton(() => NewsService());
+  getIt.registerLazySingleton(() => PromoService());
 
-  runApp(HikkiLocalizationWrapper(
-    child: MultiProvider(
-      providers: [
-        Provider<GetAnimeListUseCase>(
-          create: (context) => GetAnimeListUseCase(animeRepository: repository),
-        ),
-        Provider<GetAnimeDetailsUseCase>(
-          create: (context) =>
-              GetAnimeDetailsUseCase(animeRepository: repository),
-        ),
-        Provider<NewsApiDataSource>(
-          create: (context) =>
-              NewsApiDatasourceImpl(newsService, newsMapper, errorMapper),
-        ),
-        Provider<PromoApiDataSource>(
-          create: (context) =>
-              PromoApiDatasourceImpl(promoService, promoMapper, errorMapper),
-        ),
-        Provider<AnimeDetailsComposer>(
-          create: (context) => AnimeDetailsComposer(),
-        )
-      ],
-      child: HikkiThemeProvider(
-        builder: (BuildContext context) {
-          return const App();
-        },
-      ),
-    ),
-  ));
+  // Mappers
+  getIt.registerLazySingleton(() => AnimeMapper());
+  getIt.registerLazySingleton(() => NewsMapper());
+  getIt.registerLazySingleton(() => PromoMapper());
+  getIt.registerLazySingleton(() => DioErrorMapper());
+  getIt.registerLazySingleton(() => ErrorMapper(getIt<DioErrorMapper>()));
+
+  // Data sources
+  getIt.registerLazySingleton<AnimeApiDataSourceImpl>(() =>
+      AnimeApiDataSourceImpl(
+          getIt<AnimeService>(), getIt<AnimeMapper>(), getIt<ErrorMapper>()));
+
+  getIt.registerLazySingleton<NewsApiDataSource>(() => NewsApiDatasourceImpl(
+      getIt<NewsService>(), getIt<NewsMapper>(), getIt<ErrorMapper>()));
+
+  getIt.registerLazySingleton<PromoApiDataSource>(() => PromoApiDatasourceImpl(
+      getIt<PromoService>(), getIt<PromoMapper>(), getIt<ErrorMapper>()));
+
+  // Repository
+  getIt.registerLazySingleton(
+      () => AnimeRepositoryImpl(dataSource: getIt<AnimeApiDataSourceImpl>()));
+
+  // UseCases
+  getIt.registerFactory(
+      () => GetAnimeListUseCase(animeRepository: getIt<AnimeRepositoryImpl>()));
+  getIt.registerFactory(() =>
+      GetAnimeDetailsUseCase(animeRepository: getIt<AnimeRepositoryImpl>()));
+
+  // Composers
+  getIt.registerFactory(() => AnimeDetailsComposer());
+
+  runApp(HikkiLocalizationWrapper(child: HikkiThemeProvider(
+    builder: (BuildContext context) {
+      return const App();
+    },
+  )));
 }
