@@ -31,7 +31,7 @@ class _CallbackScrollViewState extends State<CallbackScrollView> {
     _controller.dispose();
   }
 
-  _scrollListener() {
+  void _scrollListener() {
     if (_controller.offset >= 280) {
       if (!widget.isTransparentToolbar) {
         return;

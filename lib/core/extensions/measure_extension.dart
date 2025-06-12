@@ -10,7 +10,7 @@ extension StringExtension on String {
         text: this,
         style: style,
       ),
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      textScaler: MediaQuery.of(context).textScaler,
       textDirection: Directionality.of(context),
     )..layout(minWidth: 0, maxWidth: MediaQuery.of(context).size.width);
     return textPainter.height;

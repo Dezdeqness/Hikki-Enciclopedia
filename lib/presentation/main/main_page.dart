@@ -47,10 +47,7 @@ class MainPage extends StatelessWidget {
               getAnimeListUseCase: getIt<GetAnimeListUseCase>()),
         ),
       ],
-      child: WillPopScope(
-        onWillPop: () async {
-          return true;
-        },
+      child: PopScope(
         child: AutoTabsScaffold(
           animationDuration: const Duration(milliseconds: 0),
           homeIndex: 1,

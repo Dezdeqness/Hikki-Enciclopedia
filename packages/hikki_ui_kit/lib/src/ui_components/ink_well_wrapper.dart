@@ -17,7 +17,7 @@ class InkWellWrapper extends StatelessWidget {
         child,
         Positioned.fill(
           child: Material(
-            color: Colors.white.withOpacity(0.0),
+            color: Colors.white.withValues(alpha: 0),
             child: InkWell(
               onTap: onTap,
             ),

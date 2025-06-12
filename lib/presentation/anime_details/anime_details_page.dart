@@ -52,7 +52,7 @@ class AnimeDetailsPage extends StatelessWidget {
                               isTransparentToolbar: state.isTransparentToolbar,
                               title: state.title,
                               onPressed: () {
-                                Share.share('https://myanimelist.net/anime/${state.info.id}');
+                                SharePlus.instance.share(ShareParams(uri: Uri.parse('https://myanimelist.net/anime/${state.info.id}')));
                               },
                             ),
                             SliverToBoxAdapter(
