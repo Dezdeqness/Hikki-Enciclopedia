@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CallbackScrollView extends StatefulWidget {
   final bool isTransparentToolbar;
-  final Function(bool) onTransparentToolbarChanged;
+  final ValueChanged<bool> onTransparentToolbarChanged;
   final List<Widget> children;
 
   const CallbackScrollView({
