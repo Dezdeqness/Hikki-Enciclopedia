@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/datasource/anime/anime_api_datasource_impl.dart';
@@ -58,9 +59,11 @@ Future<void> main() async {
   // Composers
   getIt.registerFactory(() => AnimeDetailsComposer());
 
-  runApp(HikkiLocalizationWrapper(child: HikkiThemeProvider(
-    builder: (BuildContext context) {
-      return const App();
-    },
-  )));
+  runApp(ProviderScope(
+      child: HikkiLocalizationWrapper(
+          child: HikkiThemeProvider(
+              builder: (BuildContext context) => const App()
+          )
+      )
+  ));
 }

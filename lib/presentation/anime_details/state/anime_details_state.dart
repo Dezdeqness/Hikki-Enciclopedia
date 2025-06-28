@@ -7,13 +7,18 @@ part 'anime_details_state.freezed.dart';
 @freezed
 abstract class AnimeDetailsState with _$AnimeDetailsState {
   factory AnimeDetailsState({
-    @Default(false) bool isLoading,
-    @Default(false) bool isError,
-    @Default('') String error,
-    @Default(false) bool isTransparentToolbar,
-    @Default('') String title,
-    required AnimeInfo info,
+    @Default(AnimeDetailsStatus.loading()) final AnimeDetailsStatus status,
+    @Default(false) final bool isTransparentToolbar,
+    @Default('') final String title,
   }) = _AnimeDetailsState;
+}
+
+
+@freezed
+sealed class AnimeDetailsStatus with _$AnimeDetailsStatus {
+  const factory AnimeDetailsStatus.loading() = AnimeDetailsLoading;
+  const factory AnimeDetailsStatus.loaded(AnimeInfo info) = AnimeDetailsLoaded;
+  const factory AnimeDetailsStatus.error(String message) = AnimeDetailsError;
 }
 
 @freezed

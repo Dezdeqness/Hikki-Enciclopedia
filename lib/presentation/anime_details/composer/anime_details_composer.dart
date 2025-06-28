@@ -1,5 +1,5 @@
 import 'package:hikki_enciclopedia/domain/model/index.dart';
-import 'package:hikki_enciclopedia/presentation/anime_details/cubit/anime_details_state.dart';
+import 'package:hikki_enciclopedia/presentation/anime_details/state/anime_details_state.dart';
 import 'package:hikki_enciclopedia/presentation/anime_details/models/index.dart';
 import 'package:hikki_localization/hikki_localization.dart';
 
