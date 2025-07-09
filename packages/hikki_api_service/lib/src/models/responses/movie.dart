@@ -1,3 +1,4 @@
+import 'package:hikki_api_service/src/utils/date_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie.g.dart';
@@ -14,7 +15,8 @@ class Movie {
   final String overview;
   final double popularity;
   final String posterPath;
-  final DateTime firstAirDate;
+  @JsonKey(fromJson: parseDateFromString)
+  final DateTime? firstAirDate;
   final String name;
   final double voteAverage;
   final int voteCount;

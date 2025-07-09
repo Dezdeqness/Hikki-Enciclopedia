@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 
 import 'error_entity.dart';
 
-
 class DioErrorMapper {
   HikkiApiException mapDioError(DioException error) {
     switch (error.response?.statusCode) {
