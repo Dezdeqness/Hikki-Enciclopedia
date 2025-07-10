@@ -9,15 +9,14 @@ class Movie {
   final String backdropPath;
   final List<int> genreIds;
   final int id;
-  final List<String> originCountry;
   final String originalLanguage;
-  final String originalName;
+  final String originalTitle;
   final String overview;
   final double popularity;
   final String posterPath;
   @JsonKey(fromJson: parseDateFromString)
-  final DateTime? firstAirDate;
-  final String name;
+  final DateTime? releaseDate;
+  final String title;
   final double voteAverage;
   final int voteCount;
 
@@ -26,14 +25,13 @@ class Movie {
     required this.backdropPath,
     required this.genreIds,
     required this.id,
-    required this.originCountry,
     required this.originalLanguage,
-    required this.originalName,
+    required this.originalTitle,
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.firstAirDate,
-    required this.name,
+    required this.releaseDate,
+    required this.title,
     required this.voteAverage,
     required this.voteCount,
   });

@@ -4,8 +4,8 @@ import 'package:hikki_enciclopedia/domain/model/movie/movie_entity.dart';
 class MovieMapper {
   MovieEntity toEntity(Movie movie) => MovieEntity(
         id: movie.id,
-        name: movie.name,
-        originalName: movie.originalName,
+        title: movie.title,
+        originalTitle: movie.originalTitle,
         originalLanguage: movie.originalLanguage,
         overview: movie.overview,
         popularity: movie.popularity,
@@ -13,8 +13,7 @@ class MovieMapper {
         backdropPath: movie.backdropPath,
         adult: movie.adult,
         genreIds: movie.genreIds,
-        firstAirDate: movie.firstAirDate,
-        originCountry: movie.originCountry,
+        releaseDate: movie.releaseDate,
         voteAverage: movie.voteAverage,
         voteCount: movie.voteCount,
       );
