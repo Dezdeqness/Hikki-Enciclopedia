@@ -22,6 +22,7 @@ final commonDioProvider = Provider<Dio>((ref) {
     ..interceptors.addAll([
       ref.watch(apiKeyInterceptorProvider),
       ref.watch(localeInterceptorProvider),
+      LogInterceptor(),
     ]);
 
   return dio;

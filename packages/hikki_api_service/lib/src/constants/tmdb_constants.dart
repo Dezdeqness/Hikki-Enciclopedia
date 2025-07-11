@@ -1,9 +1,11 @@
 class TMDBConstants {
-  // Base url
+  // Base urls
   static const String baseUrl = "https://api.themoviedb.org/3/";
+  static const String baseImageUrl = "https://image.tmdb.org/";
 
   // API paths
   static const String discoverMovie = "discover/movie";
+  static const String imagePath = "t/p/w780/";
 
   // API endpoints params
   static const String language = "language";

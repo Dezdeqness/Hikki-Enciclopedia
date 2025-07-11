@@ -9,8 +9,10 @@ class MovieMapper {
         originalLanguage: movie.originalLanguage,
         overview: movie.overview,
         popularity: movie.popularity,
-        posterPath: movie.posterPath,
-        backdropPath: movie.backdropPath,
+        posterPath: TMDBConstants.baseImageUrl +
+            TMDBConstants.imagePath +
+            movie.posterPath,
+        backdropPath: movie.backdropPath ?? "",
         adult: movie.adult,
         genreIds: movie.genreIds,
         releaseDate: movie.releaseDate,
