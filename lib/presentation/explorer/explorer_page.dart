@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
-import 'package:hikki_enciclopedia/core/ui/loading_screen.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/explorer_state.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/providers/explorer_providers.dart';
 
 import 'components/movie_cell.dart';
+import 'components/movie_shimmer.dart';
 
 @RoutePage()
 class ExplorerPage extends ConsumerStatefulWidget {
@@ -29,7 +29,8 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
 
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent * 0.9 && !_loadingNextPage) {
+              _scrollController.position.maxScrollExtent * 0.9 &&
+          !_loadingNextPage) {
         _loadingNextPage = true;
         await ref.read(explorerNotifierProvider.notifier).fetchNextPage();
         _loadingNextPage = false;
@@ -52,7 +53,7 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
           body: RefreshIndicator(
               child: Builder(builder: (context) {
                 if (state is Loading || state is Initial) {
-                  return const LoadingScreen();
+                  return const MovieShimmer();
                 }
 
                 if (state is Error) {
@@ -66,14 +67,20 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
 
                 final successState = state as Success;
 
+                final additionalItem = state.isLoadingMore ? 1 : 0;
+
                 return ListView.builder(
                     controller: _scrollController,
-                    itemCount: successState.movies.length,
+                    itemCount: successState.movies.length + additionalItem,
                     itemBuilder: (BuildContext context, int index) {
-                      return MovieCell(
-                        item: successState.movies[index],
-                        onTap: () => (),
-                      );
+                      if (index < successState.movies.length) {
+                        return MovieCell(
+                          item: successState.movies[index],
+                          onTap: () => (),
+                        );
+                      } else {
+                        return MovieShimmer(placeholderCount: 1);
+                      }
                     });
               }),
               onRefresh: () =>

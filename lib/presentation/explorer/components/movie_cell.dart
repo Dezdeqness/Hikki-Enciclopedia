@@ -66,20 +66,6 @@ class MovieCell extends StatelessWidget {
               ],
             )),
             const SizedBox(width: 12),
-            // ClipRRect(
-            //   borderRadius: BorderRadius.circular(8),
-            //   child: Image.network(
-            //     item.posterPath,
-            //     width: 64,
-            //     height: 96,
-            //     fit: BoxFit.cover,
-            //     errorBuilder: (_, __, ___) => Container(
-            //       width: 64,
-            //       height: 96,
-            //       color: Colors.grey.shade300,
-            //     ),
-            //   ),
-            // ),
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
