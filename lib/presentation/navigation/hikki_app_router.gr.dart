@@ -11,47 +11,35 @@
 part of 'hikki_app_router.dart';
 
 /// generated route for
-/// [AnimeDetailsPage]
-class AnimeDetailsRoute extends PageRouteInfo<AnimeDetailsRouteArgs> {
-  AnimeDetailsRoute({required int id, Key? key, List<PageRouteInfo>? children})
-      : super(
-          AnimeDetailsRoute.name,
-          args: AnimeDetailsRouteArgs(id: id, key: key),
-          initialChildren: children,
-        );
+/// [AutorizePage]
+class AutorizeRoute extends PageRouteInfo<void> {
+  const AutorizeRoute({List<PageRouteInfo>? children})
+      : super(AutorizeRoute.name, initialChildren: children);
 
-  static const String name = 'AnimeDetailsRoute';
+  static const String name = 'AutorizeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<AnimeDetailsRouteArgs>();
-      return AnimeDetailsPage(id: args.id, key: args.key);
+      return const AutorizePage();
     },
   );
 }
 
-class AnimeDetailsRouteArgs {
-  const AnimeDetailsRouteArgs({required this.id, this.key});
+/// generated route for
+/// [EntryPage]
+class EntryRoute extends PageRouteInfo<void> {
+  const EntryRoute({List<PageRouteInfo>? children})
+      : super(EntryRoute.name, initialChildren: children);
 
-  final int id;
+  static const String name = 'EntryRoute';
 
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'AnimeDetailsRouteArgs{id: $id, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! AnimeDetailsRouteArgs) return false;
-    return id == other.id && key == other.key;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ key.hashCode;
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EntryPage();
+    },
+  );
 }
 
 /// generated route for
