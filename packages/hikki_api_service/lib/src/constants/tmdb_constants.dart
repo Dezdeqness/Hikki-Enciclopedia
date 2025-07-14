@@ -5,6 +5,8 @@ class TMDBConstants {
 
   // API paths
   static const String discoverMovie = "discover/movie";
+  static const String authentication = "authentication/";
+  static const String tokenNew = "${authentication}token/new";
   static const String imagePath = "t/p/w780/";
 
   // API endpoints params

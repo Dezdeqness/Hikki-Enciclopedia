@@ -14,4 +14,7 @@ abstract class MovieService {
     @Query(TMDBConstants.page) int page = 1,
     @Query(TMDBConstants.sortBy) String sortBy = "popularity.desc",
   });
+
+  @GET(TMDBConstants.tokenNew)
+  Future<RequestToken> getRequestToken();
 }
