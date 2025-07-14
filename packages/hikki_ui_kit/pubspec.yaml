@@ -24,6 +24,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/lottie/
 
 flutter_gen:
   output: lib/src/assets/

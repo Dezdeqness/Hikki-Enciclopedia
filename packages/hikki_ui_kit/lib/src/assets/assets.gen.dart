@@ -22,12 +22,23 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [shevron];
 }
 
+class $AssetsLottieGen {
+  const $AssetsLottieGen();
+
+  /// File path: assets/lottie/entry_loading.json
+  String get entryLoading => 'packages/hikki_ui_kit/assets/lottie/entry_loading.json';
+
+  /// List of all assets
+  List<String> get values => [entryLoading];
+}
+
 class HikkiAssets {
   const HikkiAssets._();
 
   static const String package = 'hikki_ui_kit';
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsLottieGen lottie = $AssetsLottieGen();
 }
 
 class SvgGenImage {
