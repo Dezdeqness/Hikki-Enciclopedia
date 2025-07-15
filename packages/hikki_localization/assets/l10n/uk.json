@@ -51,5 +51,7 @@
   "animeDetailCarouselScreenshots": "Скріншоти",
   "animeDetailStats": "Статистика",
   "generalError": "Помилка",
-  "generalNoAvailable": "н/д"
+  "generalNoAvailable": "н/д",
+
+  "authButtonTitle": "Авторизація"
 }

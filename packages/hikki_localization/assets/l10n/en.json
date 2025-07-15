@@ -47,5 +47,7 @@
   "animeDetailCarouselScreenshots": "Screenshots",
   "animeDetailStats": "Statistics",
   "generalError": "Error",
-  "generalNoAvailable": "N/A"
+  "generalNoAvailable": "N/A",
+
+  "authButtonTitle": "Authorize"
 }
