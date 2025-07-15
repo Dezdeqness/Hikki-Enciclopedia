@@ -1,19 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'request_token.g.dart';
+part 'request_token_response.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class RequestToken {
+class RequestTokenResponse {
   final bool success;
   final String expiresAt;
   final String requestToken;
 
-  RequestToken({
+  RequestTokenResponse({
     required this.success,
     required this.expiresAt,
     required this.requestToken,
   });
 
-  factory RequestToken.fromJson(Map<String, dynamic> json) => _$RequestTokenFromJson(json);
-  Map<String, dynamic> toJson() => _$RequestTokenToJson(this);
+  factory RequestTokenResponse.fromJson(Map<String, dynamic> json) => _$RequestTokenResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$RequestTokenResponseToJson(this);
 }

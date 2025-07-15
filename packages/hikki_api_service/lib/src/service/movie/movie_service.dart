@@ -16,5 +16,8 @@ abstract class MovieService {
   });
 
   @GET(TMDBConstants.tokenNew)
-  Future<RequestToken> getRequestToken();
+  Future<RequestTokenResponse> getRequestToken();
+
+  @POST(TMDBConstants.sessionNew)
+  Future<SessionResponse> getSessionToken(@Body() RequestTokenRequest body);
 }
