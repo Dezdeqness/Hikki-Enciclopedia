@@ -12,6 +12,10 @@ final tmdbApiKeyProvider = Provider<String>((ref) {
   return apiKey;
 });
 
+final redirectUriProvider = Provider<String>((ref) {
+  return "dezdeqness://hikki/auth";
+});
+
 final dioErrorMapperProvider = Provider((ref) => DioErrorMapper());
 
 final commonDioProvider = Provider<Dio>((ref) {
