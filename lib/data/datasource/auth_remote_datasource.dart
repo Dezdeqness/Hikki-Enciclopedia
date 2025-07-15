@@ -21,4 +21,19 @@ class AuthRemoteDatasource {
       return Failure(HikkiApiException.unknown());
     }
   }
+
+  Future<Result<String, HikkiApiException>> getSessionId(String requestToken) async {
+    try {
+      final body = RequestTokenRequest(requestToken: requestToken);
+      final response = await _service.getSessionToken(body);
+
+      if (!response.success) return Failure(HikkiApiException.unknown());
+
+      return Success(response.sessionId);
+    } on DioException catch (e) {
+      return Failure(_errorMapper.mapDioError(e));
+    } catch (e) {
+      return Failure(HikkiApiException.unknown());
+    }
+  }
 }

@@ -8,4 +8,5 @@ abstract class AuthRepository {
   Future<String?> getSessionId();
 
   Future<Result<String, HikkiApiException>> getRequestToken();
+  Future<Result<String, HikkiApiException>> getSessionIdRemote(String requestToken);
 }

@@ -12,7 +12,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<bool> isAuthorized() =>
-      _localDatasource.getSessionId().then((value) => value != null);
+      getSessionId().then((value) => value != null);
 
   @override
   Future<void> saveSessionId(String sessionId) =>
@@ -27,4 +27,8 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Result<String, HikkiApiException>> getRequestToken() =>
       _remoteDatasource.getRequestToken();
+
+  @override
+  Future<Result<String, HikkiApiException>> getSessionIdRemote(String requestToken) =>
+      _remoteDatasource.getSessionId(requestToken);
 }
