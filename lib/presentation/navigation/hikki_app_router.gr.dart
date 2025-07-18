@@ -11,17 +11,17 @@
 part of 'hikki_app_router.dart';
 
 /// generated route for
-/// [AutorizePage]
-class AutorizeRoute extends PageRouteInfo<void> {
-  const AutorizeRoute({List<PageRouteInfo>? children})
-      : super(AutorizeRoute.name, initialChildren: children);
+/// [AuthorizePage]
+class AuthorizeRoute extends PageRouteInfo<void> {
+  const AuthorizeRoute({List<PageRouteInfo>? children})
+      : super(AuthorizeRoute.name, initialChildren: children);
 
-  static const String name = 'AutorizeRoute';
+  static const String name = 'AuthorizeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const AutorizePage();
+      return const AuthorizePage();
     },
   );
 }

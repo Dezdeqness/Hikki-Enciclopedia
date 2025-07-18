@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:hikki_enciclopedia/presentation/authorize_page/autorize_page.dart';
+import 'package:hikki_enciclopedia/presentation/authorize_page/authorize_page.dart';
 import 'package:hikki_enciclopedia/presentation/entry_page/entry_page.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/explorer_page.dart';
 import 'package:hikki_enciclopedia/presentation/home/home_page.dart';
@@ -28,6 +28,6 @@ class HikkiAppRouter extends RootStackRouter {
           page: EntryRoute.page,
           initial: true,
         ),
-        AutoRoute(page: AutorizeRoute.page),
+        AutoRoute(page: AuthorizeRoute.page),
       ];
 }
