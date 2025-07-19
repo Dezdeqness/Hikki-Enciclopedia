@@ -9,8 +9,14 @@ class TMDBConstants {
   static const String authentication = "authentication/";
   static const String tokenNew = "${authentication}token/new";
   static const String sessionNew = "${authentication}session/new";
+  static const String trending = "trending/";
+  static const String trendingTv = "$trending$tvPath{time_window}";
   static const String imagePath = "t/p/w780/";
   static const String oauthPath = "/authenticate/";
+  static const String tvPath = "tv/";
+  static const String tvTopRatedPath = "${tvPath}top_rated";
+  static const String tvPopularPath = "${tvPath}popular";
+  static const String tvAiringTodayPath = "${tvPath}airing_today";
 
   // API endpoints params
   static const String language = "language";
@@ -18,4 +24,5 @@ class TMDBConstants {
   static const String sortBy = "sort_by";
   static const String apiKey = "api_key";
   static const String redirectTo = "redirect_to";
+  static const String day = "day";
 }

@@ -15,6 +15,27 @@ abstract class MovieService {
     @Query(TMDBConstants.sortBy) String sortBy = "popularity.desc",
   });
 
+  @GET(TMDBConstants.tvTopRatedPath)
+  Future<TvCollection> getTvTopRated({
+    @Query(TMDBConstants.page) int page = 1,
+  });
+
+  @GET(TMDBConstants.tvPopularPath)
+  Future<TvCollection> getTvPopular({
+    @Query(TMDBConstants.page) int page = 1,
+  });
+
+  @GET(TMDBConstants.tvAiringTodayPath)
+  Future<TvCollection> getTvAiringToday({
+    @Query(TMDBConstants.page) int page = 1,
+  });
+
+  @GET(TMDBConstants.trendingTv)
+  Future<TvCollection> getTvTrending({
+    @Query(TMDBConstants.page) int page = 1,
+    @Path("time_window") String path = TMDBConstants.day,
+  });
+
   @GET(TMDBConstants.tokenNew)
   Future<RequestTokenResponse> getRequestToken();
 
