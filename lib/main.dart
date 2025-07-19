@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hikki_enciclopedia/core/providers/locale_provider.dart';
 
 import 'package:hikki_enciclopedia/presentation/app.dart';
 import 'package:hikki_localization/hikki_localization.dart';
@@ -14,12 +15,15 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
 
   runApp(
-    ProviderScope(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(prefs),
-      ],
-      child: HikkiLocalizationWrapper(
-        child: HikkiThemeProvider(builder: (BuildContext context) => const App())
+    HikkiLocalizationWrapper(
+      child: HikkiThemeProvider(
+        builder: (BuildContext context) => ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            localeProvider.overrideWith((ref) => context.locale.toLanguageTag())
+          ],
+          child: const App(),
+        ),
       ),
     ),
   );
