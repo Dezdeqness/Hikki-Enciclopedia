@@ -19,7 +19,7 @@ final authLocalDataSourceProvider = Provider<AuthLocalDatasource>((ref) {
 
 final authRemoteDataSourceProvider = Provider<AuthRemoteDatasource>((ref) {
   return AuthRemoteDatasource(
-    ref.watch(movieServiceProvider),
+    ref.watch(tmdbServiceProvider),
     ref.watch(dioErrorMapperProvider),
   );
 });

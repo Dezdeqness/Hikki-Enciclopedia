@@ -3,7 +3,7 @@ import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:result_type/result_type.dart';
 
 class AuthRemoteDatasource {
-  final MovieService _service;
+  final TmdbService _service;
   final DioErrorMapper _errorMapper;
 
   AuthRemoteDatasource(this._service, this._errorMapper);

@@ -5,7 +5,7 @@ import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:result_type/result_type.dart';
 
 class MovieDataSource {
-  final MovieService _service;
+  final TmdbService _service;
   final DioErrorMapper _errorMapper;
   final MovieMapper _movieMapper;
 

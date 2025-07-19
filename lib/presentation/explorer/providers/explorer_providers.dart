@@ -15,7 +15,7 @@ final movieMapperProvider = Provider<MovieMapper>((ref) {
 
 final movieDataSourceProvider = Provider<MovieDataSource>((ref) {
   return MovieDataSource(
-    ref.watch(movieServiceProvider),
+    ref.watch(tmdbServiceProvider),
     ref.watch(dioErrorMapperProvider),
     ref.watch(movieMapperProvider),
   );

@@ -1,1 +1,1 @@
-export 'movie/movie_service.dart';
+export 'movie/tmdb_service.dart';
