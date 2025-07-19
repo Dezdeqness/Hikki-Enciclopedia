@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-abstract class NvcuLocalizationConsts {
+abstract class HikkiLocalizationConsts {
   static const localizationPath = 'packages/hikki_localization/assets/l10n';
   static const englishLocaleCode = 'en';
   static const russianLocaleCode = 'ru';

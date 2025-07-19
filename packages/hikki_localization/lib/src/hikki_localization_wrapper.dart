@@ -12,8 +12,8 @@ class HikkiLocalizationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EasyLocalization(
-      path: NvcuLocalizationConsts.localizationPath,
-      supportedLocales: NvcuLocalizationConsts.supportedLocale,
+      path: HikkiLocalizationConsts.localizationPath,
+      supportedLocales: HikkiLocalizationConsts.supportedLocale,
       child: child,
     );
   }

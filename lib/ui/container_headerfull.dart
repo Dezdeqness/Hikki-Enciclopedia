@@ -20,16 +20,9 @@ class ContainerHeader extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-            padding: padding ?? EdgeInsets.zero,
-            child: CellHeader(header: header)
-            // child: Row(
-            //   crossAxisAlignment: CrossAxisAlignment.baseline,
-            //   textBaseline: TextBaseline.alphabetic,
-            //   children: [
-            //     Expanded(child: CellHeader(header: header)),
-            //   ],
-            // ),
-            ),
+          padding: padding ?? EdgeInsets.zero,
+          child: CellHeader(header: header),
+        ),
         const SizedBox(height: 8),
         content,
       ],
