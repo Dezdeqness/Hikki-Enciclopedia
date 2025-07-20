@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/presentation/home/models/tv_ui_item.dart';
 
@@ -19,15 +20,17 @@ class TvTrendingItem extends StatelessWidget {
         onTap: () async {},
         child: Stack(
           children: [
-            SizedBox(
+            CachedNetworkImage(
               height: 180,
               width: double.infinity,
-              child: Image.network(
-                item.posterPath,
-                fit: BoxFit.fitWidth,
-                color: Colors.black45,
-                colorBlendMode: BlendMode.darken,
-              ),
+              imageUrl: item.posterPath,
+              placeholder: (context, url) =>
+                  Container(color: Colors.grey.shade300),
+              errorWidget: (context, url, error) =>
+                  Container(color: Colors.grey.shade300),
+              fit: BoxFit.cover,
+              colorBlendMode: BlendMode.darken,
+              color: Colors.black45,
             ),
             Padding(
               padding: const EdgeInsets.all(16),
