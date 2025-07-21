@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_api_service/hikki_api_service.dart';
 
 import 'interceptors_provider.dart';
 
 final tmdbApiKeyProvider = Provider<String>((ref) {
-  const apiKey = String.fromEnvironment('TMDB_API_KEY');
+  final apiKey = dotenv.env['TMDB_API_KEY'] ?? "";
   if (apiKey.isEmpty) {
     throw Exception('TMDB_API_KEY not provided. Pass it via --dart-define.');
   }
