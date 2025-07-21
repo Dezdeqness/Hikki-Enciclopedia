@@ -4,3 +4,7 @@ export 'movie.dart';
 export 'tv.dart';
 export 'request_token_response.dart';
 export 'session_response.dart';
+export 'season_response.dart';
+export 'videos_response.dart';
+export 'genre_response.dart';
+export 'cast_response.dart';

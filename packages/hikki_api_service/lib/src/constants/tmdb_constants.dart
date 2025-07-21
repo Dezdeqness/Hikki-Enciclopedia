@@ -14,6 +14,7 @@ class TMDBConstants {
   static const String imagePath = "t/p/w780/";
   static const String oauthPath = "/authenticate/";
   static const String tvPath = "tv/";
+  static const String tvDetailsPath = "${tvPath}series_id";
   static const String tvTopRatedPath = "${tvPath}top_rated";
   static const String tvPopularPath = "${tvPath}popular";
   static const String tvAiringTodayPath = "${tvPath}airing_today";
@@ -25,4 +26,9 @@ class TMDBConstants {
   static const String apiKey = "api_key";
   static const String redirectTo = "redirect_to";
   static const String day = "day";
+  static const String credits = "credits";
+  static const String recommendations = "recommendations";
+  static const String similar = "similar";
+  static const String videos = "videos";
+  static const String appendToResponse = "append_to_response";
 }

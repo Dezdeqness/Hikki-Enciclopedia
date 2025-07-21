@@ -1,5 +1,6 @@
 import 'package:hikki_api_service/src/constants/index.dart';
 import 'package:hikki_api_service/src/models/index.dart';
+import 'package:hikki_api_service/src/models/responses/tv_details_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
@@ -41,4 +42,11 @@ abstract class TmdbService {
 
   @POST(TMDBConstants.sessionNew)
   Future<SessionResponse> getSessionToken(@Body() RequestTokenRequest body);
+
+  @GET(TMDBConstants.tvDetailsPath)
+  Future<TvDetailsResponse> getTvDetails({
+    @Path("series_id") String seriesId = "1396",
+    @Path(TMDBConstants.appendToResponse)
+    String append = "similar,recommendations,videos,credits",
+  });
 }
