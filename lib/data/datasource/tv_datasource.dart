@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/mapper/tv_mapper.dart';
 import 'package:hikki_enciclopedia/domain/model/tv/tv_collection_entity.dart';
+import 'package:hikki_enciclopedia/domain/model/tv/tv_details_entity.dart';
 import 'package:result_type/result_type.dart';
 
 class TvDataSource {
@@ -85,5 +86,9 @@ class TvDataSource {
     } catch (e) {
       return Failure(HikkiApiException.unknown());
     }
+  }
+
+  Future<Result<TvDetailsEntity, HikkiApiException>> getTvDetails(String seriesId) async {
+    
   }
 }

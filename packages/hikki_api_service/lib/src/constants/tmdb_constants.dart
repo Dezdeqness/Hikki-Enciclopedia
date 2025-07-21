@@ -31,4 +31,7 @@ class TMDBConstants {
   static const String similar = "similar";
   static const String videos = "videos";
   static const String appendToResponse = "append_to_response";
+
+  static const String youtubePreviewPath = "https://img.youtube.com/vi/";
+  static const String youtubePreviewEndPath = "/hqdefault.jpg";
 }

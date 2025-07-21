@@ -28,9 +28,10 @@ class TvDetailsResponse {
   final int numberOfEpisodes;
   final int numberOfSeasons;
   final List<SeasonResponse> seasons;
-  final List<TvCollection> similar;
-  final List<TvCollection> recommendations;
-  final List<VideosResponse> videos;
+  final TvCollection similar;
+  final TvCollection recommendations;
+  final VideosResponse videos;
+  final Credits credits;
 
   TvDetailsResponse({
     required this.backdropPath,
@@ -56,6 +57,7 @@ class TvDetailsResponse {
     required this.similar,
     required this.recommendations,
     required this.videos,
+    required this.credits,
   });
 
   factory TvDetailsResponse.fromJson(Map<String, dynamic> json) => _$TvDetailsResponseFromJson(json);

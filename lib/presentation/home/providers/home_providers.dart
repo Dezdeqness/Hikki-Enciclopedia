@@ -11,7 +11,12 @@ import 'package:hikki_enciclopedia/presentation/home/mapper/tv_ui_mapper.dart';
 import 'package:hikki_enciclopedia/presentation/home/models/tv_section_type.dart';
 
 final tvMapperProvider = Provider<TvMapper>((ref) {
-  return TvMapper();
+  return TvMapper(
+    ref.watch(genreMapperProvider),
+    ref.watch(seasonMapperProvider),
+    ref.watch(castMapperProvider),
+    ref.watch(videoMapperProvider),
+  );
 });
 
 final tvDataSourceProvider = Provider<TvDataSource>((ref) {
@@ -35,16 +40,16 @@ final airingSectionNotifierProvider =
 });
 
 final popularSectionNotifierProvider =
-NotifierProvider<HomeNotifier, HomeSectionState>(() {
+    NotifierProvider<HomeNotifier, HomeSectionState>(() {
   return HomeNotifier(TvSectionType.popular);
 });
 
 final topRatedSectionNotifierProvider =
-NotifierProvider<HomeNotifier, HomeSectionState>(() {
+    NotifierProvider<HomeNotifier, HomeSectionState>(() {
   return HomeNotifier(TvSectionType.topRated);
 });
 
 final trendingSectionNotifierProvider =
-NotifierProvider<HomeNotifier, HomeSectionState>(() {
+    NotifierProvider<HomeNotifier, HomeSectionState>(() {
   return HomeNotifier(TvSectionType.trending);
 });
