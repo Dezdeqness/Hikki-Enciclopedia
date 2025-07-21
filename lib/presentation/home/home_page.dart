@@ -101,9 +101,13 @@ class HomePage extends ConsumerWidget {
     required Widget Function(List<TvUiItem> tvs) contentBuilder,
   }) {
     Widget child;
+    const padding = EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0);
 
     if (state is Loading || state is Initial || state is Error) {
-      child = const TvPageShimmer();
+      child = Padding(
+        padding: padding,
+        child: const TvPageShimmer(),
+      );
     } else if (state is Success) {
       child = contentBuilder(state.tvs);
     } else {
@@ -112,7 +116,7 @@ class HomePage extends ConsumerWidget {
 
     return ContainerHeader(
       header: title,
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+      padding: padding,
       content: SizedBox(
         height: height,
         child: AnimatedSwitcher(
