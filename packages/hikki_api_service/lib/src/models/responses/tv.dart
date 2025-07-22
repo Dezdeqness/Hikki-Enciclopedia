@@ -13,7 +13,7 @@ class Tv {
   final String originalName;
   final String overview;
   final double popularity;
-  final String posterPath;
+  final String? posterPath;
   @JsonKey(fromJson: parseDateFromString)
   final DateTime? firstAirDate;
   final String name;

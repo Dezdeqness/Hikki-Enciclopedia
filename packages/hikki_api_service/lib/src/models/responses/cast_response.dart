@@ -22,7 +22,7 @@ class Cast {
   final String name;
   final String originalName;
   final double popularity;
-  final String profilePath;
+  final String? profilePath;
   final String character;
   final String creditId;
   final int order;

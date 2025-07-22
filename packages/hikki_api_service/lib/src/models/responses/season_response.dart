@@ -11,7 +11,7 @@ class SeasonResponse {
   final String overview;
   @JsonKey(fromJson: parseDateFromString)
   final DateTime? airDate;
-  final String posterPath;
+  final String? posterPath;
   final double voteAverage;
   final int seasonNumber;
 

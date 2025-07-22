@@ -3,15 +3,17 @@ import 'package:hikki_enciclopedia/domain/model/season_entity.dart';
 
 class SeasonMapper {
   SeasonEntity toEntity(SeasonResponse season) => SeasonEntity(
-    id: season.id,
-    name: season.name,
-    episodeCount: season.episodeCount,
-    overview: season.overview,
-    voteAverage: season.voteAverage,
-    posterPath: TMDBConstants.baseImageUrl +
-        TMDBConstants.imagePath +
-        season.posterPath,
-    airDate: season.airDate,
-    seasonNumber: season.seasonNumber,
-  );
+        id: season.id,
+        name: season.name,
+        episodeCount: season.episodeCount,
+        overview: season.overview,
+        voteAverage: season.voteAverage,
+        posterPath: season.posterPath != null
+            ? TMDBConstants.baseImageUrl +
+                TMDBConstants.imagePath +
+                season.posterPath!
+            : "",
+        airDate: season.airDate,
+        seasonNumber: season.seasonNumber,
+      );
 }

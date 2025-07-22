@@ -28,10 +28,16 @@ class TvMapper {
         originalLanguage: movie.originalLanguage,
         overview: movie.overview,
         popularity: movie.popularity,
-        posterPath: TMDBConstants.baseImageUrl +
-            TMDBConstants.imagePath +
-            movie.posterPath,
-        backdropPath: movie.backdropPath ?? "",
+        posterPath: movie.posterPath != null
+            ? TMDBConstants.baseImageUrl +
+                TMDBConstants.imagePath +
+                movie.posterPath!
+            : "",
+        backdropPath: movie.backdropPath != null
+            ? TMDBConstants.baseImageUrl +
+                TMDBConstants.imagePath +
+                movie.backdropPath!
+            : "",
         adult: movie.adult,
         genreIds: movie.genreIds,
         firstAirDate: movie.firstAirDate,
