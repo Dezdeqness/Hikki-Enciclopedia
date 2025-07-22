@@ -18,9 +18,8 @@ class TvDataSource {
       final response = await _service.getTvPopular(page: page);
 
       return Success(TvCollectionEntity(
-        items: response.results
-            .map((item) => _tvMapper.toEntity(item))
-            .toList(),
+        items:
+            response.results.map((item) => _tvMapper.toEntity(item)).toList(),
         totalPages: response.totalPages,
         page: response.page,
       ));
@@ -37,9 +36,8 @@ class TvDataSource {
       final response = await _service.getTvAiringToday(page: page);
 
       return Success(TvCollectionEntity(
-        items: response.results
-            .map((item) => _tvMapper.toEntity(item))
-            .toList(),
+        items:
+            response.results.map((item) => _tvMapper.toEntity(item)).toList(),
         totalPages: response.totalPages,
         page: response.page,
       ));
@@ -56,9 +54,8 @@ class TvDataSource {
       final response = await _service.getTvTopRated(page: page);
 
       return Success(TvCollectionEntity(
-        items: response.results
-            .map((item) => _tvMapper.toEntity(item))
-            .toList(),
+        items:
+            response.results.map((item) => _tvMapper.toEntity(item)).toList(),
         totalPages: response.totalPages,
         page: response.page,
       ));
@@ -75,9 +72,8 @@ class TvDataSource {
       final response = await _service.getTvTrending(page: page);
 
       return Success(TvCollectionEntity(
-        items: response.results
-            .map((item) => _tvMapper.toEntity(item))
-            .toList(),
+        items:
+            response.results.map((item) => _tvMapper.toEntity(item)).toList(),
         totalPages: response.totalPages,
         page: response.page,
       ));
@@ -88,7 +84,9 @@ class TvDataSource {
     }
   }
 
-  Future<Result<TvDetailsEntity, HikkiApiException>> getTvDetails(String seriesId) async {
-    
+  Future<Result<TvDetailsEntity, HikkiApiException>> getTvDetails(
+    String seriesId,
+  ) async {
+    return Failure(HikkiApiException.unknown());
   }
 }

@@ -1,11 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hikki_enciclopedia/presentation/anime_details/state/anime_details.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
 import 'package:hikki_enciclopedia/core/ui/loading_screen.dart';
-import 'package:hikki_enciclopedia/presentation/anime_details/components/index.dart';
-import 'package:hikki_enciclopedia/presentation/anime_details/state/anime_details_state.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'components/animated_details_list_item.dart';
