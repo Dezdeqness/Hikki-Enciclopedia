@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/presentation/home/models/tv_ui_item.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/hikki_app_router.dart';
+import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 
 class TvCommonItem extends StatelessWidget {
   final TvUiItem item;
@@ -15,8 +18,10 @@ class TvCommonItem extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       surfaceTintColor: Colors.transparent,
-      child: InkWell(
-        onTap: () {},
+      child: InkWellWrapper(
+        onTap: () {
+          context.pushRoute(TvDetailsRoute(id: item.id.toString()));
+        },
         child: Container(
           color: Colors.white,
           child: Column(

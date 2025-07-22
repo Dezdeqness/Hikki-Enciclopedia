@@ -105,3 +105,47 @@ class PersonalListRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [TvDetailsPage]
+class TvDetailsRoute extends PageRouteInfo<TvDetailsRouteArgs> {
+  TvDetailsRoute({Key? key, required String id, List<PageRouteInfo>? children})
+      : super(
+          TvDetailsRoute.name,
+          args: TvDetailsRouteArgs(key: key, id: id),
+          initialChildren: children,
+        );
+
+  static const String name = 'TvDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TvDetailsRouteArgs>();
+      return TvDetailsPage(key: args.key, id: args.id);
+    },
+  );
+}
+
+class TvDetailsRouteArgs {
+  const TvDetailsRouteArgs({this.key, required this.id});
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'TvDetailsRouteArgs{key: $key, id: $id}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TvDetailsRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
+}
