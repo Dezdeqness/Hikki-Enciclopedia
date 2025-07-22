@@ -14,7 +14,7 @@ class TMDBConstants {
   static const String imagePath = "t/p/w780/";
   static const String oauthPath = "/authenticate/";
   static const String tvPath = "tv/";
-  static const String tvDetailsPath = "${tvPath}series_id";
+  static const String tvDetailsPath = "${tvPath}{series_id}";
   static const String tvTopRatedPath = "${tvPath}top_rated";
   static const String tvPopularPath = "${tvPath}popular";
   static const String tvAiringTodayPath = "${tvPath}airing_today";

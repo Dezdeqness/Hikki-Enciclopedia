@@ -87,6 +87,14 @@ class TvDataSource {
   Future<Result<TvDetailsEntity, HikkiApiException>> getTvDetails(
     String seriesId,
   ) async {
-    return Failure(HikkiApiException.unknown());
+    try {
+      final response = await _service.getTvDetails(seriesId: seriesId);
+
+      return Success(_tvMapper.toDetailsEntity(response));
+    } on DioException catch (e) {
+      return Failure(_errorMapper.mapDioError(e));
+    } catch (e) {
+      return Failure(HikkiApiException.unknown());
+    }
   }
 }
