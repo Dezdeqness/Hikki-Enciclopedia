@@ -39,6 +39,10 @@ class ExpandedDescriptionState extends State<ExpandedDescription>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.text.isEmpty) {
+      return SizedBox.shrink();
+    }
+
     final measuredHeight = widget.text
         .measureTextHeight(const TextStyle(color: Colors.black), context);
     if (measuredHeight > _trashHoldHeight) {

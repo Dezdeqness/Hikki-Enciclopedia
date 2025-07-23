@@ -34,7 +34,7 @@ class TvDetailsUiMapper {
         lastAirDate: item.lastAirDate != null
             ? _dateFormat.format(item.lastAirDate!)
             : "",
-        voteAverage: item.voteAverage,
+        voteAverage: (item.voteAverage * 10).truncateToDouble() / 10,
         voteCount: item.voteCount,
         numberOfEpisodes: item.numberOfEpisodes,
         numberOfSeasons: item.numberOfSeasons,

@@ -52,8 +52,14 @@ class TvMapper {
         originalLanguage: details.originalLanguage,
         overview: details.overview,
         popularity: details.popularity,
-        backdropPath: details.backdropPath,
-        posterPath: details.posterPath,
+        posterPath: TMDBConstants.baseImageUrl +
+            TMDBConstants.imagePath +
+            details.posterPath,
+        backdropPath: details.backdropPath != null
+            ? TMDBConstants.baseImageUrl +
+                TMDBConstants.imagePath +
+                details.backdropPath!
+            : "",
         status: details.status,
         type: details.type,
         tagline: details.tagline,
