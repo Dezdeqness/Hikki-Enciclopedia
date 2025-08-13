@@ -9,3 +9,4 @@ export 'videos_response.dart';
 export 'genre_response.dart';
 export 'cast_response.dart';
 export 'tv_details_response.dart';
+export 'profile_response.dart';

@@ -48,4 +48,10 @@ abstract class TmdbService {
     @Query(TMDBConstants.appendToResponse)
     String append = "similar,recommendations,videos,credits",
   });
+
+  @GET(TMDBConstants.accountPath)
+  Future<ProfileResponse> getProfile({
+    @Query(TMDBConstants.sessionId)
+    String sessionId,
+  });
 }

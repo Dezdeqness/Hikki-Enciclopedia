@@ -18,6 +18,7 @@ class TMDBConstants {
   static const String tvTopRatedPath = "${tvPath}top_rated";
   static const String tvPopularPath = "${tvPath}popular";
   static const String tvAiringTodayPath = "${tvPath}airing_today";
+  static const String accountPath = "account";
 
   // API endpoints params
   static const String language = "language";
@@ -31,6 +32,7 @@ class TMDBConstants {
   static const String similar = "similar";
   static const String videos = "videos";
   static const String appendToResponse = "append_to_response";
+  static const String sessionId = "session_id";
 
   static const String youtubePreviewPath = "https://img.youtube.com/vi/";
   static const String youtubePreviewEndPath = "/hqdefault.jpg";
