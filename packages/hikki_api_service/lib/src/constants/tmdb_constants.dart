@@ -2,6 +2,7 @@ class TMDBConstants {
   // Base urls
   static const String baseUrl = "https://api.themoviedb.org/3/";
   static const String baseImageUrl = "https://image.tmdb.org/";
+  static const String baseMediaUrl = "https://media.themoviedb.org/";
   static const String oauthUrl = "www.themoviedb.org";
 
   // API paths
@@ -12,6 +13,7 @@ class TMDBConstants {
   static const String trending = "trending/";
   static const String trendingTv = "$trending$tvPath{time_window}";
   static const String imagePath = "t/p/w780/";
+  static const String mediaPath = "/t/p/w150_and_h150_face/";
   static const String oauthPath = "/authenticate/";
   static const String tvPath = "tv/";
   static const String tvDetailsPath = "${tvPath}{series_id}";

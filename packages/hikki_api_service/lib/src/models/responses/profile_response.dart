@@ -22,7 +22,7 @@ class ProfileResponse {
   Map<String, dynamic> toJson() => _$ProfileResponseToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Avatar {
   final Gravatar gravatar;
   final Tmdb tmdb;
@@ -37,7 +37,7 @@ class Avatar {
   Map<String, dynamic> toJson() => _$AvatarToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Gravatar {
   final String hash;
 
@@ -48,7 +48,7 @@ class Gravatar {
   Map<String, dynamic> toJson() => _$GravatarToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Tmdb {
   final String? avatarPath;
 

@@ -7,8 +7,8 @@ class ProfileMapper {
     name: profile.name,
     includeAdult: profile.includeAdult,
     username: profile.username,
-    avatar: TMDBConstants.baseImageUrl +
-        TMDBConstants.imagePath +
+    avatar: TMDBConstants.baseMediaUrl +
+        TMDBConstants.mediaPath +
         (profile.avatar.tmdb.avatarPath ?? ""),
   );
 }
