@@ -4,3 +4,4 @@ export 'cast_entity.dart';
 export 'video_entity.dart';
 export 'season_entity.dart';
 export 'genre_entity.dart';
+export 'profile_entity.dart';
