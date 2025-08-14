@@ -13,7 +13,7 @@ class ProfileDataSource {
 
   Future<Result<ProfileEntity, HikkiApiException>> getProfile(String sessionId) async {
     try {
-      final response = await _service.getProfile(sessionId: sessionId);
+      final response = await _service.getProfile(sessionId);
 
       return Success(_profileMapper.toEntity(response));
     } on DioException catch (e) {

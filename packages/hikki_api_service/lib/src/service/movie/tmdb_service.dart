@@ -50,8 +50,8 @@ abstract class TmdbService {
   });
 
   @GET(TMDBConstants.accountPath)
-  Future<ProfileResponse> getProfile({
+  Future<ProfileResponse> getProfile(
     @Query(TMDBConstants.sessionId)
     String sessionId,
-  });
+  );
 }

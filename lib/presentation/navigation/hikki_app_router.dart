@@ -6,6 +6,7 @@ import 'package:hikki_enciclopedia/presentation/explorer/explorer_page.dart';
 import 'package:hikki_enciclopedia/presentation/home/home_page.dart';
 import 'package:hikki_enciclopedia/presentation/main/main_page.dart';
 import 'package:hikki_enciclopedia/presentation/personal_list/personal_list_page.dart';
+import 'package:hikki_enciclopedia/presentation/profile/profile_page.dart';
 import 'package:hikki_enciclopedia/presentation/tv_details/tv_details_page.dart';
 
 part 'hikki_app_router.gr.dart';
@@ -23,7 +24,7 @@ class HikkiAppRouter extends RootStackRouter {
               initial: true,
             ),
             AutoRoute(page: ExplorerRoute.page),
-            // AutoRoute(page: ProfileRoute.page),
+            AutoRoute(page: ProfileRoute.page),
           ],
         ),
         AutoRoute(
