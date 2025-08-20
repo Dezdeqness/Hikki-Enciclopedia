@@ -1,0 +1,4 @@
+enum PersonalPageType {
+  rated,
+  watched;
+}

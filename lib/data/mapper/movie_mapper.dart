@@ -18,5 +18,6 @@ class MovieMapper {
         releaseDate: movie.releaseDate,
         voteAverage: movie.voteAverage,
         voteCount: movie.voteCount,
+        rating: movie.rating,
       );
 }

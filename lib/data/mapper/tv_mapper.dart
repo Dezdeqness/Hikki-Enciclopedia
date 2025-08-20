@@ -43,6 +43,7 @@ class TvMapper {
         firstAirDate: movie.firstAirDate,
         voteAverage: movie.voteAverage,
         voteCount: movie.voteCount,
+        rating: movie.rating,
       );
 
   TvDetailsEntity toDetailsEntity(TvDetailsResponse details) => TvDetailsEntity(

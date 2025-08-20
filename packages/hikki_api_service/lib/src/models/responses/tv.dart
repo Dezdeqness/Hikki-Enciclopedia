@@ -19,6 +19,7 @@ class Tv {
   final String name;
   final double voteAverage;
   final int voteCount;
+  final int? rating;
 
   Tv({
     required this.adult,
@@ -34,6 +35,7 @@ class Tv {
     required this.name,
     required this.voteAverage,
     required this.voteCount,
+    required this.rating,
   });
 
   factory Tv.fromJson(Map<String, dynamic> json) => _$TvFromJson(json);

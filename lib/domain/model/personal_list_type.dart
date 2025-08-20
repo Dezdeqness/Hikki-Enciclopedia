@@ -1,0 +1,4 @@
+enum PersonalListType {
+  tv,
+  movie;
+}

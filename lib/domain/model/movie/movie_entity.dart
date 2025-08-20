@@ -18,5 +18,6 @@ abstract class MovieEntity with _$MovieEntity {
     required bool adult,
     required double voteAverage,
     required int voteCount,
+    required int? rating,
   }) = _MovieEntity;
 }
