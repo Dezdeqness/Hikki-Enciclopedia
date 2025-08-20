@@ -10,6 +10,7 @@ import 'package:hikki_enciclopedia/presentation/authorize_page/auth_event.dart';
 import 'package:hikki_enciclopedia/presentation/authorize_page/auth_event_notifier.dart';
 import 'package:hikki_enciclopedia/presentation/authorize_page/auth_notifier.dart';
 import 'package:hikki_enciclopedia/presentation/authorize_page/auth_state.dart';
+import 'package:hikki_enciclopedia/presentation/profile/providers/profile_providers.dart';
 
 final authLocalDataSourceProvider = Provider<AuthLocalDatasource>((ref) {
   return AuthLocalDatasource(
@@ -40,5 +41,5 @@ final authNotifierProvider =
     NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
 
 final authorizeUseCaseProvider = Provider<AuthorizeUseCase>((ref) {
-  return AuthorizeUseCase(ref.watch(authRepositoryProvider));
+  return AuthorizeUseCase(ref.watch(authRepositoryProvider), ref.watch(profileRepositoryProvider));
 });

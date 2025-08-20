@@ -4,12 +4,12 @@ import 'package:hikki_enciclopedia/data/mapper/profile_mapper.dart';
 import 'package:hikki_enciclopedia/domain/model/index.dart';
 import 'package:result_type/result_type.dart';
 
-class ProfileDataSource {
+class ProfileRemoteDataSource {
   final TmdbService _service;
   final DioErrorMapper _errorMapper;
   final ProfileMapper _profileMapper;
 
-  ProfileDataSource(this._service, this._errorMapper, this._profileMapper);
+  ProfileRemoteDataSource(this._service, this._errorMapper, this._profileMapper);
 
   Future<Result<ProfileEntity, HikkiApiException>> getProfile(String sessionId) async {
     try {
