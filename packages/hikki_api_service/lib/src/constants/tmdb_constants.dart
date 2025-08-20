@@ -21,6 +21,14 @@ class TMDBConstants {
   static const String tvPopularPath = "${tvPath}popular";
   static const String tvAiringTodayPath = "${tvPath}airing_today";
   static const String accountPath = "account";
+  static const String ratedPath = "/rated/";
+  static const String watchlistPath = "/watchlist/";
+  static const String accountMoviePath = "movies";
+  static const String accountTvPath = "tv";
+  static const String accountRatedMoviesPath = "$accountPath/{account_id}$ratedPath$accountMoviePath";
+  static const String accountRatedTvPath = "$accountPath/{account_id}$ratedPath$accountTvPath";
+  static const String accountWatchlistMoviesPath = "$accountPath/{account_id}$watchlistPath$accountMoviePath";
+  static const String accountWatchlistTvPath = "$accountPath/{account_id}$watchlistPath$accountTvPath";
 
   // API endpoints params
   static const String language = "language";

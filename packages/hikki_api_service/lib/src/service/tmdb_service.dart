@@ -54,4 +54,29 @@ abstract class TmdbService {
     @Query(TMDBConstants.sessionId)
     String sessionId,
   );
+
+  @GET(TMDBConstants.accountRatedMoviesPath)
+  Future<MovieCollection> getRatedMovies({
+    @Query(TMDBConstants.page) int page = 1,
+    @Query(TMDBConstants.sortBy) String sortBy = "created_at.asc"
+  });
+
+  @GET(TMDBConstants.accountRatedTvPath)
+  Future<TvCollection> getRatedTv({
+    @Query(TMDBConstants.page) int page = 1,
+    @Query(TMDBConstants.sortBy) String sortBy = "created_at.asc"
+  });
+
+  @GET(TMDBConstants.accountWatchlistMoviesPath)
+  Future<MovieCollection> getWatchlistMovies({
+    @Query(TMDBConstants.page) int page = 1,
+    @Query(TMDBConstants.sortBy) String sortBy = "created_at.asc"
+  });
+
+  @GET(TMDBConstants.accountWatchlistTvPath)
+  Future<TvCollection> getWatchlistTv({
+    @Query(TMDBConstants.page) int page = 1,
+    @Query(TMDBConstants.sortBy) String sortBy = "created_at.asc"
+  });
+
 }
