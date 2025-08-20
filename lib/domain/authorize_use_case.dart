@@ -16,17 +16,17 @@ class AuthorizeUseCase {
       return Failure(sessionIdResult.failure);
     }
 
+    final sessionId = sessionIdResult.success;
+    await _authRepository.saveSessionId(sessionId);
+
     final profileResult = await _profileRepository.getProfile();
 
     if (profileResult.isFailure) {
       return Failure(sessionIdResult.failure);
     }
 
-    final sessionId = sessionIdResult.success;
-    _authRepository.saveSessionId(sessionId);
-
     final profileId = profileResult.success.id;
-    _profileRepository.saveProfileId(profileId.toString());
+    await _profileRepository.saveProfileId(profileId.toString());
 
     return Success(true);
   }
