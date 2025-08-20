@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget {
         animationDuration: const Duration(milliseconds: 0),
         homeIndex: 1,
         routes: const [
-          PersonalListRoute(),
+          PersonalRoute(),
           HomeRoute(),
           ExplorerRoute(),
           ProfileRoute(),

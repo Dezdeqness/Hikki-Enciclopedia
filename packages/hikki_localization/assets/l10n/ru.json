@@ -22,5 +22,9 @@
   "castSectionTitle": "Актеры",
   "videosSectionTitle": "Видео",
   "recommendSectionTitle": "Рекомендации",
-  "similarSectionTitle": "Похожее"
+  "similarSectionTitle": "Похожее",
+  "personalRated": "Оценено",
+  "personalWatched": "Просмотрено",
+  "personalUserScore": "Ваша оценка: ",
+  "personalOverallScore": "Оценка: "
 }

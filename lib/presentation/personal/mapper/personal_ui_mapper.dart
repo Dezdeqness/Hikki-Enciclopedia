@@ -9,7 +9,7 @@ class PersonalUiMapper {
         name: item.title,
         overview: item.overview,
         posterPath: item.posterPath,
-        rating: item.rating,
+        rating: item.rating != null ? (item.rating! * 10).floor() : item.rating,
         voteAverage: (item.voteAverage * 10).floor(),
       );
 }

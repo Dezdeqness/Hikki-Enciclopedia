@@ -22,5 +22,9 @@
   "castSectionTitle": "Cast",
   "videosSectionTitle": "Videos",
   "recommendSectionTitle": "Recommendations",
-  "similarSectionTitle": "Similar"
+  "similarSectionTitle": "Similar",
+  "personalRated": "Rated",
+  "personalWatched": "Watched",
+  "personalUserScore": "Your score: ",
+  "personalOverallScore": "User score: "
 }

@@ -23,5 +23,9 @@
   "castSectionTitle": "Актори",
   "videosSectionTitle": "Відео",
   "recommendSectionTitle": "Рекомендації",
-  "similarSectionTitle": "Подібне"
+  "similarSectionTitle": "Подібне",
+  "personalRated": "Оцінене",
+  "personalWatched": "Побачене",
+  "personalUserScore": "Ваша оцінка: ",
+  "personalOverallScore": "Оцінка: "
 }
