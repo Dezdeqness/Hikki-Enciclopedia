@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hikki_enciclopedia/presentation/home/models/tv_ui_item.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/models/season_ui_item.dart';
+import 'package:hikki_enciclopedia/presentation/details/models/season_ui_item.dart';
 
 import 'cast_ui_item.dart';
 

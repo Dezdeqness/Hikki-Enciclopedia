@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/components/tv_cast_details_item.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/components/tv_video_details_item.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/models/tv_details_ui_item.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/providers/tv_details_providers.dart';
+import 'package:hikki_enciclopedia/presentation/details/components/cast_details_item.dart';
+import 'package:hikki_enciclopedia/presentation/details/components/video_details_item.dart';
+import 'package:hikki_enciclopedia/presentation/details/models/tv_details_ui_item.dart';
+import 'package:hikki_enciclopedia/presentation/details/providers/tv_details_providers.dart';
 import 'package:hikki_localization/hikki_localization.dart';
 
 import 'components/expanded_description.dart';
@@ -13,7 +13,7 @@ import 'components/genre_carousel.dart';
 import 'components/main_image_with_score.dart';
 import 'components/related_info.dart';
 import 'components/generic_details_section.dart';
-import 'components/tv_common_details_item.dart';
+import 'components/common_details_item.dart';
 
 @RoutePage()
 class TvDetailsPage extends ConsumerWidget {
@@ -93,12 +93,12 @@ class TvDetailsPage extends ConsumerWidget {
             ),
           ),
           RelatedInfo(item: item),
-          GenericDetailsSection<TvCommonDetailsModel>(
+          GenericDetailsSection<CommonDetailsModel>(
             title: LocaleKeys.seasonsSectionTitle.tr(),
             height: 210,
             items: item.seasons
                 .map(
-                  (item) => TvCommonDetailsModel(
+                  (item) => CommonDetailsModel(
                     title: item.name,
                     imageUrl: item.posterPath,
                   ),
@@ -107,16 +107,16 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: TvCommonDetailsItem(item: item),
+                child: CommonDetailsItem(item: item),
               );
             },
           ),
-          GenericDetailsSection<TvCastDetailsModel>(
+          GenericDetailsSection<CastDetailsModel>(
             title: LocaleKeys.castSectionTitle.tr(),
             height: 250,
             items: item.casts
                 .map(
-                  (item) => TvCastDetailsModel(
+                  (item) => CastDetailsModel(
                       name: item.originalName,
                       character: item.name,
                       imageUrl: item.profilePath),
@@ -125,7 +125,7 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: TvCastDetailsItem(item: item),
+                child: CastDetailsItem(item: item),
               );
             },
           ),
@@ -134,15 +134,15 @@ class TvDetailsPage extends ConsumerWidget {
             height: 130,
             items: item.videos,
             itemBuilder: (context, item) {
-              return TvVideoDetailsItem(imageUrl: item);
+              return VideoDetailsItem(imageUrl: item);
             },
           ),
-          GenericDetailsSection<TvCommonDetailsModel>(
+          GenericDetailsSection<CommonDetailsModel>(
             title: LocaleKeys.recommendSectionTitle.tr(),
             height: 210,
             items: item.recommendations
                 .map(
-                  (item) => TvCommonDetailsModel(
+                  (item) => CommonDetailsModel(
                     title: item.name,
                     imageUrl: item.posterPath,
                   ),
@@ -151,16 +151,16 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: TvCommonDetailsItem(item: item),
+                child: CommonDetailsItem(item: item),
               );
             },
           ),
-          GenericDetailsSection<TvCommonDetailsModel>(
+          GenericDetailsSection<CommonDetailsModel>(
             title: LocaleKeys.similarSectionTitle.tr(),
             height: 210,
             items: item.similar
                 .map(
-                  (item) => TvCommonDetailsModel(
+                  (item) => CommonDetailsModel(
                     title: item.name,
                     imageUrl: item.posterPath,
                   ),
@@ -169,7 +169,7 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: TvCommonDetailsItem(item: item),
+                child: CommonDetailsItem(item: item),
               );
             },
           ),

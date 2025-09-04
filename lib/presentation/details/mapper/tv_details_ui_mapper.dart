@@ -1,7 +1,7 @@
 import 'package:hikki_enciclopedia/domain/model/tv/tv_details_entity.dart';
 import 'package:hikki_enciclopedia/presentation/home/mapper/tv_ui_mapper.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/mapper/season_ui_mapper.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/models/index.dart';
+import 'package:hikki_enciclopedia/presentation/details/mapper/season_ui_mapper.dart';
+import 'package:hikki_enciclopedia/presentation/details/models/index.dart';
 import 'package:hikki_localization/hikki_localization.dart';
 
 import 'cast_ui_mapper.dart';

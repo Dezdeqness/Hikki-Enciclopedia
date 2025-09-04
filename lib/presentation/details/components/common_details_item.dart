@@ -1,22 +1,19 @@
+
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class TvCastDetailsModel {
-  final String name;
-  final String character;
+class CommonDetailsModel {
+  final String title;
   final String imageUrl;
 
-  TvCastDetailsModel({
-    required this.name,
-    required this.character,
-    required this.imageUrl,
-  });
+  CommonDetailsModel({required this.title, required this.imageUrl});
 }
 
-class TvCastDetailsItem extends StatelessWidget {
-  final TvCastDetailsModel item;
+class CommonDetailsItem extends StatelessWidget {
+  final CommonDetailsModel item;
 
-  const TvCastDetailsItem({
+  const CommonDetailsItem({
     super.key,
     required this.item,
   });
@@ -42,18 +39,7 @@ class TvCastDetailsItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
-              item.name,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Text(
-              item.character,
+              item.title,
               maxLines: 1,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,

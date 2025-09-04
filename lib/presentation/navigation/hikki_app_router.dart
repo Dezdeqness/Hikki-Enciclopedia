@@ -7,7 +7,7 @@ import 'package:hikki_enciclopedia/presentation/home/home_page.dart';
 import 'package:hikki_enciclopedia/presentation/main/main_page.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_page.dart';
 import 'package:hikki_enciclopedia/presentation/profile/profile_page.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/tv_details_page.dart';
+import 'package:hikki_enciclopedia/presentation/details/tv_details_page.dart';
 
 part 'hikki_app_router.gr.dart';
 

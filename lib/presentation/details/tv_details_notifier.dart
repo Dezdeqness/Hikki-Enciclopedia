@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_enciclopedia/domain/repository/tv/tv_repository.dart';
 import 'package:hikki_enciclopedia/presentation/home/providers/home_providers.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/mapper/tv_details_ui_mapper.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/models/tv_details_ui_item.dart';
-import 'package:hikki_enciclopedia/presentation/tv_details/providers/tv_details_providers.dart';
+import 'package:hikki_enciclopedia/presentation/details/mapper/tv_details_ui_mapper.dart';
+import 'package:hikki_enciclopedia/presentation/details/models/tv_details_ui_item.dart';
+import 'package:hikki_enciclopedia/presentation/details/providers/tv_details_providers.dart';
 
 class TvDetailsNotifier
     extends AutoDisposeFamilyAsyncNotifier<TvDetailsUiItem, String> {
