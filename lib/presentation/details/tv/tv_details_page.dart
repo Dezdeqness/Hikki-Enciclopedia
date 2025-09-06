@@ -1,59 +1,25 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
-import 'package:hikki_enciclopedia/presentation/details/components/cast_details_item.dart';
-import 'package:hikki_enciclopedia/presentation/details/components/video_details_item.dart';
+import 'package:hikki_enciclopedia/presentation/details/components/index.dart';
+import 'package:hikki_enciclopedia/presentation/details/core/base_details_notifier.dart';
+import 'package:hikki_enciclopedia/presentation/details/core/base_details_page.dart';
 import 'package:hikki_enciclopedia/presentation/details/models/tv_details_ui_item.dart';
 import 'package:hikki_enciclopedia/presentation/details/providers/tv_details_providers.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/hikki_app_router.dart';
 import 'package:hikki_localization/hikki_localization.dart';
 
-import 'components/expanded_description.dart';
-import 'components/genre_carousel.dart';
-import 'components/main_image_with_score.dart';
-import 'components/related_info.dart';
-import 'components/generic_details_section.dart';
-import 'components/common_details_item.dart';
-
 @RoutePage()
-class TvDetailsPage extends ConsumerWidget {
-  final String id;
-
-  const TvDetailsPage({
-    super.key,
-    required this.id,
-  });
+class TvDetailsPage extends BaseDetailsPage<TvDetailsUiItem> {
+  const TvDetailsPage({super.key, required super.id});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(tvDetailsNotifierProvider(id));
+  AutoDisposeAsyncNotifierProviderFamily<BaseDetailsNotifier<TvDetailsUiItem>,
+      TvDetailsUiItem, String> provider() => tvDetailsNotifierProvider;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SizedBox.expand(
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xFFB2DFDB),
-                Color(0xFFE0F7FA),
-              ],
-            ),
-          ),
-          child: SafeArea(
-            child: state.when(
-                data: (data) => _body(data),
-                error: (e, st) => ErrorScreen(error: e.toString()),
-                loading: () => Center(child: CircularProgressIndicator())),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _body(TvDetailsUiItem item) {
+  @override
+  Widget buildBody(TvDetailsUiItem item, BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         spacing: 8,
@@ -92,13 +58,14 @@ class TvDetailsPage extends ConsumerWidget {
               textStyle: const TextStyle(color: Colors.black),
             ),
           ),
-          RelatedInfo(item: item),
+          TvRelatedInfo(item: item),
           GenericDetailsSection<CommonDetailsModel>(
             title: LocaleKeys.seasonsSectionTitle.tr(),
             height: 210,
             items: item.seasons
                 .map(
                   (item) => CommonDetailsModel(
+                    id: item.id.toString(),
                     title: item.name,
                     imageUrl: item.posterPath,
                   ),
@@ -107,7 +74,10 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: CommonDetailsItem(item: item),
+                child: CommonDetailsItem(
+                  item: item,
+                  onTap: (id) => context.pushRoute(TvDetailsRoute(id: id)),
+                ),
               );
             },
           ),
@@ -143,6 +113,7 @@ class TvDetailsPage extends ConsumerWidget {
             items: item.recommendations
                 .map(
                   (item) => CommonDetailsModel(
+                    id: item.id.toString(),
                     title: item.name,
                     imageUrl: item.posterPath,
                   ),
@@ -151,7 +122,10 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: CommonDetailsItem(item: item),
+                child: CommonDetailsItem(
+                  item: item,
+                  onTap: (id) => context.pushRoute(TvDetailsRoute(id: id)),
+                ),
               );
             },
           ),
@@ -161,6 +135,7 @@ class TvDetailsPage extends ConsumerWidget {
             items: item.similar
                 .map(
                   (item) => CommonDetailsModel(
+                    id: item.id.toString(),
                     title: item.name,
                     imageUrl: item.posterPath,
                   ),
@@ -169,7 +144,10 @@ class TvDetailsPage extends ConsumerWidget {
             itemBuilder: (context, item) {
               return SizedBox(
                 width: 120,
-                child: CommonDetailsItem(item: item),
+                child: CommonDetailsItem(
+                  item: item,
+                  onTap: (id) => context.pushRoute(TvDetailsRoute(id: id)),
+                ),
               );
             },
           ),
