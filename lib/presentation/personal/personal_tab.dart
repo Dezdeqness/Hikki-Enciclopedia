@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
+import 'package:hikki_enciclopedia/domain/model/personal_list_type.dart';
 import 'package:hikki_enciclopedia/domain/model/personal_page_type.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/hikki_app_router.dart';
 import 'package:hikki_enciclopedia/presentation/personal/components/personal_item.dart';
 import 'package:hikki_enciclopedia/presentation/personal/components/personal_shimmer.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab_status.dart';
@@ -88,6 +91,15 @@ class _PersonalTabState extends ConsumerState<PersonalTab> {
                   if (index < state.items.length) {
                     return PersonalCell(
                       item: state.items[index],
+                      onTap: (id) {
+                        final PageRouteInfo route;
+                        if (state.type == PersonalListType.tv) {
+                          route = TvDetailsRoute(id: id);
+                        } else {
+                          route = MovieDetailsRoute(id: id);
+                        }
+                        context.pushRoute(route);
+                      },
                     );
                   } else {
                     return PersonalShimmer(placeholderCount: 1);

@@ -5,14 +5,21 @@ import 'package:hikki_localization/hikki_localization.dart';
 
 class PersonalCell extends StatelessWidget {
   final PersonalUiItem item;
+  final Function(String) onTap;
 
-  const PersonalCell({super.key, required this.item});
+  const PersonalCell({
+    super.key,
+    required this.item,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(14),
-      onTap: () {},
+      onTap: () {
+        onTap(item.id.toString());
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
