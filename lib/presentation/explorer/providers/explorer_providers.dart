@@ -10,7 +10,11 @@ import 'package:hikki_enciclopedia/presentation/explorer/explorer_state.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/mapper/movie_ui_mapper.dart';
 
 final movieMapperProvider = Provider<MovieMapper>((ref) {
-  return MovieMapper();
+  return MovieMapper(
+    ref.watch(genreMapperProvider),
+    ref.watch(castMapperProvider),
+    ref.watch(videoMapperProvider),
+  );
 });
 
 final movieDataSourceProvider = Provider<MovieDataSource>((ref) {

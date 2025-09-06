@@ -49,6 +49,13 @@ abstract class TmdbService {
     String append = "similar,recommendations,videos,credits",
   });
 
+  @GET(TMDBConstants.movieDetailsPath)
+  Future<MovieDetailsResponse> getMovieDetails({
+    @Path("series_id") String seriesId = "1396",
+    @Query(TMDBConstants.appendToResponse)
+    String append = "similar,recommendations,videos,credits",
+  });
+
   @GET(TMDBConstants.accountPath)
   Future<ProfileResponse> getProfile(
     @Query(TMDBConstants.sessionId)

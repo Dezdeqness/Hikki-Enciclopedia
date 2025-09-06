@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:hikki_api_service/hikki_api_service.dart';
 import 'package:hikki_enciclopedia/data/mapper/index.dart';
 import 'package:hikki_enciclopedia/domain/model/index.dart';
+import 'package:hikki_enciclopedia/domain/model/movie/movie_details_entity.dart';
 import 'package:result_type/result_type.dart';
 
 class MovieDataSource {
@@ -23,6 +24,20 @@ class MovieDataSource {
         totalPages: response.totalPages,
         page: response.page,
       ));
+    } on DioException catch (e) {
+      return Failure(_errorMapper.mapDioError(e));
+    } catch (e) {
+      return Failure(HikkiApiException.unknown());
+    }
+  }
+
+  Future<Result<MovieDetailsEntity, HikkiApiException>> getMovieDetails(
+      String seriesId,
+      ) async {
+    try {
+      final response = await _service.getMovieDetails(seriesId: seriesId);
+
+      return Success(_movieMapper.toDetailsEntity(response));
     } on DioException catch (e) {
       return Failure(_errorMapper.mapDioError(e));
     } catch (e) {
