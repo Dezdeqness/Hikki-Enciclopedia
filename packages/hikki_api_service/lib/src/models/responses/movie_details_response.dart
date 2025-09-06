@@ -16,15 +16,13 @@ class MovieDetailsResponse {
   final String posterPath;
   final String status;
   final String tagline;
-  final String type;
+  final String? mediaType;
   final List<String> originCountry;
   @JsonKey(fromJson: parseDateFromString)
   final DateTime? releaseDate;
   final String title;
   final double voteAverage;
   final int voteCount;
-  final int numberOfEpisodes;
-  final int numberOfSeasons;
   final MovieCollection similar;
   final MovieCollection recommendations;
   final VideosResponse videos;
@@ -44,11 +42,9 @@ class MovieDetailsResponse {
     required this.title,
     required this.voteAverage,
     required this.voteCount,
-    required this.numberOfEpisodes,
-    required this.numberOfSeasons,
     required this.status,
     required this.tagline,
-    required this.type,
+    required this.mediaType,
     required this.similar,
     required this.recommendations,
     required this.videos,

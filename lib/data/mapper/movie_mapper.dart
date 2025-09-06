@@ -23,9 +23,11 @@ class MovieMapper {
         originalLanguage: movie.originalLanguage,
         overview: movie.overview,
         popularity: movie.popularity,
-        posterPath: TMDBConstants.baseImageUrl +
+        posterPath: movie.posterPath != null
+            ? TMDBConstants.baseImageUrl +
             TMDBConstants.imagePath +
-            movie.posterPath,
+            movie.posterPath!
+            : "",
         backdropPath: movie.backdropPath ?? "",
         adult: movie.adult,
         genreIds: movie.genreIds,
@@ -52,15 +54,13 @@ class MovieMapper {
                 details.backdropPath!
             : "",
         status: details.status,
-        type: details.type,
+        mediaType: details.mediaType,
         tagline: details.tagline,
         genres:
             details.genres.map((item) => _genreMapper.toEntity(item)).toList(),
         releaseDate: details.releaseDate,
         voteAverage: details.voteAverage,
         voteCount: details.voteCount,
-        numberOfEpisodes: details.numberOfEpisodes,
-        numberOfSeasons: details.numberOfSeasons,
         originCountry: details.originCountry,
         similar: MovieCollectionEntity(
           items: details.similar.results.map((item) => toEntity(item)).toList(),

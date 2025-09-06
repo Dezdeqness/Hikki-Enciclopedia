@@ -13,7 +13,7 @@ class Movie {
   final String originalTitle;
   final String overview;
   final double popularity;
-  final String posterPath;
+  final String? posterPath;
   @JsonKey(fromJson: parseDateFromString)
   final DateTime? releaseDate;
   final String title;

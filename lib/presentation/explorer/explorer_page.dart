@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/explorer_state.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/providers/explorer_providers.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/hikki_app_router.dart';
 
 import 'components/movie_cell.dart';
 import 'components/movie_shimmer.dart';
@@ -76,7 +77,7 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
                       if (index < successState.movies.length) {
                         return MovieCell(
                           item: successState.movies[index],
-                          onTap: () => (),
+                          onTap: () => context.pushRoute(MovieDetailsRoute(id: successState.movies[index].id.toString()))
                         );
                       } else {
                         return MovieShimmer(placeholderCount: 1);

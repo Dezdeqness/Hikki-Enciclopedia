@@ -1,4 +1,10 @@
 export 'expanded_description.dart';
 export 'genre_carousel.dart';
 export 'main_image_with_score.dart';
-export 'related_info.dart';
+export 'tv_related_info.dart';
+export 'animated_details_list_item.dart';
+export 'cast_details_item.dart';
+export 'common_details_item.dart';
+export 'generic_details_section.dart';
+export 'video_details_item.dart';
+export 'movie_related_info.dart';

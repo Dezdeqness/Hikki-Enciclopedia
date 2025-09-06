@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hikki_enciclopedia/presentation/details/models/tv_details_ui_item.dart';
 import 'package:hikki_localization/hikki_localization.dart';
 
-class RelatedInfo extends StatelessWidget {
+class TvRelatedInfo extends StatelessWidget {
   final TvDetailsUiItem item;
 
-  const RelatedInfo({super.key, required this.item});
+  const TvRelatedInfo({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
