@@ -7,6 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'main.directories.g.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(WidgetbookApp());
 }
@@ -24,11 +25,7 @@ class WidgetbookApp extends StatelessWidget {
             appBuilder: (context, child) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                  extensions: [
-                    HikkiColors(),
-                  ],
-                ),
+                theme: ThemeData(extensions: [HikkiColors()]),
                 home: child,
               );
             },
@@ -36,8 +33,14 @@ class WidgetbookApp extends StatelessWidget {
             addons: [
               MaterialThemeAddon(
                 themes: [
-                  WidgetbookTheme(name: 'Light', data: ThemeData.light()),
-                  WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
+                  WidgetbookTheme(
+                    name: 'Light',
+                    data: ThemeData(extensions: [HikkiColors()]),
+                  ),
+                  WidgetbookTheme(
+                    name: 'Dark',
+                    data: ThemeData(extensions: [HikkiColors()]),
+                  ),
                 ],
               ),
               AlignmentAddon(),
@@ -45,7 +48,7 @@ class WidgetbookApp extends StatelessWidget {
             ],
           );
         },
-      )
+      ),
     );
   }
 }
