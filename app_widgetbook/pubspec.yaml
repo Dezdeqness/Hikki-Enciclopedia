@@ -1,0 +1,31 @@
+name: app_widgetbook
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hikki_enciclopedia:
+    path: ../
+  widgetbook_annotation: ^3.7.0
+  widgetbook: ^3.17.0
+
+  hikki_localization:
+    path: ../packages/hikki_localization
+  hikki_ui_kit:
+    path: ../packages/hikki_ui_kit
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+  build_runner:
+  widgetbook_generator: ^3.17.0
+
+flutter:
+  uses-material-design: true
