@@ -9,13 +9,13 @@ import 'package:hikki_enciclopedia/presentation/personal/components/personal_ite
 import 'package:hikki_enciclopedia/presentation/personal/components/personal_shimmer.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab_status.dart';
 import 'package:hikki_enciclopedia/presentation/personal/provider/personal_providers.dart';
-
-import 'components/personal_ribbon.dart';
+import 'package:hikki_enciclopedia/presentation/personal/personal_tab_args.dart';
 
 class PersonalTab extends ConsumerStatefulWidget {
   final PersonalPageType type;
+  final PersonalListType listType;
 
-  const PersonalTab({super.key, required this.type});
+  const PersonalTab({super.key, required this.type, required this.listType});
 
   @override
   ConsumerState<PersonalTab> createState() => _PersonalTabState();
@@ -36,7 +36,7 @@ class _PersonalTabState extends ConsumerState<PersonalTab> {
           !_loadingNextPage) {
         _loadingNextPage = true;
         await ref
-            .read(personalNotifierProvider(widget.type).notifier)
+            .read(personalNotifierProvider(PersonalTabArgs(widget.type, widget.listType)).notifier)
             .fetchNextPage();
         _loadingNextPage = false;
       }
@@ -51,21 +51,8 @@ class _PersonalTabState extends ConsumerState<PersonalTab> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(personalNotifierProvider(widget.type));
+    final state = ref.watch(personalNotifierProvider(PersonalTabArgs(widget.type, widget.listType)));
     return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: PersonalRibbon(
-            selected: state.type,
-            onChanged: (type) {
-              ref
-                  .read(personalNotifierProvider(widget.type).notifier)
-                  .switchTab(type);
-            },
-          ),
-        ),
-      ),
       body: RefreshIndicator(
           child: Builder(builder: (context) {
             final status = state.status;
@@ -93,7 +80,7 @@ class _PersonalTabState extends ConsumerState<PersonalTab> {
                       item: state.items[index],
                       onTap: (id) {
                         final PageRouteInfo route;
-                        if (state.type == PersonalListType.tv) {
+                        if (widget.listType == PersonalListType.tv) {
                           route = TvDetailsRoute(id: id);
                         } else {
                           route = MovieDetailsRoute(id: id);
@@ -107,7 +94,7 @@ class _PersonalTabState extends ConsumerState<PersonalTab> {
                 });
           }),
           onRefresh: () => ref
-              .read(personalNotifierProvider(widget.type).notifier)
+              .read(personalNotifierProvider(PersonalTabArgs(widget.type, widget.listType)).notifier)
               .refresh()),
     );
   }

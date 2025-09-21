@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:hikki_enciclopedia/domain/model/personal_list_type.dart';
 import 'package:hikki_enciclopedia/domain/model/personal_page_type.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab.dart';
 import 'package:hikki_localization/hikki_localization.dart';
@@ -17,6 +18,7 @@ class PersonalPage extends StatefulWidget {
 class _PersonalPageState extends State<PersonalPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  PersonalListType selectedType = PersonalListType.tv;
 
   @override
   void initState() {
@@ -32,6 +34,25 @@ class _PersonalPageState extends State<PersonalPage>
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(selectedType == PersonalListType.tv ? 'TV' : 'Movie', style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Switch(
+                    value: selectedType == PersonalListType.movie,
+                    onChanged: (val) {
+                      setState(() {
+                        selectedType = val ? PersonalListType.movie : PersonalListType.tv;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
           bottom: TabBar(
             dividerHeight: 0,
             indicatorSize: TabBarIndicatorSize.tab,
@@ -64,13 +85,13 @@ class _PersonalPageState extends State<PersonalPage>
               )
             ],
           ),
-          toolbarHeight: 4,
+          toolbarHeight: 70,
         ),
         body: TabBarView(
           controller: tabController,
           children: [
-            PersonalTab(type: PersonalPageType.rated),
-            PersonalTab(type: PersonalPageType.watched),
+            PersonalTab(type: PersonalPageType.rated, listType: selectedType),
+            PersonalTab(type: PersonalPageType.watched, listType: selectedType),
           ],
         ),
       ),

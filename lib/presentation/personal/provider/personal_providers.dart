@@ -16,6 +16,7 @@ import 'package:hikki_enciclopedia/presentation/authorize_page/providers/auth_pr
 import 'package:hikki_enciclopedia/presentation/explorer/providers/explorer_providers.dart';
 import 'package:hikki_enciclopedia/presentation/home/providers/home_providers.dart';
 import 'package:hikki_enciclopedia/presentation/personal/mapper/personal_ui_mapper.dart';
+import 'package:hikki_enciclopedia/presentation/personal/personal_tab_args.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab_notifier.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab_state.dart';
 import 'package:hikki_enciclopedia/presentation/profile/providers/profile_providers.dart';
@@ -72,6 +73,6 @@ final fetcherProvider = Provider.family<
 });
 
 final personalNotifierProvider = NotifierProvider.family<PersonalTabNotifier,
-    PersonalTabState, PersonalPageType>(
+    PersonalTabState, PersonalTabArgs>(
   PersonalTabNotifier.new,
 );

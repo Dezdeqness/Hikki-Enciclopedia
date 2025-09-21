@@ -7,21 +7,24 @@ import 'package:hikki_enciclopedia/domain/model/personal/personal_collection_ent
 import 'package:hikki_enciclopedia/domain/model/personal_list_type.dart';
 import 'package:hikki_enciclopedia/domain/model/personal_page_type.dart';
 import 'package:hikki_enciclopedia/presentation/personal/mapper/personal_ui_mapper.dart';
+import 'package:hikki_enciclopedia/presentation/personal/personal_tab_args.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab_state.dart';
 import 'package:hikki_enciclopedia/presentation/personal/personal_tab_status.dart';
 import 'package:hikki_enciclopedia/presentation/personal/provider/personal_providers.dart';
 import 'package:result_type/result_type.dart';
 
 class PersonalTabNotifier
-    extends FamilyNotifier<PersonalTabState, PersonalPageType> {
+    extends FamilyNotifier<PersonalTabState, PersonalTabArgs> {
   late PersonalPageType type;
+  late PersonalListType listType;
   late final PersonalUiMapper _mapper;
   late final Future<Result<PersonalCollectionEntity, HikkiApiException>>
       Function(int page, PersonalListType type) _fetcher;
 
   @override
-  PersonalTabState build(PersonalPageType arg) {
-    type = arg;
+  PersonalTabState build(PersonalTabArgs arg) {
+    type = arg.type;
+    listType = arg.listType;
     _fetcher = ref.read(fetcherProvider(type));
     _mapper = ref.read(personalUiMapperProvider);
     _fetchInitial();
@@ -40,7 +43,7 @@ class PersonalTabNotifier
           PersonalTabState(status: PersonalTabStatus.loading());
     }
 
-    final result = await _fetcher.call(1, state.type);
+    final result = await _fetcher.call(1, listType);
 
     result.when(
       success: (data) {
@@ -73,7 +76,7 @@ class PersonalTabNotifier
     state = current.copyWith(isLoadingMore: true);
 
     final nextPage = current.currentPage + 1;
-    final result = await _fetcher.call(nextPage, state.type);
+    final result = await _fetcher.call(nextPage, listType);
 
     result.when(
       success: (collection) {
