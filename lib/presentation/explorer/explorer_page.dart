@@ -49,43 +49,90 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(explorerNotifierProvider);
 
-    return SafeArea(
-      child: Scaffold(
-          body: RefreshIndicator(
-              child: Builder(builder: (context) {
-                if (state is Loading || state is Initial) {
-                  return const MovieShimmer();
-                }
-
-                if (state is Error) {
-                  return CustomScrollView(
-                    slivers: <Widget>[
-                      SliverFillRemaining(
-                          child: ErrorScreen(error: state.error.toString())),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Hero(
+              tag: 'searchBarHero',
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  height: 48,
+                  margin: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.08),
+                        blurRadius: 8,
+                        offset: Offset(0, 2),
+                      ),
                     ],
-                  );
-                }
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 16),
+                      const Icon(Icons.search, color: Colors.blueAccent),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: TextField(
+                          autofocus: true,
+                          decoration: const InputDecoration(
+                            hintText: 'Search...',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // Expanded content
+            Expanded(
+              child: RefreshIndicator(
+                child: Builder(builder: (context) {
+                  if (state is Loading || state is Initial) {
+                    return const MovieShimmer();
+                  }
 
-                final successState = state as Success;
+                  if (state is Error) {
+                    return CustomScrollView(
+                      slivers: <Widget>[
+                        SliverFillRemaining(
+                            child: ErrorScreen(error: state.error.toString())),
+                      ],
+                    );
+                  }
 
-                final additionalItem = state.isLoadingMore ? 1 : 0;
+                  final successState = state as Success;
 
-                return ListView.builder(
-                    controller: _scrollController,
-                    itemCount: successState.movies.length + additionalItem,
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index < successState.movies.length) {
-                        return MovieCell(
-                          item: successState.movies[index],
-                          onTap: () => context.pushRoute(MovieDetailsRoute(id: successState.movies[index].id.toString()))
-                        );
-                      } else {
-                        return MovieShimmer(placeholderCount: 1);
-                      }
-                    });
-              }),
-              onRefresh: () =>
-                  ref.read(explorerNotifierProvider.notifier).refresh())),
+                  final additionalItem = state.isLoadingMore ? 1 : 0;
+
+                  return ListView.builder(
+                      controller: _scrollController,
+                      itemCount: successState.movies.length + additionalItem,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index < successState.movies.length) {
+                          return MovieCell(
+                            item: successState.movies[index],
+                            onTap: () => context.pushRoute(MovieDetailsRoute(id: successState.movies[index].id.toString()))
+                          );
+                        } else {
+                          return MovieShimmer(placeholderCount: 1);
+                        }
+                      });
+                }),
+                onRefresh: () =>
+                    ref.read(explorerNotifierProvider.notifier).refresh(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

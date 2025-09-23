@@ -5,6 +5,7 @@ import 'package:hikki_enciclopedia/presentation/home/components/tv_airing_item.d
 import 'package:hikki_enciclopedia/presentation/home/components/tv_page_shimmer.dart';
 import 'package:hikki_enciclopedia/presentation/home/home_section_state.dart';
 import 'package:hikki_enciclopedia/presentation/home/providers/home_providers.dart';
+import 'package:hikki_enciclopedia/presentation/navigation/hikki_app_router.dart';
 
 import 'package:hikki_enciclopedia/ui/container_headerfull.dart';
 import 'package:hikki_localization/hikki_localization.dart';
@@ -29,63 +30,141 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: 50),
+        child: Column(
           children: [
-            _buildSection(
-              title: LocaleKeys.airingHeader.tr(),
-              state: airingState,
-              height: 180,
-              contentBuilder: (tvs) => PageView.builder(
-                itemCount: tvs.length,
-                controller: PageController(viewportFraction: 0.92),
-                itemBuilder: (_, index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: TvAiringItem(item: tvs[index]),
-                ),
-              ),
-            ),
-            _buildSection(
-              title: LocaleKeys.trendingHeader.tr(),
-              state: trendingState,
-              height: 180,
-              contentBuilder: (tvs) => PageView.builder(
-                itemCount: tvs.length,
-                controller: PageController(viewportFraction: 0.92),
-                itemBuilder: (_, index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: TvTrendingItem(item: tvs[index]),
-                ),
-              ),
-            ),
-            _buildSection(
-              title: LocaleKeys.popularHeader.tr(),
-              state: popularState,
-              height: 220,
-              contentBuilder: (tvs) => ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: tvs.length,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (_, index) => SizedBox(
-                  width: 120,
-                  child: TvCommonItem(item: tvs[index]),
-                ),
-              ),
-            ),
-            _buildSection(
-              title: LocaleKeys.topRatedHeader.tr(),
-              state: topRatedState,
-              height: 220,
-              contentBuilder: (tvs) => ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: tvs.length,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (_, index) => SizedBox(
-                  width: 120,
-                  child: TvCommonItem(item: tvs[index]),
-                ),
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    backgroundColor: Colors.transparent,
+                    expandedHeight: 180,
+                    flexibleSpace: FlexibleSpaceBar(
+                      collapseMode: CollapseMode.pin,
+                      background: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(24.0),
+                              child: Image.network(
+                                'https://image.tmdb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.pushRoute(ExplorerRoute());
+                                },
+                                child: Hero(
+                                  tag: 'searchBarHero',
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Container(
+                                      height: 48,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.95),
+                                        borderRadius: BorderRadius.circular(24),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withValues(alpha: 0.1),
+                                            blurRadius: 8,
+                                            offset: Offset(0, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(width: 16),
+                                          const Icon(Icons.search, color: Colors.blueAccent),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            'Search...',
+                                            style: TextStyle(
+                                              color: Colors.grey[700],
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      _buildSection(
+                        title: LocaleKeys.airingHeader.tr(),
+                        state: airingState,
+                        height: 180,
+                        contentBuilder: (tvs) => PageView.builder(
+                          itemCount: tvs.length,
+                          controller: PageController(viewportFraction: 0.92),
+                          itemBuilder: (_, index) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: TvAiringItem(item: tvs[index]),
+                          ),
+                        ),
+                      ),
+                      _buildSection(
+                        title: LocaleKeys.trendingHeader.tr(),
+                        state: trendingState,
+                        height: 180,
+                        contentBuilder: (tvs) => PageView.builder(
+                          itemCount: tvs.length,
+                          controller: PageController(viewportFraction: 0.92),
+                          itemBuilder: (_, index) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: TvTrendingItem(item: tvs[index]),
+                          ),
+                        ),
+                      ),
+                      _buildSection(
+                        title: LocaleKeys.popularHeader.tr(),
+                        state: popularState,
+                        height: 220,
+                        contentBuilder: (tvs) => ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: tvs.length,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          separatorBuilder: (_, __) => const SizedBox(width: 12),
+                          itemBuilder: (_, index) => SizedBox(
+                            width: 120,
+                            child: TvCommonItem(item: tvs[index]),
+                          ),
+                        ),
+                      ),
+                      _buildSection(
+                        title: LocaleKeys.topRatedHeader.tr(),
+                        state: topRatedState,
+                        height: 220,
+                        contentBuilder: (tvs) => ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: tvs.length,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          separatorBuilder: (_, __) => const SizedBox(width: 12),
+                          itemBuilder: (_, index) => SizedBox(
+                            width: 120,
+                            child: TvCommonItem(item: tvs[index]),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
               ),
             ),
           ],
