@@ -16,7 +16,6 @@ class MainPage extends StatelessWidget {
         routes: const [
           PersonalRoute(),
           HomeRoute(),
-          ExplorerRoute(),
           ProfileRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
@@ -32,10 +31,6 @@ class MainPage extends StatelessWidget {
               BottomNavigationBarItem(
                 label: LocaleKeys.tabItemHome.tr(),
                 icon: const Icon(Icons.home),
-              ),
-              BottomNavigationBarItem(
-                label: LocaleKeys.tabItemExplorer.tr(),
-                icon: const Icon(Icons.explore),
               ),
               BottomNavigationBarItem(
                 label: LocaleKeys.tabItemProfile.tr(),

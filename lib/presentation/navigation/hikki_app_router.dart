@@ -24,7 +24,6 @@ class HikkiAppRouter extends RootStackRouter {
               page: HomeRoute.page,
               initial: true,
             ),
-            AutoRoute(page: ExplorerRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
         ),
@@ -35,5 +34,6 @@ class HikkiAppRouter extends RootStackRouter {
         AutoRoute(page: AuthorizeRoute.page),
         AutoRoute(page: TvDetailsRoute.page),
         AutoRoute(page: MovieDetailsRoute.page),
+        AutoRoute(page: ExplorerRoute.page),
       ];
 }
