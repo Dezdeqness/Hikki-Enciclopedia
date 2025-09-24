@@ -7,6 +7,7 @@ class TMDBConstants {
 
   // API paths
   static const String discoverMovie = "discover/movie";
+  static const String searchMovie = "search/movie";
   static const String authentication = "authentication/";
   static const String tokenNew = "${authentication}token/new";
   static const String sessionNew = "${authentication}session/new";
@@ -45,7 +46,10 @@ class TMDBConstants {
   static const String videos = "videos";
   static const String appendToResponse = "append_to_response";
   static const String sessionId = "session_id";
+  static const String query = "query";
 
   static const String youtubePreviewPath = "https://img.youtube.com/vi/";
   static const String youtubePreviewEndPath = "/hqdefault.jpg";
 }
+
+//https://image.tmdb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/3bhkrj58Vtu7enYsRolD1fZdja1.jpg

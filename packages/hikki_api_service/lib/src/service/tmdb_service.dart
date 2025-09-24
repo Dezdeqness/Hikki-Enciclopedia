@@ -15,6 +15,12 @@ abstract class TmdbService {
     @Query(TMDBConstants.sortBy) String sortBy = "popularity.desc",
   });
 
+  @GET(TMDBConstants.searchMovie)
+  Future<MovieCollection> searchMovies({
+    @Query(TMDBConstants.page) int page = 1,
+    @Query(TMDBConstants.query) String query = "",
+  });
+
   @GET(TMDBConstants.tvTopRatedPath)
   Future<TvCollection> getTvTopRated({
     @Query(TMDBConstants.page) int page = 1,
