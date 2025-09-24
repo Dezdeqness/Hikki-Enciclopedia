@@ -8,5 +8,9 @@ abstract class MovieRepository {
     int page,
     String sortBy,
   });
+  Future<Result<MovieCollectionEntity, HikkiApiException>> searchMovies({
+    int page,
+    String query,
+  });
   Future<Result<MovieDetailsEntity, HikkiApiException>> getMovieDetails(String seriesId);
 }

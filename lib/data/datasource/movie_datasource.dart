@@ -31,9 +31,28 @@ class MovieDataSource {
     }
   }
 
+  Future<Result<MovieCollectionEntity, HikkiApiException>> searchMovies(
+      {int page = 1, String query = ""}) async {
+    try {
+      final response = await _service.searchMovies(page: page, query: query);
+
+      return Success(MovieCollectionEntity(
+        items: response.results
+            .map((item) => _movieMapper.toEntity(item))
+            .toList(),
+        totalPages: response.totalPages,
+        page: response.page,
+      ));
+    } on DioException catch (e) {
+      return Failure(_errorMapper.mapDioError(e));
+    } catch (e) {
+      return Failure(HikkiApiException.unknown());
+    }
+  }
+
   Future<Result<MovieDetailsEntity, HikkiApiException>> getMovieDetails(
-      String seriesId,
-      ) async {
+    String seriesId,
+  ) async {
     try {
       final response = await _service.getMovieDetails(seriesId: seriesId);
 

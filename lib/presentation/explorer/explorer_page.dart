@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
@@ -24,9 +26,12 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
 
   bool _loadingNextPage = false;
 
+  late final TextEditingController _searchController;
+
   @override
   void initState() {
     super.initState();
+    _searchController = TextEditingController();
 
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
@@ -41,8 +46,17 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
 
   @override
   void dispose() {
+    _searchController.dispose();
     _scrollController.dispose();
     super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    ref.read(explorerNotifierProvider.notifier).onSearchChanged(query);
+  }
+
+  void _onSearchClear() {
+    ref.read(explorerNotifierProvider.notifier).onSearchCleared();
   }
 
   @override
@@ -54,82 +68,122 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Hero(
-              tag: 'searchBarHero',
-              child: Material(
-                color: Colors.transparent,
-                child: Container(
-                  height: 48,
-                  margin: const EdgeInsets.fromLTRB(24, 16, 24, 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
-                        blurRadius: 8,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
-                  ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Hero(
+                tag: 'searchBarHero',
+                child: Material(
+                  color: Colors.transparent,
                   child: Row(
                     children: [
-                      const SizedBox(width: 16),
-                      const Icon(Icons.search, color: Colors.blueAccent),
+                      const Icon(Icons.search, color: Colors.grey, size: 24),
                       const SizedBox(width: 8),
                       Expanded(
                         child: TextField(
+                          controller: _searchController,
                           autofocus: true,
-                          decoration: const InputDecoration(
-                            hintText: 'Search...',
-                            border: InputBorder.none,
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'Search movies, series, people...',
+                            hintStyle: TextStyle(
+                              color: Colors.grey[500],
+                              fontSize: 17,
+                              height: 1.2,
+                            ),
                           ),
+                          style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 17,
+                            height: 1.2,
+                          ),
+                          onChanged: _onSearchChanged,
                         ),
                       ),
+                      if (_searchController.text.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 4),
+                          child: Container(
+                            constraints: const BoxConstraints(
+                              maxHeight: 24,
+                              maxWidth: 24,
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.clear, color: Colors.grey, size: 24),
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                _searchController.clear();
+                                _onSearchClear();
+                              },
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
               ),
             ),
-            // Expanded content
-            Expanded(
-              child: RefreshIndicator(
-                child: Builder(builder: (context) {
-                  if (state is Loading || state is Initial) {
-                    return const MovieShimmer();
-                  }
+            const Divider(height: 1, thickness: 1),
+            if (state is Success &&
+                state.query.isNotEmpty &&
+                state.movies.isEmpty)
+              const Expanded(
+                child: Center(
+                  child: Text(
+                    'No results found',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ),
+              )
+            else
+              // Expanded content
+              Expanded(
+                child: RefreshIndicator(
+                  child: Builder(
+                    builder: (context) {
+                      if (state is Loading || state is Initial) {
+                        return const MovieShimmer();
+                      }
 
-                  if (state is Error) {
-                    return CustomScrollView(
-                      slivers: <Widget>[
-                        SliverFillRemaining(
-                            child: ErrorScreen(error: state.error.toString())),
-                      ],
-                    );
-                  }
+                      if (state is Error) {
+                        return CustomScrollView(
+                          slivers: <Widget>[
+                            SliverFillRemaining(
+                              child: ErrorScreen(error: state.error.toString()),
+                            ),
+                          ],
+                        );
+                      }
 
-                  final successState = state as Success;
+                      final successState = state as Success;
 
-                  final additionalItem = state.isLoadingMore ? 1 : 0;
+                      final additionalItem = state.isLoadingMore ? 1 : 0;
 
-                  return ListView.builder(
-                      controller: _scrollController,
-                      itemCount: successState.movies.length + additionalItem,
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index < successState.movies.length) {
-                          return MovieCell(
-                            item: successState.movies[index],
-                            onTap: () => context.pushRoute(MovieDetailsRoute(id: successState.movies[index].id.toString()))
-                          );
-                        } else {
-                          return MovieShimmer(placeholderCount: 1);
-                        }
-                      });
-                }),
-                onRefresh: () =>
-                    ref.read(explorerNotifierProvider.notifier).refresh(),
+                      return ListView.builder(
+                        controller: _scrollController,
+                        itemCount: successState.movies.length + additionalItem,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index < successState.movies.length) {
+                            return MovieCell(
+                              item: successState.movies[index],
+                              onTap: () => context.pushRoute(
+                                MovieDetailsRoute(
+                                  id: successState.movies[index].id.toString(),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return MovieShimmer(placeholderCount: 1);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  onRefresh: () => state is Success && state.query.isNotEmpty
+                      ? ref
+                          .read(explorerNotifierProvider.notifier)
+                          .onSearchChanged((state).query)
+                      : ref.read(explorerNotifierProvider.notifier).refresh(),
+                ),
               ),
-            ),
           ],
         ),
       ),

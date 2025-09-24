@@ -12,6 +12,7 @@ sealed class ExplorerState with _$ExplorerState {
     required List<MovieUiItem> movies,
     required int currentPage,
     required bool hasMore,
+    @Default('') String query,
     @Default(false) bool isLoadingMore,
   }) = Success;
   const factory ExplorerState.error(HikkiApiException error) = Error;

@@ -18,6 +18,13 @@ class MovieRepositoryImpl implements MovieRepository {
       _dataSource.getMovies(page: page, sortBy: sortBy);
 
   @override
+  Future<Result<MovieCollectionEntity, HikkiApiException>> searchMovies({
+    int page = 1,
+    String query = "",
+  }) =>
+      _dataSource.searchMovies(page: page, query: query);
+
+  @override
   Future<Result<MovieDetailsEntity, HikkiApiException>> getMovieDetails(
     String seriesId,
   ) =>
