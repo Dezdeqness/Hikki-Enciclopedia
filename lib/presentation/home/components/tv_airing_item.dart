@@ -46,7 +46,7 @@ class TvAiringItem extends StatelessWidget {
                       Text(
                         item.name,
                         textAlign: TextAlign.start,
-                        style: context.textTheme.d2
+                        style: context.text.titleMedium
                             .copyWith(color: context.colors.secondary),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
@@ -58,7 +58,7 @@ class TvAiringItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 4,
                           textAlign: TextAlign.start,
-                          style: context.textTheme.h2
+                          style: context.text.bodyMedium
                               .copyWith(color: context.colors.secondary),
                         ),
                       ),

@@ -16,7 +16,7 @@ class CellHeader extends StatelessWidget {
       padding: const EdgeInsets.only(left: 6.0, right: 6.0),
       child: Text(
         header,
-        style: context.textTheme.d1.copyWith(color: context.colors.secondary),
+        style: context.text.titleMedium.copyWith(color: context.colors.secondary),
       ),
     );
   }

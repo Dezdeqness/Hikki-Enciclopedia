@@ -19,35 +19,38 @@ class WidgetbookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HikkiLocalizationWrapper(
-      child: HikkiThemeProvider(
-        builder: (context) {
-          return Widgetbook(
-            appBuilder: (context, child) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: ThemeData(extensions: [HikkiColors()]),
-                home: child,
-              );
-            },
-            directories: directories,
-            addons: [
-              MaterialThemeAddon(
-                themes: [
-                  WidgetbookTheme(
-                    name: 'Light',
-                    data: ThemeData(extensions: [HikkiColors()]),
-                  ),
-                  WidgetbookTheme(
-                    name: 'Dark',
-                    data: ThemeData(extensions: [HikkiColors()]),
-                  ),
-                ],
-              ),
-              AlignmentAddon(),
-              ViewportAddon([Viewports.none, IosViewports.iPhone13]),
-            ],
+      child: Widgetbook(
+        appBuilder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              extensions: [hikkiColorsLight, hikkiShapes, hikkiTextStyles],
+            ),
+            home: child,
           );
         },
+        directories: directories,
+        addons: [
+          MaterialThemeAddon(
+            themes: [
+              WidgetbookTheme(
+                name: 'Light',
+                data: ThemeData(
+                  extensions: [hikkiColorsLight, hikkiShapes, hikkiTextStyles],
+                ),
+              ),
+              WidgetbookTheme(
+                name: 'Dark',
+                data: ThemeData(
+                  extensions: [hikkiColorsDark, hikkiShapes, hikkiTextStyles],
+                ),
+              ),
+            ],
+          ),
+          InspectorAddon(),
+          AlignmentAddon(),
+          ViewportAddon([Viewports.none, IosViewports.iPhone13]),
+        ],
       ),
     );
   }

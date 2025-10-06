@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 import 'package:hikki_ui_kit/src/theme/hikki_shapes.dart';
 
-const appShapes = HikkiShapes(
+const hikkiShapes = HikkiShapes(
   extraSmall: BorderRadius.all(Radius.circular(4)),
   small: BorderRadius.all(Radius.circular(8)),
   medium: BorderRadius.all(Radius.circular(16)),
@@ -11,7 +11,7 @@ const appShapes = HikkiShapes(
   full: BorderRadius.all(Radius.circular(1000)),
 );
 
-const appTextStyles = HikkiText(
+const hikkiTextStyles = HikkiText(
   displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
   displayMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
   displaySmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),

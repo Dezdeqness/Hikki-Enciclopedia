@@ -46,8 +46,8 @@ class TvTrendingItem extends StatelessWidget {
                   Text(
                     item.name,
                     textAlign: TextAlign.start,
-                    style: context.textTheme.c2
-                        .copyWith(color: context.colors.primaryLight),
+                    style: context.text.labelMedium
+                        .copyWith(color: context.colors.textPrimary),
                   ),
                 ],
               ),

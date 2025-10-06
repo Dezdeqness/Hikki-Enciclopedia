@@ -5,7 +5,6 @@ import 'package:hikki_enciclopedia/core/providers/locale_provider.dart';
 
 import 'package:hikki_enciclopedia/presentation/app.dart';
 import 'package:hikki_localization/hikki_localization.dart';
-import 'package:hikki_ui_kit/hikki_ui_kit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/providers/providers.dart';
@@ -22,7 +21,7 @@ Future<void> main() async {
 
   runApp(
     HikkiLocalizationWrapper(
-      child: HikkiThemeProvider(
+      child: Builder(
         builder: (BuildContext context) => ProviderScope(
           overrides: [
             sharedPreferencesProvider.overrideWithValue(prefs),

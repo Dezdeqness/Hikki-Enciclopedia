@@ -14,8 +14,10 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       theme: ThemeData(
         useMaterial3: true,
-        extensions: <ThemeExtension<HikkiColors>>[
-          HikkiColors(),
+        extensions: <ThemeExtension<dynamic>>[
+          hikkiColorsLight,
+          hikkiShapes,
+          hikkiTextStyles,
         ],
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(

@@ -48,8 +48,8 @@ class MainImageWithScore extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       textAlign: TextAlign.start,
-                      style: context.textTheme.c2
-                          .copyWith(color: context.colors.primaryLight),
+                      style: context.text.labelMedium
+                          .copyWith(color: context.colors.textPrimary),
                     ),
                   ),
                 ),

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hikki_enciclopedia/core/ui/error_screen.dart';
+import 'package:hikki_enciclopedia/presentation/explorer/components/explorer_search_bar.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/explorer_state.dart';
 import 'package:hikki_enciclopedia/presentation/explorer/providers/explorer_providers.dart';
 import 'package:hikki_enciclopedia/presentation/navigation/hikki_app_router.dart';
@@ -52,11 +52,11 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
   }
 
   void _onSearchChanged(String query) {
-    ref.read(explorerNotifierProvider.notifier).onSearchChanged(query);
-  }
-
-  void _onSearchClear() {
-    ref.read(explorerNotifierProvider.notifier).onSearchCleared();
+    if (query.isEmpty) {
+      ref.read(explorerNotifierProvider.notifier).onSearchCleared();
+    } else {
+      ref.read(explorerNotifierProvider.notifier).onSearchChanged(query);
+    }
   }
 
   @override
@@ -68,58 +68,9 @@ class _ExplorerPageState extends ConsumerState<ExplorerPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Hero(
-                tag: 'searchBarHero',
-                child: Material(
-                  color: Colors.transparent,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.search, color: Colors.grey, size: 24),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: TextField(
-                          controller: _searchController,
-                          autofocus: true,
-                          decoration: InputDecoration.collapsed(
-                            hintText: 'Search movies, series, people...',
-                            hintStyle: TextStyle(
-                              color: Colors.grey[500],
-                              fontSize: 17,
-                              height: 1.2,
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontSize: 17,
-                            height: 1.2,
-                          ),
-                          onChanged: _onSearchChanged,
-                        ),
-                      ),
-                      if (_searchController.text.isNotEmpty)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 4),
-                          child: Container(
-                            constraints: const BoxConstraints(
-                              maxHeight: 24,
-                              maxWidth: 24,
-                            ),
-                            child: IconButton(
-                              icon: const Icon(Icons.clear, color: Colors.grey, size: 24),
-                              padding: EdgeInsets.zero,
-                              onPressed: () {
-                                _searchController.clear();
-                                _onSearchClear();
-                              },
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
+            ExplorerSearchBar(
+              searchController: _searchController,
+              onChanged: _onSearchChanged,
             ),
             const Divider(height: 1, thickness: 1),
             if (state is Success &&
